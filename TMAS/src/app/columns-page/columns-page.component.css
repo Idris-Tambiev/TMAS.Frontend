@@ -9,6 +9,16 @@
   width: 100%;
   margin-top: 22px;
 }
+.logo-container {
+  margin-left: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  user-select: none;
+}
+.logo-container:hover {
+  cursor: pointer;
+}
 .logo {
   width: 136px;
   font-family: Raleway;
@@ -16,7 +26,6 @@
   font-weight: 500;
   font-size: 44px;
   line-height: 52px;
-  margin-left: 56px;
   letter-spacing: 0.07em;
   color: #334681;
 }
@@ -60,9 +69,7 @@
   height: 15px;
 }
 .user-photo {
-  width: 32px;
-  height: 32px;
-  background-color: #334681;
+  font-size: 32px;
 }
 .user-container {
   display: flex;
@@ -131,6 +138,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 96%;
+  height: 100%;
   margin-left: 40px;
   margin-top: 16px;
+  overflow-x: auto;
 }

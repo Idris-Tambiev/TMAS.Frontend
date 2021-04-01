@@ -27,5 +27,34 @@
 .column-delete-icon {
   color: rgba(55, 125, 255);
   margin-left: auto;
-  margin-right: 20px;
+}
+.todo-add-button {
+  width: 288px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140.1%;
+  /* or 20px */
+
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  color: #377dff;
+}
+.columns-footer {
+  width: 288px;
+  height: 24px;
+}
+
+.cdk-drag-animating {
+  transition: transform 50ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 100ms cubic-bezier(0, 0, 0.2, 1);
 }

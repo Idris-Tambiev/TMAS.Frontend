@@ -12,6 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const appRoutes: Routes = [{ path: '', component: ColumnsPageComponent }];
 @NgModule({
@@ -30,6 +32,8 @@ const appRoutes: Routes = [{ path: '', component: ColumnsPageComponent }];
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatMenuModule,
+    DragDropModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

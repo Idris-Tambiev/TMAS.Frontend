@@ -1,11 +1,21 @@
 <div class="column-container">
     <div class="column-header">
         <span class="column-title">Title</span>
-            <mat-icon class="column-delete-icon">delete</mat-icon>
+        <button mat-icon-button class="column-delete-icon"> 
+            <mat-icon >delete</mat-icon>
+        </button>
     </div>
-    <app-cards></app-cards>
-    <app-cards></app-cards>
-    <app-cards></app-cards>
-    <app-cards></app-cards>
-    <app-cards></app-cards>
+
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+         <app-cards class="example-box" *ngFor="let item of movies" [item]="item" cdkDrag></app-cards>
+      </div>
+
+    <div class="columns-footer"></div>
 </div>
+<div class="todo-add-button">
+    <button mat-icon-button >
+        <mat-icon>add_circle_outline</mat-icon>
+    </button>
+     <span>ADD TODO</span>
+</div>
+

@@ -20,9 +20,29 @@
   font-size: 14px;
   line-height: 146.1%;
   color: #334681;
+  word-wrap: break-word;
 }
 .checkbox {
   margin-top: 15px;
   margin-left: 16px;
   border-radius: 3px;
+}
+
+.menu-icon {
+  color: #377dff;
+}
+
+.menu-buttons {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140.1%;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: rgba(55, 125, 255, 0.8);
+}
+.menu-items-icon {
+  color: #ffffff;
 }

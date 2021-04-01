@@ -1,8 +1,20 @@
-<div class="cards-container">
+<div class="cards-container" >
     <div class="checkbox" >
         <mat-checkbox color="primary"></mat-checkbox>
     </div>
     
-    <span class="card-span">Payment algorithm</span>
-
+    <span class="card-span">{{item}}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="cards-menu">
+        <mat-icon class="menu-icon">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="menu-buttons-wrapper">
+            <button mat-menu-item class="menu-buttons">
+                <mat-icon class="menu-items-icon">edit_outline</mat-icon>
+                EDIT
+            </button>
+            <button mat-menu-item class="menu-buttons"> 
+                <mat-icon class="column-delete-icon menu-items-icon" >delete</mat-icon>
+                DELETE
+            </button>
+    </mat-menu>
 </div>

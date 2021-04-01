@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 const appRoutes: Routes = [{ path: '', component: ColumnsPageComponent }];
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ const appRoutes: Routes = [{ path: '', component: ColumnsPageComponent }];
     MatFormFieldModule,
     MatIconModule,
     MatButtonModule,
+    MatCheckboxModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],

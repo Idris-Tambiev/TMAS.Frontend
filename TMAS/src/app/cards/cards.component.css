@@ -1,0 +1,28 @@
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 16px;
+  background: #ffffff;
+  width: 256px;
+  box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12),
+    0px 4px 4px -2px rgba(24, 39, 75, 0.08);
+  border-radius: 4px;
+  margin-top: 8px;
+  min-height: 48px;
+}
+.card-span {
+  width: 192px;
+  margin-top: 14px;
+  margin-left: 7px;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 146.1%;
+  color: #334681;
+}
+.checkbox {
+  margin-top: 15px;
+  margin-left: 16px;
+  border-radius: 3px;
+}

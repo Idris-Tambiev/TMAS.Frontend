@@ -1,13 +1,12 @@
-.columns-container {
+.container {
   display: flex;
   flex-direction: column;
 }
-.columns-header {
+.header {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-left: 56px;
   margin-top: 22px;
 }
 .logo {
@@ -17,6 +16,7 @@
   font-weight: 500;
   font-size: 44px;
   line-height: 52px;
+  margin-left: 56px;
   letter-spacing: 0.07em;
   color: #334681;
 }
@@ -68,7 +68,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 1100px;
+  margin-left: auto;
+  margin-right: 56px;
 }
 .user-full-name {
   display: flex;
@@ -102,7 +103,8 @@
 .button-history {
   width: 128px;
   height: 40px;
-  margin-left: 1734px;
+  margin-left: auto;
+  margin-right: 56px;
   background-color: rgba(55, 125, 255, 0.2);
   border-radius: 4px;
 }
@@ -124,4 +126,11 @@
   height: 20px;
   color: #377dff;
   margin-right: 7.75px;
+}
+.columns-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 40px;
+  margin-top: 16px;
 }

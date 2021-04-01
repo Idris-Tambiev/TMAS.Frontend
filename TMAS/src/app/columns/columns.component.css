@@ -1,0 +1,31 @@
+.column-container {
+  width: 288px;
+  background: #dfeeff;
+  border: 1px solid rgba(223, 238, 255, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0px 6px 8px -6px rgba(24, 39, 75, 0.12),
+    0px 8px 16px -6px rgba(24, 39, 75, 0.08);
+  border-radius: 6px;
+  margin-left: 16px;
+  height: auto;
+}
+.column-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+}
+.column-title {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #334681;
+  margin-left: 15px;
+}
+.column-delete-icon {
+  color: rgba(55, 125, 255);
+  margin-left: auto;
+  margin-right: 20px;
+}

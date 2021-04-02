@@ -27,11 +27,9 @@
   margin-left: 16px;
   border-radius: 3px;
 }
-
 .menu-icon {
   color: #377dff;
 }
-
 .menu-buttons {
   font-family: Raleway;
   font-style: normal;
@@ -45,4 +43,7 @@
 }
 .menu-items-icon {
   color: #ffffff;
+}
+.decoration {
+  text-decoration: line-through;
 }

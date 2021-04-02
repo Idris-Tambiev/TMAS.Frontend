@@ -1,7 +1,7 @@
 <div class="container">
     <!-- header -->
     <div class="header">
-        <div class="logo-container">
+        <div class="logo-container" [routerLink]="['/boards']">
             <div class="logo">TMAS</div>
             <div class="name-project">
                 <span>SIMPLE</span>
@@ -35,12 +35,6 @@
 
     <!-- body -->
     <div class="columns-wrapper">
-        <app-columns></app-columns>
-        <app-columns></app-columns>
-        <app-columns></app-columns>
-        <app-columns></app-columns>
-        <app-columns></app-columns>
-        <app-columns></app-columns>
- 
+        <app-columns *ngFor="let column of columns" [column]="column"></app-columns>
     </div>
 </div>

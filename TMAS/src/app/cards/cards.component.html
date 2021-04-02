@@ -1,9 +1,10 @@
 <div class="cards-container" >
     <div class="checkbox" >
-        <mat-checkbox color="primary"></mat-checkbox>
+        <mat-checkbox color="primary" [checked]="card.isDone"></mat-checkbox>
     </div>
     
-    <span class="card-span">{{item}}</span>
+    <span class="card-span" [ngClass]="{decoration:card.isDone}">{{card.title}}</span>
+
     <button mat-icon-button [matMenuTriggerFor]="menu" class="cards-menu">
         <mat-icon class="menu-icon">more_vert</mat-icon>
         </button>

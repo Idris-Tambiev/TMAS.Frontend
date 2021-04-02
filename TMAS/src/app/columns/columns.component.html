@@ -1,13 +1,13 @@
 <div class="column-container">
     <div class="column-header">
-        <span class="column-title">Title</span>
+        <span class="column-title">{{column.title}}</span>
         <button mat-icon-button class="column-delete-icon"> 
             <mat-icon >delete</mat-icon>
         </button>
     </div>
 
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-         <app-cards class="example-box" *ngFor="let item of movies" [item]="item" cdkDrag></app-cards>
+         <app-cards class="example-box" *ngFor="let card of cards" [card]="card" cdkDrag></app-cards>
       </div>
 
     <div class="columns-footer"></div>

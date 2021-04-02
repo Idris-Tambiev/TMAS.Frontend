@@ -1,0 +1,10 @@
+<div class="authorization-container">
+    <input matInput placeholder="User Name ...." (input)="getUserName($event)">
+    <br>
+    <input matInput placeholder="password"  type="password" (input)="getUserPassword($event)">
+    <br>
+        <div *ngIf="incorrectedData">
+            <span> Неправильный логин или пароль</span>
+        </div>
+    <button mat-raised-button color="primary"  (click)="clickOnLoginButton()">Войти</button>
+</div>

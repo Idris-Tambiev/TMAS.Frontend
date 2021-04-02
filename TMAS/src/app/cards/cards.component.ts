@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CardsService } from '../services/cards.service';
 
 @Component({
   selector: 'app-cards',
@@ -7,7 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
   constructor() {}
+  ngOnInit(): void {
+    console.log(this.card);
+  }
 
-  ngOnInit(): void {}
-  @Input() item;
+  @Input() card;
 }

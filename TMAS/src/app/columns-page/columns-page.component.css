@@ -137,7 +137,6 @@
 .columns-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: center;
   width: 96%;
   height: 100%;
   margin-left: 40px;

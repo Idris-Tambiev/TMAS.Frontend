@@ -19,8 +19,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardsPageComponent } from './boards-page/boards-page.component';
 import { BoardsComponent } from './boards/boards.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
-import { BoardsService } from './services/boards.service';
 import { ParamInterceptor } from 'src/app/Interceptor/interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { HeaderComponent } from './header/header.component';
 const appRoutes: Routes = [
   { path: '', component: AuthorizationComponent },
   { path: 'boards', component: BoardsPageComponent },
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     BoardsPageComponent,
     BoardsComponent,
     AuthorizationComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     StorageServiceModule,
     MatIconModule,
+    MatDialogModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,

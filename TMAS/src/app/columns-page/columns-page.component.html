@@ -1,33 +1,5 @@
 <div class="container">
-    <!-- header -->
-    <div class="header">
-        <div class="logo-container" [routerLink]="['/boards']">
-            <div class="logo">TMAS</div>
-            <div class="name-project">
-                <span>SIMPLE</span>
-                <span>TASK</span>
-                <span>MANAGER</span>
-            </div>
-        </div>
-       
-        <div class="search-block">
-            <mat-icon class="search-icon" matSuffix>search</mat-icon>
-            <mat-form-field class="search-input" appearance="">
-                <input matInput placeholder="SEARCH">
-              </mat-form-field>
-        </div>
-        <div class="user-container">
-            <div class="user-photo">
-                <mat-icon >account_circle</mat-icon>
-            </div>
-            <div class="user-full-name">
-                <span>Name</span>
-                <span>Surname</span>
-            </div>
-            <button mat-raised-button class="logout-button">LOG OUT</button>
-        </div>
-    </div>
-
+    <app-header></app-header>
     <button mat-flat-button class="button-history">
         <mat-icon class="history-icon">history</mat-icon>
         <span class="span-button">History</span>
@@ -35,6 +7,6 @@
 
     <!-- body -->
     <div class="columns-wrapper">
-        <app-columns *ngFor="let column of columns" [column]="column"></app-columns>
+        <app-columns *ngFor="let column of columns" [column]="column" (deleteColumn)="deleteColumn($event)"></app-columns>
     </div>
 </div>

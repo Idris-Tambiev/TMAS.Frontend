@@ -7,7 +7,10 @@ import { ColumnsService } from 'src/app/services/columns.service';
   styleUrls: ['./columns-page.component.css'],
 })
 export class ColumnsPageComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private http: ColumnsService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private httpService: ColumnsService
+  ) {}
   boardId: number;
   columns = [];
   ngOnInit(): void {
@@ -20,9 +23,18 @@ export class ColumnsPageComponent implements OnInit {
   }
 
   getAllColumns() {
-    this.http.getAllColumns(this.boardId).subscribe(
+    this.httpService.getAllColumns(this.boardId).subscribe(
       (response) => {
         this.columns = response;
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  deleteColumn(id: number) {
+    this.httpService.deleteColumn(id).subscribe(
+      (response) => {
+        this.getAllColumns();
       },
       (error) => console.log(error)
     );

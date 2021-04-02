@@ -1,18 +1,18 @@
 <div class="column-container">
     <div class="column-header">
         <span class="column-title">{{column.title}}</span>
-        <button mat-icon-button class="column-delete-icon"> 
+        <button mat-icon-button class="column-delete-icon" (click)="deleteThisColumn()"> 
             <mat-icon >delete</mat-icon>
         </button>
     </div>
 
     <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-         <app-cards class="example-box" *ngFor="let card of cards" [card]="card" cdkDrag></app-cards>
+         <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (deleteCard)="deleteThisCard($event)" cdkDrag></app-cards>
       </div>
 
     <div class="columns-footer"></div>
 </div>
-<div class="todo-add-button">
+<div class="todo-add-button" >
     <button mat-icon-button >
         <mat-icon>add_circle_outline</mat-icon>
     </button>

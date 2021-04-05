@@ -39,4 +39,8 @@ export class CardsService {
   updateCardTitle(card: object): Observable<any> {
     return this.httpClient.put(this.configUrl + '/api/cards/update', card);
   }
+
+  moveCardPosition(card: object): Observable<any> {
+    return this.httpClient.put(this.configUrl + '/api/cards/move', card);
+  }
 }

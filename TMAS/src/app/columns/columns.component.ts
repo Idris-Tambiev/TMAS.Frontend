@@ -53,6 +53,7 @@ export class ColumnsComponent implements OnInit {
       title: this.newCardTitle,
       text: this.newCardText,
       columnId: this.column.id,
+      SortBy: this.cards.length,
     };
 
     if (this.newCardTitle !== '') {
@@ -81,7 +82,11 @@ export class ColumnsComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-      console.log(event.currentIndex);
+
+      var movedCard = JSON.parse(
+        JSON.stringify(event.container.data[event.currentIndex])
+      );
+      this.moveCard(movedCard, event.currentIndex);
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -90,6 +95,20 @@ export class ColumnsComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  moveCard(movedCard, position) {
+    movedCard.SortBy = position;
+    this.cardsHttpService.moveCardPosition(movedCard).subscribe(
+      (response) => {
+        movedCard.SortBy = position;
+        console.log(response);
+        this.getAll();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   @Output() updateColumnsList = new EventEmitter<number>();

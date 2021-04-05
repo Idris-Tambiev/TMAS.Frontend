@@ -6,16 +6,28 @@
         </button>
     </div>
 
-    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-         <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (deleteCard)="deleteThisCard($event)" cdkDrag></app-cards>
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (updateCardsList)="getAll()" cdkDrag></app-cards>
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       </div>
+  
 
+      <div *ngIf="insertFormStatus" class="new-card">
+        <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardText($event)" >
+        <div class="new-card-buttons">
+            <button mat-button>
+                SAVE
+            </button>
+            <button mat-button class="cancel" (click)="clickOnCancelButton()">
+                CANCEL
+            </button>
+        </div>
+      </div>
     <div class="columns-footer"></div>
 </div>
-<div class="todo-add-button" >
-    <button mat-icon-button >
+
+<div  class="todo-add-button" (click)="openInsertField()">
         <mat-icon>add_circle_outline</mat-icon>
-    </button>
-     <span>ADD TODO</span>
+        <span class="add-span">ADD TODO</span> 
 </div>
 

@@ -24,9 +24,11 @@ export class CardsComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
   updateCardsArray() {
-    this.deleteCard.emit(this.card.id);
+    this.updateCardsList.emit();
   }
-  @Output() deleteCard = new EventEmitter<number>();
+
+  @Output() updateCardsList = new EventEmitter<number>();
   @Input() card;
 }

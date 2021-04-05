@@ -5,8 +5,7 @@
         <span class="span-button">History</span>
     </button>
 
-    <!-- body -->
     <div class="columns-wrapper">
-        <app-columns *ngFor="let column of columns" [column]="column" (deleteColumn)="deleteColumn($event)"></app-columns>
+        <app-columns *ngFor="let column of columns" [column]="column" (updateColumnsList)="getAllColumns()"></app-columns>
     </div>
 </div>

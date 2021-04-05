@@ -1,15 +1,17 @@
 <div class="cards-container" >
     <div class="checkbox" >
-        <mat-checkbox color="primary" [checked]="card.isDone"></mat-checkbox>
+        <mat-checkbox color="primary" [checked]="card.isDone" (change)="checkCard($event.checked)"></mat-checkbox>
     </div>
     
-    <span class="card-span" [ngClass]="{decoration:card.isDone}">{{card.title}}</span>
+    <span class="card-span" *ngIf="!editCard" [ngClass]="{decoration:card.isDone}">{{card.title}}</span>
+
+    <input class="edit-input" matInput type="text" *ngIf="editCard" value="{{card.title}}" (input)="getUpdatedCard($event)" (keyup.enter)="updateThisCard()">
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="cards-menu">
         <mat-icon class="menu-icon">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="menu-buttons-wrapper">
-            <button mat-menu-item class="menu-buttons">
+            <button mat-menu-item class="menu-buttons" (click)="editCard=true">
                 <mat-icon class="menu-items-icon">edit_outline</mat-icon>
                 EDIT
             </button>

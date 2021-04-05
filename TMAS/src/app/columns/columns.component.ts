@@ -1,7 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { CardsService } from '../services/cards.service';
 import { ColumnsService } from '../services/columns.service';
+import { NewCard } from 'src/app/interfaces/new.card.interface';
+import { Card } from '../interfaces/card.interface';
+
 @Component({
   selector: 'app-columns',
   templateUrl: './columns.component.html',
@@ -9,6 +16,11 @@ import { ColumnsService } from '../services/columns.service';
 })
 export class ColumnsComponent implements OnInit {
   insertFormStatus: boolean = false;
+  newCardTitle: string;
+  newCardText: string = '';
+  cards: Card[] = [];
+  newCard: NewCard;
+
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService
@@ -16,14 +28,6 @@ export class ColumnsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
-  }
-  cards = [];
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-  }
-  openInsertField() {
-    this.insertFormStatus = true;
   }
 
   getAll() {
@@ -44,10 +48,49 @@ export class ColumnsComponent implements OnInit {
     );
   }
 
+  createNewCard() {
+    this.newCard = {
+      title: this.newCardTitle,
+      text: this.newCardText,
+      columnId: this.column.id,
+    };
+
+    if (this.newCardTitle !== '') {
+      this.cardsHttpService.createCard(this.newCard).subscribe(
+        (response) => {
+          this.getAll();
+          this.getNewCardTitle(event);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
   clickOnCancelButton() {
     this.insertFormStatus = false;
   }
-  getNewCardText(event: any) {}
+  getNewCardTitle(event: any) {
+    this.newCardTitle = event.target.value;
+  }
+  openInsertField() {
+    this.insertFormStatus = true;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
+      console.log(event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 
   @Output() updateColumnsList = new EventEmitter<number>();
   @Input() column;

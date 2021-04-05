@@ -8,17 +8,16 @@ import { CardsService } from '../services/cards.service';
   styleUrls: ['./cards.component.css'],
 })
 export class CardsComponent implements OnInit {
+  editCard = false;
+  newTitle: string;
   constructor(private httpService: CardsService) {}
-  ngOnInit(): void {
-    console.log(this.card);
-  }
+  ngOnInit(): void {}
   @Output()
   emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
 
   deleteThisCard() {
     this.httpService.deleteCard(this.card.id).subscribe(
       (response) => {
-        console.log(response);
         this.updateCardsArray();
       },
       (error) => console.log(error)
@@ -27,6 +26,36 @@ export class CardsComponent implements OnInit {
 
   updateCardsArray() {
     this.updateCardsList.emit();
+  }
+
+  checkCard(event: boolean) {
+    const status = event;
+    this.httpService.cardCheck(this.card.id, status).subscribe(
+      (response) => {
+        this.updateCardsArray();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  getUpdatedCard(event: any) {
+    this.newTitle = event.target.value;
+  }
+
+  updateThisCard() {
+    if (this.newTitle !== '') {
+      const newCard = {
+        id: this.card.id,
+        title: this.newTitle,
+      };
+      this.httpService.updateCardTitle(newCard).subscribe(
+        (response) => {
+          this.updateCardsArray();
+        },
+        (error) => console.log(error)
+      );
+    }
+    this.editCard = false;
   }
 
   @Output() updateCardsList = new EventEmitter<number>();

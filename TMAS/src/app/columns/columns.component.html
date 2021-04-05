@@ -6,16 +6,17 @@
         </button>
     </div>
 
-      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <!-- <app-cards-drag [cards]="cards" [column]="column"></app-cards-drag> -->
+      <div cdkDropList class="example-list" [cdkDropListConnectedTo]="[column.title,column.title]" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards" >
         <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (updateCardsList)="getAll()" cdkDrag></app-cards>
-          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
       </div>
   
 
       <div *ngIf="insertFormStatus" class="new-card">
-        <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardText($event)" >
+        <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >
         <div class="new-card-buttons">
-            <button mat-button>
+            <button mat-button (click)="createNewCard()">
                 SAVE
             </button>
             <button mat-button class="cancel" (click)="clickOnCancelButton()">

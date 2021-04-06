@@ -79,38 +79,6 @@ export class ColumnsComponent implements OnInit {
     this.insertFormStatus = true;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-
-      var movedCard = JSON.parse(
-        JSON.stringify(event.container.data[event.currentIndex])
-      );
-      this.moveCard(movedCard, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-  }
-
-  moveCard(movedCard, position) {
-    movedCard.SortBy = position;
-    this.cardsHttpService.moveCardPosition(movedCard).subscribe(
-      (response) => {
-        movedCard.SortBy = position;
-        console.log(response);
-        this.getAll();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
   @Output() updateColumnsList = new EventEmitter<number>();
   @Input() column;
 }

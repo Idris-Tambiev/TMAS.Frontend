@@ -143,3 +143,7 @@
   margin-top: 16px;
   overflow-x: auto;
 }
+.group-item {
+  display: flex;
+  flex-direction: row;
+}

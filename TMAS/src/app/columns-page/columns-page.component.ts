@@ -30,13 +30,4 @@ export class ColumnsPageComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-
-  deleteColumn(id: number) {
-    this.httpService.deleteColumn(id).subscribe(
-      (response) => {
-        this.getAllColumns();
-      },
-      (error) => console.log(error)
-    );
-  }
 }

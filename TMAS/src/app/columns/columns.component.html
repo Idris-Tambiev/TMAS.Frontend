@@ -6,12 +6,7 @@
         </button>
     </div>
 
-    <!-- <app-cards-drag [cards]="cards" [column]="column"></app-cards-drag> -->
-      <div cdkDropList class="example-list" [cdkDropListConnectedTo]="[]" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards" >
-        <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (updateCardsList)="getAll()" cdkDrag></app-cards>
-        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      </div>
-  
+    <app-drag-component [column]="column" ></app-drag-component>
 
       <div *ngIf="insertFormStatus" class="new-card">
         <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >

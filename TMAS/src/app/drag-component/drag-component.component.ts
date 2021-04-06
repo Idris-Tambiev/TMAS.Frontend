@@ -4,6 +4,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { Card } from '../interfaces/card.interface';
 import { CardsService } from '../services/cards.service';
 
 @Component({
@@ -27,10 +28,10 @@ export class DragComponentComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-
       var movedCard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
@@ -43,14 +44,34 @@ export class DragComponentComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+      var Card = JSON.parse(
+        JSON.stringify(event.container.data[event.currentIndex])
+      );
+      console.log(event.container.element.nativeElement.id);
+      Card.columnId = event.container.element.nativeElement.id;
+      Card.SortBy = event.currentIndex;
+      this.moveCardColumn(Card);
     }
   }
 
-  moveCard(movedCard, position) {
-    movedCard.SortBy = position;
+  moveCard(movedCard, position: number) {
+    movedCard.sortBy = position;
+    console.log(movedCard);
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
       (response) => {
         this.getAll();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  moveCardColumn(movedCard) {
+    this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
+      (response) => {
+        this.getAll();
+        console.log(response);
       },
       (error) => {
         console.log(error);

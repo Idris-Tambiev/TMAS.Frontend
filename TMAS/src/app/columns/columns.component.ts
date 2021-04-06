@@ -1,13 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+
 import { CardsService } from '../services/cards.service';
 import { ColumnsService } from '../services/columns.service';
 import { NewCard } from 'src/app/interfaces/new.card.interface';
 import { Card } from '../interfaces/card.interface';
+import { DragComponentComponent } from '../drag-component/drag-component.component';
 
 @Component({
   selector: 'app-columns',
@@ -20,7 +24,7 @@ export class ColumnsComponent implements OnInit {
   newCardText: string = '';
   cards: Card[] = [];
   newCard: NewCard;
-
+  @ViewChild(DragComponentComponent) child: DragComponentComponent;
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService
@@ -29,7 +33,6 @@ export class ColumnsComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
   }
-
   getAll() {
     this.cardsHttpService.getAllCards(this.column.id).subscribe(
       (response) => {
@@ -38,7 +41,6 @@ export class ColumnsComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-
   deleteThisColumn() {
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
@@ -49,6 +51,7 @@ export class ColumnsComponent implements OnInit {
   }
 
   createNewCard() {
+    console.log(this.cards.length);
     this.newCard = {
       title: this.newCardTitle,
       text: this.newCardText,
@@ -59,8 +62,9 @@ export class ColumnsComponent implements OnInit {
     if (this.newCardTitle !== '') {
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
+          console.log(response);
           this.getAll();
-          this.getNewCardTitle(event);
+          this.child.getAll();
         },
         (error) => {
           console.log(error);

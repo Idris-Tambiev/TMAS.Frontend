@@ -41,6 +41,13 @@ export class CardsService {
   }
 
   moveCardPosition(card: object): Observable<any> {
+    console.log(card);
     return this.httpClient.put(this.configUrl + '/api/cards/move', card);
+  }
+  moveCardOnOtherColumn(card: object): Observable<any> {
+    return this.httpClient.put(
+      this.configUrl + '/api/cards/moveoncolumn',
+      card
+    );
   }
 }

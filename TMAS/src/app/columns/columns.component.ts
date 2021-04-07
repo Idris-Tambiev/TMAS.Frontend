@@ -12,11 +12,12 @@ import { ColumnsService } from '../services/columns.service';
 import { NewCard } from 'src/app/interfaces/new.card.interface';
 import { Card } from '../interfaces/card.interface';
 import { DragCardComponent } from '../drag-components/cards-drag/drag-card.component';
+import { Column } from '../interfaces/column.interface';
 
 @Component({
   selector: 'app-columns',
   templateUrl: './columns.component.html',
-  styleUrls: ['./columns.component.css'],
+  styleUrls: ['./columns.component.scss'],
 })
 export class ColumnsComponent implements OnInit {
   insertFormStatus: boolean = false;
@@ -24,6 +25,9 @@ export class ColumnsComponent implements OnInit {
   newCardText: string = '';
   cards: Card[] = [];
   newCard: NewCard;
+  editColumn: boolean = false;
+  newColumnTitle: string;
+  newColumn: Column;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
@@ -51,15 +55,13 @@ export class ColumnsComponent implements OnInit {
   }
 
   createNewCard() {
-    console.log(this.cards.length);
-    this.newCard = {
-      title: this.newCardTitle,
-      text: this.newCardText,
-      columnId: this.column.id,
-      SortBy: this.cards.length,
-    };
-
     if (this.newCardTitle !== '') {
+      this.newCard = {
+        title: this.newCardTitle,
+        text: this.newCardText,
+        columnId: this.column.id,
+        SortBy: this.cards.length,
+      };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
           console.log(response);
@@ -71,6 +73,35 @@ export class ColumnsComponent implements OnInit {
         }
       );
     }
+  }
+
+  getUpdateColumn(event: any) {
+    this.newColumnTitle = event.target.value;
+  }
+  submitNewColumnTitle() {
+    if (this.newColumnTitle != '') {
+      this.newColumn = {
+        Id: this.column.id,
+        Title: this.newColumnTitle,
+        BoardId: this.column.boardId,
+        SortBy: this.column.SortBy,
+      };
+      this.columnsHttpService.updateColumn(this.newColumn).subscribe(
+        (response) => {
+          this.updateColumnsList.emit();
+          this.editColumn = false;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else if (this.newColumnTitle === this.column.Title) {
+      this.editColumn = false;
+    }
+  }
+
+  columnUpdate() {
+    this.editColumn = true;
   }
 
   clickOnCancelButton() {

@@ -1,0 +1,81 @@
+@mixin flexibleColumn {
+  display: flex;
+  flex-direction: column;
+}
+@mixin font {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: #334681;
+}
+.main-page-container {
+  width: 100%;
+  height: 100%;
+  background-color: #b0cfff;
+  @include flexibleColumn();
+}
+.authorization-field-container {
+  width: 592px;
+  height: 432px;
+  margin: 0 auto;
+  margin-top: 5%;
+  background-color: white;
+  box-shadow: 0px 4px 44px rgba(51, 70, 129, 0.3);
+  border-radius: 6px;
+}
+.login-button {
+  @include font();
+  width: 216px;
+  height: 48px;
+  font-size: 14px;
+  line-height: 140.1%;
+  text-align: center;
+  background: #fef2c4;
+  border-radius: 50px;
+}
+.auth-input {
+  @include font();
+  width: 448px;
+  height: 48px;
+
+  border: 1px solid #b0cfff;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.unActiveButton {
+  @include font();
+  width: 216px;
+  height: 48px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140.1%;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+  border-radius: 50px;
+}
+.text-login {
+  @include font();
+  margin-top: 46px;
+
+  font-weight: 600;
+  font-size: 33px;
+  line-height: 140.1%;
+  text-align: center;
+}
+.username-input {
+  @include flexibleColumn();
+  @include font();
+  margin-top: 33px;
+  margin-left: 72px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 146.1%;
+}
+.buttons {
+  margin-top: 24px;
+  margin-left: 72px;
+}
+.forgot-button {
+  margin-left: 19px;
+}

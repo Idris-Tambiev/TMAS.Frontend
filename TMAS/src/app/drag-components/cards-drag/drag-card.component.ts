@@ -10,7 +10,7 @@ import { CardsService } from 'src/app/services/cards.service';
 @Component({
   selector: 'app-drag-card',
   templateUrl: './drag-card.component.html',
-  styleUrls: ['./drag-card.component.css'],
+  styleUrls: ['./drag-card.component.scss'],
 })
 export class DragCardComponent implements OnInit {
   cards: Card[] = [];

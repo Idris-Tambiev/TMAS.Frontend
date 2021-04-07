@@ -6,7 +6,7 @@ import { Column } from 'src/app/interfaces/column.interface';
 @Component({
   selector: 'app-drag-column',
   templateUrl: './drag-column.component.html',
-  styleUrls: ['./drag-column.component.css'],
+  styleUrls: ['./drag-column.component.scss'],
 })
 export class DragColumnComponent implements OnInit {
   constructor(private columnsHttpService: ColumnsService) {}

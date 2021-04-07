@@ -23,7 +23,10 @@ export class ColumnsService {
   }
 
   moveColumnPosition(column: object): Observable<any> {
-    console.log(column);
     return this.httpClient.put(this.configUrl + '/api/columns/move', column);
+  }
+
+  updateColumn(column: object): Observable<any> {
+    return this.httpClient.put(this.configUrl + '/api/columns/update', column);
   }
 }

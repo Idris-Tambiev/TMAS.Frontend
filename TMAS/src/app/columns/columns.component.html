@@ -1,6 +1,7 @@
 <div class="column-container">
     <div class="column-header">
-        <span class="column-title">{{column.title}}</span>
+        <span class="column-title" *ngIf="!editColumn" (click)="columnUpdate()">{{column.title}}</span>
+        <input matInput type="text" *ngIf="editColumn" value="{{column.title}}" (change)="getUpdateColumn($event)" (keyup.enter)="submitNewColumnTitle()">
         <button mat-icon-button class="column-delete-icon" (click)="deleteThisColumn()"> 
             <mat-icon >delete</mat-icon>
         </button>
@@ -19,6 +20,7 @@
             </button>
         </div>
       </div>
+
     <div class="columns-footer"></div>
 </div>
 

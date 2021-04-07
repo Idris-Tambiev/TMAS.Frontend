@@ -4,7 +4,7 @@ import { Board } from 'src/app/interfaces/board.interface';
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
-  styleUrls: ['./boards-page.component.css'],
+  styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
   constructor(private httpService: BoardsService) {}

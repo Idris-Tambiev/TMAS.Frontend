@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
-  styleUrls: ['./authorization.component.css'],
+  styleUrls: ['./authorization.component.scss'],
 })
 export class AuthorizationComponent implements OnInit {
   incorrectedData: boolean = false;

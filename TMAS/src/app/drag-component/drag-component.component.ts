@@ -35,7 +35,8 @@ export class DragComponentComponent implements OnInit {
       var movedCard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-      this.moveCard(movedCard, event.currentIndex);
+      if (event.previousIndex !== event.currentIndex)
+        this.moveCard(movedCard, event.currentIndex);
     } else {
       console.log('other column');
       transferArrayItem(

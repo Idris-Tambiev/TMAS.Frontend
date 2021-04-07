@@ -24,12 +24,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
 import { DragCardComponent } from './drag-components/cards-drag/drag-card.component';
 import { DragColumnComponent } from './drag-components/columns-drag/drag-column/drag-column.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AuthPageComponent } from './auth-page/auth-page.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AuthorizationComponent },
+  { path: '', component: AuthPageComponent },
+  { path: 'registration', component: AuthPageComponent },
   { path: 'boards', component: BoardsPageComponent },
   { path: 'board/:id', component: ColumnsPageComponent },
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +46,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     DragCardComponent,
     DragColumnComponent,
+    RegistrationComponent,
+    AuthPageComponent,
   ],
   imports: [
     BrowserModule,

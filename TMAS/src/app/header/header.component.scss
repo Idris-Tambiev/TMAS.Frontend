@@ -1,18 +1,29 @@
-.container {
+@mixin flexColumn {
   display: flex;
   flex-direction: column;
 }
-.header {
+@mixin flexRow {
   display: flex;
   flex-direction: row;
+}
+@mixin font {
+  font-family: "Raleway";
+  font-style: normal;
+  letter-spacing: 0.07em;
+  color: #334681;
+}
+.container {
+  @include flexColumn();
+}
+.header {
+  @include flexRow();
   align-items: center;
   width: 100%;
   margin-top: 22px;
 }
 .logo-container {
+  @include flexRow();
   margin-left: 56px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   user-select: none;
 }
@@ -20,32 +31,24 @@
   cursor: pointer;
 }
 .logo {
+  @include font();
   width: 136px;
-  font-family: Raleway;
-  font-style: normal;
   font-weight: 500;
   font-size: 44px;
   line-height: 52px;
-  letter-spacing: 0.07em;
-  color: #334681;
 }
 .name-project {
-  display: flex;
-  flex-direction: column;
+  @include flexColumn();
+  @include font();
   width: 56px;
   margin-left: 16px;
-  font-family: Raleway;
-  font-style: normal;
   font-weight: 600;
   font-size: 9px;
   line-height: 129.1%;
-  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #334681;
 }
 .search-block {
-  display: flex;
-  flex-direction: row;
+  @include flexRow();
   align-items: center;
   background: #fef2c4;
   border-radius: 50px;
@@ -54,14 +57,11 @@
   height: 32px;
 }
 .search-input {
-  font-family: Raleway;
-  font-style: normal;
+  @include font();
   font-weight: 600;
   font-size: 9px;
   line-height: 140.1%;
-  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #334681;
 }
 .search-icon {
   margin-left: 13px;
@@ -72,38 +72,34 @@
   font-size: 32px;
 }
 .user-container {
-  display: flex;
-  flex-direction: row;
+  @include flexRow();
   align-items: center;
   margin-left: auto;
   margin-right: 56px;
 }
 .user-full-name {
-  display: flex;
-  flex-direction: column;
+  @include flexColumn();
+  @include font();
   width: 100px;
   margin-left: 12px;
-  font-family: Raleway;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 140.1%;
-  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #334681;
 }
 .logout-button {
+  @include font();
   width: 88px;
   height: 32px;
   margin-left: 12px;
   background: #fef2c4;
   border-radius: 50px;
-  font-family: Raleway;
-  font-style: normal;
   font-weight: 600;
   font-size: 9px;
   line-height: 140.1%;
-  text-align: center;
-  letter-spacing: 0.07em;
-  color: #334681;
+}
+.log-buttons {
+  @include flexRow();
+  margin-right: 56px;
+  margin-left: auto;
 }

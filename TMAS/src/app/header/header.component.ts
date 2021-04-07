@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   authPages: boolean = false;
-  constructor() {}
+  login: boolean = true;
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const myRoute = this.route.snapshot.routeConfig.path;
+    if (myRoute == '' || myRoute == 'registration') {
+      this.authPages = true;
+    } else this.authPages = false;
+    console.log(myRoute);
+  }
+  logOut() {
+    localStorage.clear();
+  }
 }

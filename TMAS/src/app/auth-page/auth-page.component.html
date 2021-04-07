@@ -1,0 +1,5 @@
+<div class="main-page-container">
+    <app-header></app-header>
+    <app-authorization *ngIf="login"></app-authorization>
+    <app-registration *ngIf="!login"></app-registration>
+</div>

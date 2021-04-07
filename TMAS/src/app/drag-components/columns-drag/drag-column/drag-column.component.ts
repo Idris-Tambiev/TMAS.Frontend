@@ -31,30 +31,21 @@ export class DragColumnComponent implements OnInit {
       var movedColumn: Column = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
+      this.moveColumn(movedColumn, event.currentIndex);
     }
   }
 
-  // moveCard(movedCard, position: number) {
-  //   movedCard.sortBy = position;
-  //   this.cardsHttpService.moveCardPosition(movedCard).subscribe(
-  //     (response) => {
-  //       this.getAll();
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
-  // moveCardColumn(movedCard) {
-  //   this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
-  //     (response) => {
-  //       this.getAll();
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
+  moveColumn(movedColumn, position: number) {
+    movedColumn.sortBy = position;
+    this.columnsHttpService.moveColumnPosition(movedColumn).subscribe(
+      (response) => {
+        this.getAll();
+        console.log(movedColumn);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   @Input() boardId;
 }

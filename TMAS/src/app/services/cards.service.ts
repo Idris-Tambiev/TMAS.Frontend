@@ -44,7 +44,8 @@ export class CardsService {
     console.log(card);
     return this.httpClient.put(this.configUrl + '/api/cards/move', card);
   }
-  moveCardOnOtherColumn(card: object): Observable<any> {
+
+  moveCardOnOtherColumn(card: NewCard): Observable<any> {
     return this.httpClient.put(
       this.configUrl + '/api/cards/moveoncolumn',
       card

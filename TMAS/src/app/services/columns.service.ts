@@ -14,10 +14,16 @@ export class ColumnsService {
     const params = new HttpParams().set('id', boardId.toString());
     return this.httpClient.get(this.configUrl + '/api/columns/get', { params });
   }
+
   deleteColumn(columnId: number): Observable<any> {
     const params = new HttpParams().set('id', columnId.toString());
     return this.httpClient.delete(this.configUrl + '/api/columns/delete', {
       params,
     });
+  }
+
+  moveColumnPosition(column: object): Observable<any> {
+    console.log(column);
+    return this.httpClient.put(this.configUrl + '/api/columns/move', column);
   }
 }

@@ -6,7 +6,7 @@
         </button>
     </div>
 
-    <app-drag-component [column]="column" ></app-drag-component>
+    <app-drag-card [column]="column"></app-drag-card>
 
       <div *ngIf="insertFormStatus" class="new-card">
         <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >

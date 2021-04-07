@@ -11,7 +11,7 @@ import { CardsService } from '../services/cards.service';
 import { ColumnsService } from '../services/columns.service';
 import { NewCard } from 'src/app/interfaces/new.card.interface';
 import { Card } from '../interfaces/card.interface';
-import { DragComponentComponent } from '../drag-component/drag-component.component';
+import { DragCardComponent } from '../drag-components/cards-drag/drag-card.component';
 
 @Component({
   selector: 'app-columns',
@@ -24,7 +24,7 @@ export class ColumnsComponent implements OnInit {
   newCardText: string = '';
   cards: Card[] = [];
   newCard: NewCard;
-  @ViewChild(DragComponentComponent) child: DragComponentComponent;
+  @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService

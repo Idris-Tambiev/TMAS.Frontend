@@ -3,5 +3,6 @@ export interface Card {
   IsDone: boolean;
   Title: string;
   Text: string;
-  IdColumn: number;
+  SortBy: number;
+  ColumnId: number;
 }

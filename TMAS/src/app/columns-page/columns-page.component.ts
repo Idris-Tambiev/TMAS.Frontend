@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
+import { Column } from 'src/app/interfaces/column.interface';
 @Component({
   selector: 'app-columns-page',
   templateUrl: './columns-page.component.html',
@@ -12,7 +13,7 @@ export class ColumnsPageComponent implements OnInit {
     private httpService: ColumnsService
   ) {}
   boardId: number;
-  columns = [];
+  columns: Column[] = [];
   ngOnInit(): void {
     this.getBoardId();
     this.getAllColumns();

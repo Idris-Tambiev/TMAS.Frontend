@@ -8,12 +8,13 @@ import { Card } from '../interfaces/card.interface';
 import { CardsService } from '../services/cards.service';
 
 @Component({
-  selector: 'app-drag-component',
-  templateUrl: './drag-component.component.html',
-  styleUrls: ['./drag-component.component.css'],
+  selector: 'app-drag-card',
+  templateUrl: './drag-card.component.html',
+  styleUrls: ['./drag-card.component.css'],
 })
-export class DragComponentComponent implements OnInit {
-  cards = [];
+export class DragCardComponent implements OnInit {
+  cards: Card[] = [];
+
   constructor(private cardsHttpService: CardsService) {}
 
   ngOnInit(): void {
@@ -32,32 +33,31 @@ export class DragComponentComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
-      var movedCard = JSON.parse(
+
+      var movedCard: Card = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
+
       if (event.previousIndex !== event.currentIndex)
         this.moveCard(movedCard, event.currentIndex);
     } else {
-      console.log('other column');
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      var Card = JSON.parse(
+      var card: Card = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-      console.log(event.container.element.nativeElement.id);
-      Card.columnId = event.container.element.nativeElement.id;
-      Card.SortBy = event.currentIndex;
-      this.moveCardColumn(Card);
+      card.ColumnId = parseInt(event.container.element.nativeElement.id);
+      card.SortBy = event.currentIndex;
+      this.moveCardColumn(card);
     }
   }
 
   moveCard(movedCard, position: number) {
     movedCard.sortBy = position;
-    console.log(movedCard);
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
       (response) => {
         this.getAll();
@@ -72,7 +72,6 @@ export class DragComponentComponent implements OnInit {
     this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
       (response) => {
         this.getAll();
-        console.log(response);
       },
       (error) => {
         console.log(error);

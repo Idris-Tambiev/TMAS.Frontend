@@ -6,9 +6,6 @@
     </button>
 
     <div class="columns-wrapper">
-            <div cdkDropListGroup class="group-item">
-                <app-columns *ngFor="let column of columns" [column]="column" (updateColumnsList)="getAllColumns()">
-                </app-columns>
-            </div>
+         <app-drag-column [boardId]="boardId"></app-drag-column>
     </div>
 </div>

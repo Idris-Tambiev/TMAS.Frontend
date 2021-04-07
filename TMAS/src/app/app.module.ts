@@ -23,6 +23,7 @@ import { ParamInterceptor } from 'src/app/Interceptor/interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './header/header.component';
 import { DragCardComponent } from './drag-components/cards-drag/drag-card.component';
+import { DragColumnComponent } from './drag-components/columns-drag/drag-column/drag-column.component';
 
 const appRoutes: Routes = [
   { path: '', component: AuthorizationComponent },
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     AuthorizationComponent,
     HeaderComponent,
     DragCardComponent,
+    DragColumnComponent,
   ],
   imports: [
     BrowserModule,

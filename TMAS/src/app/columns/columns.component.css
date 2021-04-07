@@ -65,6 +65,7 @@
   background-color: white;
   margin-top: 12px;
   padding-bottom: 24px;
+  padding-left: 10px;
   box-sizing: border-box;
 }
 .cancel {
@@ -79,32 +80,3 @@
   margin-left: -16px;
   color: #377dff;
 }
-
-/* .example-list {
-  width: 500px;
-  max-width: 100%;
-  min-height: 60px;
-  display: block;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.example-box {
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-}
-
-.cdk-drag-animating {
-  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-custom-placeholder {
-  border: dotted 3px #999;
-  min-height: 60px;
-  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
-} */

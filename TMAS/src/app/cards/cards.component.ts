@@ -28,8 +28,9 @@ export class CardsComponent implements OnInit {
     this.updateCardsList.emit();
   }
 
-  checkCard(event: boolean) {
-    const status = event;
+  checkCard(event: any) {
+    const status = event.target.checked;
+    console.log(status);
     this.httpService.cardCheck(this.card.id, status).subscribe(
       (response) => {
         this.updateCardsArray();

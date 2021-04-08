@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   authPages: boolean = false;
-  login: boolean = true;
+  logStatus: boolean = true;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -17,7 +17,11 @@ export class HeaderComponent implements OnInit {
       this.authPages = true;
     } else this.authPages = false;
     console.log(myRoute);
+    if (myRoute == 'registration') {
+      this.logStatus = false;
+    }
   }
+
   logOut() {
     localStorage.clear();
   }

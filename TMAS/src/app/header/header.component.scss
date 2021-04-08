@@ -104,3 +104,12 @@
   margin-right: 56px;
   margin-left: auto;
 }
+.buttonStyle {
+  background-color: #b0cfff;
+  box-shadow: none;
+  border: 0px;
+}
+.buttonStyle:hover {
+  background-color: #fef2c4;
+  border: 1px;
+}

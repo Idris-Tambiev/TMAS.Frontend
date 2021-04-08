@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-history-page',
@@ -9,4 +9,8 @@ export class HistoryPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  closeHistoryField() {
+    this.closeField.emit();
+  }
+  @Output() closeField = new EventEmitter<number>();
 }

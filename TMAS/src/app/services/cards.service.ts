@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Card } from 'src/app/interfaces/card.interface';
-import { NewCard } from 'src/app/interfaces/new.card.interface';
+import { NewCard } from 'src/app/interfaces/new-card.interface';
 @Injectable({
   providedIn: 'root',
 })

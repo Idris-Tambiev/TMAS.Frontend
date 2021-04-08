@@ -31,5 +31,6 @@
               </div>
          </div>
     </div>
-    <app-history-page *ngIf="viewHistory"></app-history-page>
+
+    <app-history-page *ngIf="viewHistory" (closeField)="viewHistory=!viewHistory"></app-history-page>
 </div>

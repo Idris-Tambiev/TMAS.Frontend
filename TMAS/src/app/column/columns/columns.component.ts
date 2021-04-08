@@ -9,10 +9,14 @@ import {
 
 import { CardsService } from 'src/app/services/cards.service';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { NewCard } from 'src/app/interfaces/new.card.interface';
+import { NewCard } from 'src/app/interfaces/new-card.interface';
 import { Card } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/card/cards-drag/drag-card.component';
 import { Column } from 'src/app/interfaces/column.interface';
+import { HistoryService } from 'src/app/services/history.service';
+import { History } from 'src/app/interfaces/new-history.interface';
+import { UserActions } from 'src/app/enums/user-actions.enum';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-columns',
@@ -28,10 +32,12 @@ export class ColumnsComponent implements OnInit {
   editColumn: boolean = false;
   newColumnTitle: string;
   newColumn: Column;
+  history: History;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
-    private columnsHttpService: ColumnsService
+    private columnsHttpService: ColumnsService,
+    private historyHttpService: HistoryService
   ) {}
 
   ngOnInit(): void {
@@ -64,9 +70,10 @@ export class ColumnsComponent implements OnInit {
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
-          console.log(response);
           this.getAll();
           this.child.getAll();
+          console.log(UserActions['Created card']);
+          this.createHistory(UserActions['Created card'], this.newCard.title);
         },
         (error) => {
           console.log(error);
@@ -75,6 +82,20 @@ export class ColumnsComponent implements OnInit {
     }
   }
 
+  createHistory(action: number, actionObject: string) {
+    this.history = {
+      ActionType: action,
+      ActionObject: actionObject,
+      DestinationAction: null,
+      SourceAction: null,
+    };
+    this.historyHttpService.createHistory(this.history).subscribe(
+      (response) => {},
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   getUpdateColumn(event: any) {
     this.newColumnTitle = event.target.value;
   }

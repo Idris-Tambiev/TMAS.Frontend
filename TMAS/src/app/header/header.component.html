@@ -37,8 +37,7 @@
     </div>
 
     <div *ngIf="authPages" class="log-buttons">
-        <button mat-raised-button  class="logout-button" [routerLink]="['registration']">SIGN UP</button>
-        <button mat-raised-button class="logout-button" [routerLink]="['']">LOG IN</button>
+        <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['registration']">SIGN UP</button>
+        <button mat-raised-button [ngClass]="{buttonStyle:!logStatus}" class="logout-button" (click)="logStatus=true" [routerLink]="['']">LOG IN</button>
     </div>
-    
 </div>

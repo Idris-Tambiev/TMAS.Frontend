@@ -48,6 +48,10 @@
   border: none;
   box-shadow: none;
   border-radius: 50px;
+  margin-left: 19px;
+}
+.unActiveButton:hover {
+  background: #fef2c4;
 }
 .text-login {
   @include font();
@@ -69,7 +73,4 @@
 .buttons {
   margin-top: 24px;
   margin-left: 72px;
-}
-.forgot-button {
-  margin-left: 19px;
 }

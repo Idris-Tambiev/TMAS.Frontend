@@ -6,6 +6,8 @@ import {
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
+import { CreateHistory } from 'src/app/services/create-history.service';
+import { UserActions } from 'src/app/enums/user-actions.enum';
 
 @Component({
   selector: 'app-drag-card',
@@ -15,7 +17,10 @@ import { CardsService } from 'src/app/services/cards.service';
 export class DragCardComponent implements OnInit {
   cards: Card[] = [];
 
-  constructor(private cardsHttpService: CardsService) {}
+  constructor(
+    private cardsHttpService: CardsService,
+    private createHistoryService: CreateHistory
+  ) {}
 
   ngOnInit(): void {
     this.getAll();
@@ -61,6 +66,12 @@ export class DragCardComponent implements OnInit {
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
       (response) => {
         //this.getAll();
+        this.createHistoryService.createHistory(
+          UserActions['Moved card'],
+          movedCard.title,
+          null,
+          null
+        );
       },
       (error) => {
         console.log(error);
@@ -72,11 +83,18 @@ export class DragCardComponent implements OnInit {
     this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
       (response) => {
         //this.getAll();
+        this.createHistoryService.createHistory(
+          UserActions['Moved card on other column'],
+          movedCard.title,
+          null,
+          null
+        );
       },
       (error) => {
         console.log(error);
       }
     );
   }
+
   @Input() column;
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardsService } from '../services/cards.service';
+import { CardsService } from 'src/app/services/cards.service';
 
 @Component({
   selector: 'app-cards',

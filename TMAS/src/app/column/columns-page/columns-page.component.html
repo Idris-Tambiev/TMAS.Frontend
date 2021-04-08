@@ -1,11 +1,14 @@
 <div class="container">
     <app-header></app-header>
-    <button mat-flat-button class="button-history">
+    <button mat-flat-button class="button-history" *ngIf="!viewHistory" (click)="viewHistory=!viewHistory">
         <mat-icon class="history-icon">history</mat-icon>
         <span class="span-button">History</span>
     </button>
 
+    <div class="button-history history-button-none" *ngIf="viewHistory"></div>
+
     <div class="columns-wrapper">
+        
          <app-drag-column [boardId]="boardId"></app-drag-column>
 
          <div class="new-column-container"[ngClass]="{newHeight:insertFormStatus}" >
@@ -21,12 +24,12 @@
                     </button>
                 </div>
               </div>
-
+              
               <div class="new-column-div" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
                 <mat-icon>add_circle_outline</mat-icon>
                 <span class="add-column-span">ADD NEW COLUMN</span>
               </div>
          </div>
     </div>
-
+    <app-history-page *ngIf="viewHistory"></app-history-page>
 </div>

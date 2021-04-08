@@ -65,7 +65,7 @@
   @include flexRow();
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 256px;
   height: 100%;
 }
 
@@ -95,4 +95,7 @@
 }
 .newHeight {
   height: 90px;
+}
+.history-button-none {
+  opacity: 0;
 }

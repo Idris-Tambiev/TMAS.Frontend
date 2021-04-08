@@ -7,12 +7,12 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { CardsService } from '../services/cards.service';
-import { ColumnsService } from '../services/columns.service';
+import { CardsService } from 'src/app/services/cards.service';
+import { ColumnsService } from 'src/app/services/columns.service';
 import { NewCard } from 'src/app/interfaces/new.card.interface';
-import { Card } from '../interfaces/card.interface';
-import { DragCardComponent } from '../drag-components/cards-drag/drag-card.component';
-import { Column } from '../interfaces/column.interface';
+import { Card } from 'src/app/interfaces/card.interface';
+import { DragCardComponent } from 'src/app/card/cards-drag/drag-card.component';
+import { Column } from 'src/app/interfaces/column.interface';
 
 @Component({
   selector: 'app-columns',

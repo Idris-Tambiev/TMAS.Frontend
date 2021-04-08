@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { Column } from 'src/app/interfaces/column.interface';
-import { DragColumnComponent } from '../drag-components/columns-drag/drag-column/drag-column.component';
+import { DragColumnComponent } from 'src/app/column/drag-column/drag-column.component';
 @Component({
   selector: 'app-columns-page',
   templateUrl: './columns-page.component.html',
@@ -14,11 +14,13 @@ export class ColumnsPageComponent implements OnInit {
   newColumn: Column;
   boardId: number;
   columns: Column[] = [];
+  viewHistory: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService
   ) {}
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
+
   ngOnInit(): void {
     this.getBoardId();
     this.getAllColumns();

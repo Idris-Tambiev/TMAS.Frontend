@@ -4,6 +4,9 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { Column } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/column/drag-column/drag-column.component';
 import { UserActions } from 'src/app/enums/user-actions.enum';
+import { History } from 'src/app/interfaces/new-history.interface';
+import { HistoryService } from 'src/app/services/history.service';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-columns-page',
   templateUrl: './columns-page.component.html',
@@ -16,9 +19,11 @@ export class ColumnsPageComponent implements OnInit {
   boardId: number;
   columns: Column[] = [];
   viewHistory: boolean = false;
+  history: History;
   constructor(
     private route: ActivatedRoute,
-    private httpService: ColumnsService
+    private httpService: ColumnsService,
+    private historyHttpService: HistoryService
   ) {}
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
 
@@ -53,6 +58,12 @@ export class ColumnsPageComponent implements OnInit {
         (response) => {
           console.log(response);
           this.insertFormStatus = false;
+          this.createHistory(
+            UserActions['Created column'],
+            this.newColumn.Title,
+            null,
+            null
+          );
           this.child.getAll();
           this.getAllColumns();
         },
@@ -66,5 +77,19 @@ export class ColumnsPageComponent implements OnInit {
   getNewColumnTitle(event: any) {
     this.columnNewTitle = event.target.value;
   }
-  clickOnCancelButton() {}
+
+  createHistory(action: number, actionObject: string, dest: number, source) {
+    this.history = {
+      ActionType: action,
+      ActionObject: actionObject,
+      DestinationAction: dest,
+      SourceAction: source,
+    };
+    this.historyHttpService.createHistory(this.history).subscribe(
+      (response) => {},
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

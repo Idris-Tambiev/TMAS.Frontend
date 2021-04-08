@@ -55,6 +55,12 @@ export class ColumnsComponent implements OnInit {
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
         this.updateColumnsList.emit();
+        this.createHistory(
+          UserActions['Deleted column'],
+          this.newCard.title,
+          null,
+          null
+        );
       },
       (error) => console.log(error)
     );
@@ -73,7 +79,12 @@ export class ColumnsComponent implements OnInit {
           this.getAll();
           this.child.getAll();
           console.log(UserActions['Created card']);
-          this.createHistory(UserActions['Created card'], this.newCard.title);
+          this.createHistory(
+            UserActions['Created card'],
+            this.newCard.title,
+            null,
+            null
+          );
         },
         (error) => {
           console.log(error);
@@ -82,12 +93,12 @@ export class ColumnsComponent implements OnInit {
     }
   }
 
-  createHistory(action: number, actionObject: string) {
+  createHistory(action: number, actionObject: string, dest: number, source) {
     this.history = {
       ActionType: action,
       ActionObject: actionObject,
-      DestinationAction: null,
-      SourceAction: null,
+      DestinationAction: dest,
+      SourceAction: source,
     };
     this.historyHttpService.createHistory(this.history).subscribe(
       (response) => {},
@@ -96,9 +107,11 @@ export class ColumnsComponent implements OnInit {
       }
     );
   }
+
   getUpdateColumn(event: any) {
     this.newColumnTitle = event.target.value;
   }
+
   submitNewColumnTitle() {
     if (this.newColumnTitle != '') {
       this.newColumn = {
@@ -111,6 +124,12 @@ export class ColumnsComponent implements OnInit {
         (response) => {
           this.updateColumnsList.emit();
           this.editColumn = false;
+          this.createHistory(
+            UserActions['Updated column'],
+            this.newCard.title,
+            null,
+            null
+          );
         },
         (error) => {
           console.log(error);

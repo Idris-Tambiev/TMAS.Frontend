@@ -8,4 +8,6 @@ export enum UserActions {
   'Deleted column' = 6,
   'Updated column' = 7,
   'Moved column' = 8,
+  'Checked card' = 9,
+  'Unchecked card' = 10,
 }

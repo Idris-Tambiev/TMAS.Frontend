@@ -1,5 +1,14 @@
 <div class="header">
-    <div class="logo-container" [routerLink]="['/boards']">
+    <div class="logo-container" *ngIf="!authPages" [routerLink]="['/boards']">
+        <div class="logo">TMAS</div>
+        <div class="name-project">
+            <span>SIMPLE</span>
+            <span>TASK</span>
+            <span>MANAGER</span>
+        </div>
+    </div>
+
+    <div class="logo-container" *ngIf="authPages">
         <div class="logo">TMAS</div>
         <div class="name-project">
             <span>SIMPLE</span>

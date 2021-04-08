@@ -11,6 +11,7 @@ import { Column } from 'src/app/interfaces/column.interface';
 export class DragColumnComponent implements OnInit {
   constructor(private columnsHttpService: ColumnsService) {}
   columns: Column[] = [];
+
   ngOnInit(): void {
     this.getAll();
   }
@@ -39,7 +40,7 @@ export class DragColumnComponent implements OnInit {
     movedColumn.sortBy = position;
     this.columnsHttpService.moveColumnPosition(movedColumn).subscribe(
       (response) => {
-        this.getAll();
+        //this.getAll();
         console.log(movedColumn);
       },
       (error) => {

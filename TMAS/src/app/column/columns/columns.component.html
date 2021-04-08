@@ -15,7 +15,7 @@
             <button mat-button (click)="createNewCard()">
                 SAVE
             </button>
-            <button mat-button class="cancel" (click)="clickOnCancelButton()">
+            <button mat-button class="cancel" (click)="insertFormStatus=!insertFormStatus">
                 CANCEL
             </button>
         </div>
@@ -24,7 +24,7 @@
     <div class="columns-footer"></div>
 </div>
 
-<div  class="todo-add-button" (click)="openInsertField()">
+<div  class="todo-add-button" (click)="insertFormStatus=!insertFormStatus">
         <mat-icon>add_circle_outline</mat-icon>
         <span class="add-span">ADD TODO</span> 
 </div>

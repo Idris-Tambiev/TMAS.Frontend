@@ -60,7 +60,7 @@ export class DragCardComponent implements OnInit {
     movedCard.sortBy = position;
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
       (response) => {
-        this.getAll();
+        //this.getAll();
       },
       (error) => {
         console.log(error);
@@ -71,7 +71,7 @@ export class DragCardComponent implements OnInit {
   moveCardColumn(movedCard) {
     this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
       (response) => {
-        this.getAll();
+        //this.getAll();
       },
       (error) => {
         console.log(error);

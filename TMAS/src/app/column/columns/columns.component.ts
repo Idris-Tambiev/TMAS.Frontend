@@ -104,14 +104,8 @@ export class ColumnsComponent implements OnInit {
     this.editColumn = true;
   }
 
-  clickOnCancelButton() {
-    this.insertFormStatus = false;
-  }
   getNewCardTitle(event: any) {
     this.newCardTitle = event.target.value;
-  }
-  openInsertField() {
-    this.insertFormStatus = true;
   }
 
   @Output() updateColumnsList = new EventEmitter<number>();

@@ -12,8 +12,6 @@ export class CardsComponent implements OnInit {
   newTitle: string;
   constructor(private httpService: CardsService) {}
   ngOnInit(): void {}
-  @Output()
-  emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
 
   deleteThisCard() {
     this.httpService.deleteCard(this.card.id).subscribe(
@@ -60,5 +58,6 @@ export class CardsComponent implements OnInit {
   }
 
   @Output() updateCardsList = new EventEmitter<number>();
+  @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
   @Input() card;
 }

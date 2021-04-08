@@ -26,6 +26,8 @@ import { DragCardComponent } from './drag-components/cards-drag/drag-card.compon
 import { DragColumnComponent } from './drag-components/columns-drag/drag-column/drag-column.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import { HistoryPageComponent } from './history/history-page/history-page.component';
+import { HistoryItemsComponent } from './history/history-items/history-items.component';
 
 const appRoutes: Routes = [
   { path: '', component: AuthPageComponent },
@@ -48,6 +50,8 @@ const appRoutes: Routes = [
     DragColumnComponent,
     RegistrationComponent,
     AuthPageComponent,
+    HistoryPageComponent,
+    HistoryItemsComponent,
   ],
   imports: [
     BrowserModule,

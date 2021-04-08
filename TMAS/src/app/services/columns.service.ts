@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Column } from 'src/app/interfaces/column.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,9 @@ export class ColumnsService {
 
   updateColumn(column: object): Observable<any> {
     return this.httpClient.put(this.configUrl + '/api/columns/update', column);
+  }
+
+  createColumn(column: Column): Observable<any> {
+    return this.httpClient.post(this.configUrl + '/api/columns/create', column);
   }
 }

@@ -1,0 +1,32 @@
+<div class="container">
+    <app-header></app-header>
+    <button mat-flat-button class="button-history">
+        <mat-icon class="history-icon">history</mat-icon>
+        <span class="span-button">History</span>
+    </button>
+
+    <div class="columns-wrapper">
+         <app-drag-column [boardId]="boardId"></app-drag-column>
+
+         <div class="new-column-container"[ngClass]="{newHeight:insertFormStatus}" >
+             
+            <div *ngIf="insertFormStatus" class="new-column" >
+                <input matInput placeholder="Enter a title for this column" class="column-create-input" (input)="getNewColumnTitle($event)" >
+                <div class="new-column-buttons">
+                    <button mat-button (click)="createNewColumn()">
+                        SAVE
+                    </button>
+                    <button mat-button class="cancel" (click)="insertFormStatus=!insertFormStatus">
+                        CANCEL
+                    </button>
+                </div>
+              </div>
+
+              <div class="new-column-div" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
+                <mat-icon>add_circle_outline</mat-icon>
+                <span class="add-column-span">ADD NEW COLUMN</span>
+              </div>
+         </div>
+    </div>
+
+</div>

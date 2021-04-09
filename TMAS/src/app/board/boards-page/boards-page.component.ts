@@ -9,6 +9,8 @@ import { IBoard } from 'src/app/interfaces/board.interface';
 export class BoardsPageComponent implements OnInit {
   constructor(private httpService: BoardsService) {}
   boards: IBoard[] = [];
+  newBoardTitle: string;
+  insertFormStatus: boolean = false;
   ngOnInit(): void {
     this.getAll();
   }
@@ -21,5 +23,23 @@ export class BoardsPageComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+  }
+  getBoardTitle(event: any) {
+    if (event.target.value != '') {
+      this.newBoardTitle = event.target.value;
+      console.log(event.target.value);
+    }
+  }
+  createBoard() {
+    if (this.newBoardTitle != null) {
+      this.httpService.createBoard(this.newBoardTitle).subscribe(
+        (response) => {
+          this.getAll();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 }

@@ -1,6 +1,14 @@
-.cards-container {
+@mixin flexRow {
   display: flex;
   flex-direction: row;
+}
+@mixin font {
+  font-family: "Raleway Regular", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+.cards-container {
+  @include flexRow();
   margin-left: 16px;
   background: #ffffff;
   width: 256px;
@@ -15,9 +23,8 @@
   width: 192px;
   margin-top: 14px;
   margin-left: 7px;
-  font-family: "Raleway Regular", sans-serif;
-  font-style: normal;
-  font-weight: 500;
+  @include font();
+
   font-size: 14px;
   line-height: 146.1%;
   color: #334681;
@@ -34,9 +41,7 @@
   color: #377dff;
 }
 .menu-buttons {
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: 500;
+  @include font();
   font-size: 14px;
   line-height: 140.1%;
   letter-spacing: 0.07em;
@@ -52,9 +57,7 @@
 }
 .edit-input {
   margin-left: 7px;
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: 500;
+  @include font();
   font-size: 17px;
   line-height: 146.1%;
   color: #334681;

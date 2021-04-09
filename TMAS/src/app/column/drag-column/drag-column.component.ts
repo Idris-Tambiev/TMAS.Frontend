@@ -33,12 +33,12 @@ export class DragColumnComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 
-      var movedColumn: IColumn = JSON.parse(
-        JSON.stringify(event.container.data[event.currentIndex])
-      );
+      // var movedColumn: IColumn = JSON.parse(
+      //   JSON.stringify(event.container.data[event.currentIndex])
+      // );
       var moved = event.container.data[event.currentIndex];
-      console.log(moved);
-      this.moveColumn(moved, event.currentIndex);
+      if (event.previousIndex !== event.currentIndex)
+        this.moveColumn(moved, event.currentIndex);
     }
   }
 

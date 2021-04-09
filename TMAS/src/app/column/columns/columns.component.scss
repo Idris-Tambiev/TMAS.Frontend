@@ -1,3 +1,11 @@
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+}
+@mixin font {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+}
 .column-container {
   width: 288px;
   background: #dfeeff;
@@ -8,14 +16,12 @@
   height: auto;
 }
 .column-header {
-  display: flex;
-  flex-direction: row;
+  @include flexRow();
   align-items: center;
   margin-top: 15px;
 }
 .column-title {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
+  @include font();
   font-weight: bold;
   font-size: 14px;
   line-height: 18px;
@@ -32,8 +38,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 15px;
-  font-family: Raleway;
-  font-style: normal;
+  @include font();
   font-weight: 500;
   font-size: 14px;
   line-height: 140.1%;
@@ -74,8 +79,7 @@
   cursor: pointer;
 }
 .new-card-buttons {
-  display: flex;
-  flex-direction: row;
+  @include flexRow();
   width: 288px;
   margin-left: -16px;
   color: #377dff;

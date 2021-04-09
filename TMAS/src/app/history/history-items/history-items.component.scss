@@ -4,9 +4,16 @@
   line-height: 140.1%;
   color: #334681;
 }
-.history-item-container {
+@mixin flexRow {
   display: flex;
   flex-direction: row;
+}
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+.history-item-container {
+  @include flexRow();
   align-items: center;
   width: 380px;
   height: 57px;
@@ -14,8 +21,7 @@
   margin-left: 24px;
 }
 .history-item-content {
-  display: flex;
-  flex-direction: column;
+  @include flexColumn();
   justify-content: left;
   margin-left: 16px;
 }

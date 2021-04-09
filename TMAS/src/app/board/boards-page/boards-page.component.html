@@ -1,4 +1,23 @@
 <app-header></app-header>
 <div class="boards-container">
     <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
+        <div class="new-board-div">
+            <div  (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
+                <mat-icon>add_circle_outline</mat-icon>
+                <span class="add-board-span">  ADD NEW BOARD</span>
+            </div>
+
+            <div *ngIf="insertFormStatus" class="new-board" >
+                <input matInput placeholder="Enter a board title" class="board-create-input" (input)="getBoardTitle($event)" >
+                <div class="new-board-buttons">
+                    <button mat-button (click)="createBoard()">
+                        SAVE
+                    </button>
+                    <button mat-button class="cancel" (click)="insertFormStatus=!insertFormStatus">
+                        CANCEL
+                    </button>
+                </div>
+              </div>
+        </div>
+        
 </div>

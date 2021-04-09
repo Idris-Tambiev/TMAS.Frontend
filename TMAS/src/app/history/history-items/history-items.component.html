@@ -1,8 +1,18 @@
 <div class="history-item-container">
     <mat-icon >account_circle</mat-icon>
     <div class="history-item-content">
-        <span class="span-name">Name Surname</span>
-        <span class="span-action"> Added task</span>
-        <span class="span-date">date </span>
+        <span class="span-name">{{user.name}} {{user.lastName}}</span>
+        <div class="action-div" *ngIf="!movedOtherColumn">
+            <span class="span-action">{{action}}&ensp;</span>   
+            <span>{{history.actionObject}}</span>
+        </div>
+
+        <div class="action-div" *ngIf="movedOtherColumn">
+            <span class="span-action">{{action}} </span>   
+            <span>{{history.actionObject}} from {{source.title}}</span>
+            <span> on {{dest.title}}</span>
+        </div>
+
+        <span class="span-date">{{history.createdDate | date:'medium'}}</span>
     </div>
 </div>

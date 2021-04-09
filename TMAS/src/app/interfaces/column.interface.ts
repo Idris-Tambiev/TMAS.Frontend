@@ -1,6 +1,6 @@
 export interface Column {
-  Id: number;
-  Title: string;
-  SortBy: number;
-  BoardId: number;
+  id: number;
+  title: string;
+  sortBy: number;
+  boardId: number;
 }

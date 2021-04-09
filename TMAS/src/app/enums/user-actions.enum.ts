@@ -3,7 +3,7 @@ export enum UserActions {
   'Deleted card' = 1,
   'Updated card' = 2,
   'Moved card' = 3,
-  'Moved card on other column' = 4,
+  'Moved card ' = 4,
   'Created column' = 5,
   'Deleted column' = 6,
   'Updated column' = 7,

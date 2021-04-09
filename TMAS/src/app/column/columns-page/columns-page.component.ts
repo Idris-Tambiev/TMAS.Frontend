@@ -4,8 +4,7 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { Column } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/column/drag-column/drag-column.component';
 import { UserActions } from 'src/app/enums/user-actions.enum';
-import { History } from 'src/app/interfaces/new-history.interface';
-import { HistoryService } from 'src/app/services/history.service';
+import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 @Component({
   selector: 'app-columns-page',
@@ -23,12 +22,12 @@ export class ColumnsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService,
-    private historyHttpService: HistoryService
+    private createHistoryService: CreateHistory
   ) {}
+
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
 
   ngOnInit(): void {
-    console.log(UserActions[0]);
     this.getBoardId();
     this.getAllColumns();
   }
@@ -49,21 +48,22 @@ export class ColumnsPageComponent implements OnInit {
   createNewColumn() {
     if (this.columnNewTitle != '') {
       this.newColumn = {
-        Id: 0,
-        BoardId: this.boardId,
-        Title: this.columnNewTitle,
-        SortBy: this.columns.length,
+        id: 0,
+        boardId: this.boardId,
+        title: this.columnNewTitle,
+        sortBy: this.columns.length,
       };
       this.httpService.createColumn(this.newColumn).subscribe(
         (response) => {
-          console.log(response);
           this.insertFormStatus = false;
-          this.createHistory(
+
+          this.createHistoryService.createHistory(
             UserActions['Created column'],
-            this.newColumn.Title,
+            this.newColumn.title,
             null,
             null
           );
+
           this.child.getAll();
           this.getAllColumns();
         },
@@ -76,20 +76,5 @@ export class ColumnsPageComponent implements OnInit {
 
   getNewColumnTitle(event: any) {
     this.columnNewTitle = event.target.value;
-  }
-
-  createHistory(action: number, actionObject: string, dest: number, source) {
-    this.history = {
-      ActionType: action,
-      ActionObject: actionObject,
-      DestinationAction: dest,
-      SourceAction: source,
-    };
-    this.historyHttpService.createHistory(this.history).subscribe(
-      (response) => {},
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 }

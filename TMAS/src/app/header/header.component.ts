@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,17 +9,29 @@ import { ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
   authPages: boolean = false;
   logStatus: boolean = true;
-  constructor(private route: ActivatedRoute) {}
+  user = {};
+  constructor(
+    private route: ActivatedRoute,
+    private userHttpService: UserService
+  ) {}
 
   ngOnInit(): void {
     const myRoute = this.route.snapshot.routeConfig.path;
     if (myRoute == '' || myRoute == 'registration') {
       this.authPages = true;
     } else this.authPages = false;
-    console.log(myRoute);
     if (myRoute == 'registration') {
       this.logStatus = false;
     }
+
+    this.userHttpService.getUserName().subscribe(
+      (response) => {
+        this.user = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   logOut() {

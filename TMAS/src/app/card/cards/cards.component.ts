@@ -21,11 +21,12 @@ export class CardsComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteThisCard() {
+    const deletedCardName = this.card.title;
     this.httpService.deleteCard(this.card.id).subscribe(
       (response) => {
         this.createHistoryService.createHistory(
           UserActions['Deleted card'],
-          this.card.title,
+          deletedCardName,
           null,
           null
         );
@@ -80,7 +81,7 @@ export class CardsComponent implements OnInit {
           this.updateCardsArray();
           this.createHistoryService.createHistory(
             UserActions['Updated card'],
-            this.newTitle,
+            newCard.title,
             null,
             null
           );

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -18,5 +18,9 @@ export class UserService {
       .set('client_id', 'angular_spa')
       .set('grant_type', 'password');
     return this.http.post(this.configTokenUrl + '/connect/token', user);
+  }
+
+  getUserName(): Observable<any> {
+    return this.http.get(this.configTokenUrl + '/api/users/get');
   }
 }

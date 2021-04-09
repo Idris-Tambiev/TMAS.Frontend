@@ -29,8 +29,8 @@
             <mat-icon >account_circle</mat-icon>
         </div>
         <div class="user-full-name">
-            <span>Name</span>
-            <span>Surname</span>
+            <span>{{user.name}}</span>
+            <span>{{user.lastName}}</span>
         </div>
         
         <button mat-raised-button class="logout-button" (click)="logOut()" [routerLink]="['']">LOG OUT</button>

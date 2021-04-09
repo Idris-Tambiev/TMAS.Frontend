@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Card } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { CreateHistory } from 'src/app/services/create-history.service';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 
 @Component({
   selector: 'app-drag-card',
@@ -55,9 +54,10 @@ export class DragCardComponent implements OnInit {
       var card: Card = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-      card.ColumnId = parseInt(event.container.element.nativeElement.id);
-      card.SortBy = event.currentIndex;
-      this.moveCardColumn(card);
+      const oldColumn = card.columnId;
+      card.columnId = parseInt(event.container.element.nativeElement.id);
+      card.sortBy = event.currentIndex;
+      this.moveCardColumn(card, oldColumn);
     }
   }
 
@@ -65,12 +65,11 @@ export class DragCardComponent implements OnInit {
     movedCard.sortBy = position;
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
       (response) => {
-        //this.getAll();
         this.createHistoryService.createHistory(
-          UserActions['Moved card'],
+          3,
           movedCard.title,
           null,
-          null
+          movedCard.columnId
         );
       },
       (error) => {
@@ -79,15 +78,14 @@ export class DragCardComponent implements OnInit {
     );
   }
 
-  moveCardColumn(movedCard) {
+  moveCardColumn(movedCard, oldColumn) {
     this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
       (response) => {
-        //this.getAll();
         this.createHistoryService.createHistory(
-          UserActions['Moved card on other column'],
+          4,
           movedCard.title,
-          null,
-          null
+          movedCard.columnId,
+          oldColumn
         );
       },
       (error) => {

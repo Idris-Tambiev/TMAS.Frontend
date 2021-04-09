@@ -34,4 +34,12 @@ export class ColumnsService {
   createColumn(column: Column): Observable<any> {
     return this.httpClient.post(this.configUrl + '/api/columns/create', column);
   }
+
+  getOneColumn(columnId: number): Observable<any> {
+    console.log(columnId);
+    const params = new HttpParams().set('id', columnId.toString());
+    return this.httpClient.get(this.configUrl + '/api/columns/get/one', {
+      params,
+    });
+  }
 }

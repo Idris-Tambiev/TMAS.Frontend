@@ -13,9 +13,8 @@ import { NewCard } from 'src/app/interfaces/new-card.interface';
 import { Card } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/card/cards-drag/drag-card.component';
 import { Column } from 'src/app/interfaces/column.interface';
-import { HistoryService } from 'src/app/services/history.service';
-import { History } from 'src/app/interfaces/new-history.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
+import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 
 @Component({
@@ -37,7 +36,7 @@ export class ColumnsComponent implements OnInit {
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService,
-    private historyHttpService: HistoryService
+    private createHistoryService: CreateHistory
   ) {}
 
   ngOnInit(): void {
@@ -51,13 +50,15 @@ export class ColumnsComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
   deleteThisColumn() {
+    const deletedColumnTitle = this.column.title;
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
         this.updateColumnsList.emit();
-        this.createHistory(
+        this.createHistoryService.createHistory(
           UserActions['Deleted column'],
-          this.newCard.title,
+          deletedColumnTitle,
           null,
           null
         );
@@ -67,7 +68,7 @@ export class ColumnsComponent implements OnInit {
   }
 
   createNewCard() {
-    if (this.newCardTitle !== '') {
+    if (this.newCardTitle !== '' && this.newCardTitle != null) {
       this.newCard = {
         title: this.newCardTitle,
         text: this.newCardText,
@@ -76,36 +77,21 @@ export class ColumnsComponent implements OnInit {
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
-          this.getAll();
-          this.child.getAll();
-          console.log(UserActions['Created card']);
-          this.createHistory(
+          console.log('create card');
+          this.createHistoryService.createHistory(
             UserActions['Created card'],
             this.newCard.title,
             null,
             null
           );
+          this.getAll();
+          this.child.getAll();
         },
         (error) => {
           console.log(error);
         }
       );
     }
-  }
-
-  createHistory(action: number, actionObject: string, dest: number, source) {
-    this.history = {
-      ActionType: action,
-      ActionObject: actionObject,
-      DestinationAction: dest,
-      SourceAction: source,
-    };
-    this.historyHttpService.createHistory(this.history).subscribe(
-      (response) => {},
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
   getUpdateColumn(event: any) {
@@ -115,18 +101,18 @@ export class ColumnsComponent implements OnInit {
   submitNewColumnTitle() {
     if (this.newColumnTitle != '') {
       this.newColumn = {
-        Id: this.column.id,
-        Title: this.newColumnTitle,
-        BoardId: this.column.boardId,
-        SortBy: this.column.SortBy,
+        id: this.column.id,
+        title: this.newColumnTitle,
+        boardId: this.column.boardId,
+        sortBy: this.column.SortBy,
       };
       this.columnsHttpService.updateColumn(this.newColumn).subscribe(
         (response) => {
           this.updateColumnsList.emit();
           this.editColumn = false;
-          this.createHistory(
+          this.createHistoryService.createHistory(
             UserActions['Updated column'],
-            this.newCard.title,
+            this.newColumn.title,
             null,
             null
           );

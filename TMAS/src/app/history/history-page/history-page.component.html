@@ -5,21 +5,8 @@
             <mat-icon class="close-history-button" (click)="closeHistoryField()">highlight_off</mat-icon>
         </div>
         <div class="history-items">
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
-            <app-history-items></app-history-items>
+            <app-history-items *ngFor="let history of histories" [history]="history"></app-history-items>
+    
         </div>
     </div>
 </div>

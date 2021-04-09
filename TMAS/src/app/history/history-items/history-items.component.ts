@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { History } from 'src/app/interfaces/history.interface';
+import { IHistory } from 'src/app/interfaces/history.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { UserService } from 'src/app/services/user.service';
-import { UserName } from 'src/app/interfaces/user.name.interface';
+import { IUserName } from 'src/app/interfaces/user-name.interface';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { Column } from 'src/app/interfaces/column.interface';
+import { IColumn } from 'src/app/interfaces/column.interface';
 import { from } from 'rxjs';
 @Component({
   selector: 'app-history-items',
@@ -13,9 +13,9 @@ import { from } from 'rxjs';
 })
 export class HistoryItemsComponent implements OnInit {
   action: string;
-  user: UserName = { name: '', lastName: '' };
-  source: Column = { id: 0, sortBy: 0, title: '', boardId: 0 };
-  dest: Column = { id: 0, sortBy: 0, title: '', boardId: 0 };
+  user: IUserName = { name: '', lastName: '' };
+  source: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
+  dest: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
   movedOtherColumn: boolean;
   constructor(
     private userService: UserService,
@@ -63,5 +63,5 @@ export class HistoryItemsComponent implements OnInit {
         }
       );
   }
-  @Input() history: History;
+  @Input() history: IHistory;
 }

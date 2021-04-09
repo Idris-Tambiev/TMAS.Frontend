@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Column } from 'src/app/interfaces/column.interface';
+import { IColumn } from 'src/app/interfaces/column.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,15 +23,15 @@ export class ColumnsService {
     });
   }
 
-  moveColumnPosition(column: object): Observable<any> {
+  moveColumnPosition(column: IColumn): Observable<any> {
     return this.httpClient.put(this.configUrl + '/api/columns/move', column);
   }
 
-  updateColumn(column: object): Observable<any> {
+  updateColumn(column: IColumn): Observable<any> {
     return this.httpClient.put(this.configUrl + '/api/columns/update', column);
   }
 
-  createColumn(column: Column): Observable<any> {
+  createColumn(column: IColumn): Observable<any> {
     return this.httpClient.post(this.configUrl + '/api/columns/create', column);
   }
 

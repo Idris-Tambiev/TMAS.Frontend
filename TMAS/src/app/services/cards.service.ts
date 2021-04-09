@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Card } from 'src/app/interfaces/card.interface';
-import { NewCard } from 'src/app/interfaces/new-card.interface';
+import { ICard } from 'src/app/interfaces/card.interface';
+import { INewCard } from 'src/app/interfaces/new-card.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +23,7 @@ export class CardsService {
     });
   }
 
-  createCard(card: NewCard): Observable<any> {
+  createCard(card: INewCard): Observable<any> {
     return this.httpClient.post(this.configUrl + '/api/cards/create', card);
   }
 
@@ -45,7 +45,7 @@ export class CardsService {
     return this.httpClient.put(this.configUrl + '/api/cards/move', card);
   }
 
-  moveCardOnOtherColumn(card: NewCard): Observable<any> {
+  moveCardOnOtherColumn(card: INewCard): Observable<any> {
     return this.httpClient.put(
       this.configUrl + '/api/cards/moveoncolumn',
       card

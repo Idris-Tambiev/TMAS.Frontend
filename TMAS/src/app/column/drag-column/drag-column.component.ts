@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { Column } from 'src/app/interfaces/column.interface';
+import { IColumn } from 'src/app/interfaces/column.interface';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 @Component({
@@ -14,7 +14,7 @@ export class DragColumnComponent implements OnInit {
     private columnsHttpService: ColumnsService,
     private createHistoryService: CreateHistory
   ) {}
-  columns: Column[] = [];
+  columns: IColumn[] = [];
 
   ngOnInit(): void {
     this.getAll();
@@ -33,7 +33,7 @@ export class DragColumnComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
 
-      var movedColumn: Column = JSON.parse(
+      var movedColumn: IColumn = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
       var moved = event.container.data[event.currentIndex];
@@ -44,8 +44,6 @@ export class DragColumnComponent implements OnInit {
 
   moveColumn(movedColumn, position: number) {
     movedColumn.sortBy = position;
-    //console.log(movedColumn);
-    //console.log(movedColumn.title);
     this.columnsHttpService.moveColumnPosition(movedColumn).subscribe(
       (response) => {
         this.createHistoryService.createHistory(
@@ -54,7 +52,6 @@ export class DragColumnComponent implements OnInit {
           null,
           null
         );
-        //console.log(movedColumn);
       },
       (error) => {
         console.log(error);

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  configTokenUrl: string = environment.Url;
+  configUrl: string = environment.Url;
   constructor(private http: HttpClient) {}
 
   userAuthorization(userName: string, userPass: string): Observable<object> {
@@ -17,10 +18,13 @@ export class UserService {
       .set('scope', 'email profile openid api.read')
       .set('client_id', 'angular_spa')
       .set('grant_type', 'password');
-    return this.http.post(this.configTokenUrl + '/connect/token', user);
+    return this.http.post(this.configUrl + '/connect/token', user);
   }
 
   getUserName(): Observable<any> {
-    return this.http.get(this.configTokenUrl + '/api/users/get');
+    return this.http.get(this.configUrl + '/api/users/get');
+  }
+  createUser(user: IUser): Observable<any> {
+    return this.http.post(this.configUrl + '/api/users/create', user);
   }
 }

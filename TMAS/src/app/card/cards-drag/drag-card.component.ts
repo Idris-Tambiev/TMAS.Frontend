@@ -4,7 +4,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from 'src/app/interfaces/card.interface';
+import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { CreateHistory } from 'src/app/services/create-history.service';
 
@@ -14,7 +14,7 @@ import { CreateHistory } from 'src/app/services/create-history.service';
   styleUrls: ['./drag-card.component.scss'],
 })
 export class DragCardComponent implements OnInit {
-  cards: Card[] = [];
+  cards: ICard[] = [];
 
   constructor(
     private cardsHttpService: CardsService,
@@ -38,7 +38,7 @@ export class DragCardComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
 
-      var movedCard: Card = JSON.parse(
+      var movedCard: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
 
@@ -51,7 +51,7 @@ export class DragCardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      var card: Card = JSON.parse(
+      var card: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
       const oldColumn = card.columnId;

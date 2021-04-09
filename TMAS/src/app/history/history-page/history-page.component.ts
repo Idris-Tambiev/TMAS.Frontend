@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HistoryService } from 'src/app/services/history.service';
-import { History } from 'src/app/interfaces/history.interface';
+import { IHistory } from 'src/app/interfaces/history.interface';
 @Component({
   selector: 'app-history-page',
   templateUrl: './history-page.component.html',

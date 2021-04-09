@@ -9,10 +9,10 @@ import {
 
 import { CardsService } from 'src/app/services/cards.service';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { NewCard } from 'src/app/interfaces/new-card.interface';
-import { Card } from 'src/app/interfaces/card.interface';
+import { INewCard } from 'src/app/interfaces/new-card.interface';
+import { ICard } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/card/cards-drag/drag-card.component';
-import { Column } from 'src/app/interfaces/column.interface';
+import { IColumn } from 'src/app/interfaces/column.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
@@ -26,11 +26,11 @@ export class ColumnsComponent implements OnInit {
   insertFormStatus: boolean = false;
   newCardTitle: string;
   newCardText: string = '';
-  cards: Card[] = [];
-  newCard: NewCard;
+  cards: ICard[] = [];
+  newCard: INewCard;
   editColumn: boolean = false;
   newColumnTitle: string;
-  newColumn: Column;
+  newColumn: IColumn;
   history: History;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(

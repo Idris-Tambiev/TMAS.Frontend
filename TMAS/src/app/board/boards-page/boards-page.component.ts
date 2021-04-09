@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardsService } from 'src/app/services/boards.service';
-import { Board } from 'src/app/interfaces/board.interface';
+import { IBoard } from 'src/app/interfaces/board.interface';
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
@@ -8,7 +8,7 @@ import { Board } from 'src/app/interfaces/board.interface';
 })
 export class BoardsPageComponent implements OnInit {
   constructor(private httpService: BoardsService) {}
-  boards: Board[] = [];
+  boards: IBoard[] = [];
   ngOnInit(): void {
     this.getAll();
   }

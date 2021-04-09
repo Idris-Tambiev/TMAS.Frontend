@@ -19,11 +19,15 @@ export class HeaderComponent implements OnInit {
     const myRoute = this.route.snapshot.routeConfig.path;
     if (myRoute == '' || myRoute == 'registration') {
       this.authPages = true;
-    } else this.authPages = false;
+    } else {
+      this.authPages = false;
+      this.getName();
+    }
     if (myRoute == 'registration') {
       this.logStatus = false;
     }
-
+  }
+  getName() {
     this.userHttpService.getUserName().subscribe(
       (response) => {
         this.user = response;
@@ -33,7 +37,6 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-
   logOut() {
     localStorage.clear();
   }

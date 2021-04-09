@@ -3,20 +3,30 @@
       SIGN UP
     </div>
     <div class="username-input">
+        <span>Name</span>
+        <input class="auth-input" matInput (input)="getUserName($event)">
+    </div>
+    <div class="username-input">
+        <span>LastName</span>
+        <input class="auth-input" matInput (input)="getUserLastName($event)">
+    </div>
+    <div class="username-input">
         <span>E-mail</span>
-        <input class="auth-input" matInput >
+        <input class="auth-input" matInput (input)="getUserEmail($event)">
     </div>
     <div class="username-input">
         <span>Password</span>
-        <input class="auth-input" matInput type="password" >
+        <input class="auth-input" matInput type="password" (input)="getUserPassword($event)">
     </div>
+    <div class="username-input">
+        <span>Confirm Password</span>
+        <input class="auth-input" matInput type="password" (input)="confirmUserPassword($event)">
+    </div>
+
     <div class="buttons">
-        <button class="login-button" mat-raised-button>SIGN UP</button>
+        <button class="login-button" mat-raised-button (click)="registrationUser()">SIGN UP</button>
         <button  class="unActiveButton"  mat-raised-button [routerLink]="['']">LOG IN</button>
     </div>
-    <!-- <div *ngIf="incorrectedData">
-            <span> Неправильный логин или пароль</span>
-    </div> -->
 </div>
 
 

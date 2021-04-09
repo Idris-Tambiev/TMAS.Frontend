@@ -40,3 +40,8 @@
   width: 332px;
   word-wrap: break-word;
 }
+.history-objects {
+  @include font();
+  font-size: 14px;
+  color: #377dff !important;
+}

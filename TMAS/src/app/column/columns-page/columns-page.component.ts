@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { Column } from 'src/app/interfaces/column.interface';
+import { IColumn } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/column/drag-column/drag-column.component';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
@@ -14,9 +14,9 @@ import { from } from 'rxjs';
 export class ColumnsPageComponent implements OnInit {
   insertFormStatus: boolean = false;
   columnNewTitle: string;
-  newColumn: Column;
+  newColumn: IColumn;
   boardId: number;
-  columns: Column[] = [];
+  columns: IColumn[] = [];
   viewHistory: boolean = false;
   history: History;
   constructor(

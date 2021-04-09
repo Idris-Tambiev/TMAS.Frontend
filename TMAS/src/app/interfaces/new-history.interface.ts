@@ -1,4 +1,4 @@
-export interface NewHistory {
+export interface INewHistory {
   ActionType: number;
   ActionObject: string;
   SourceAction: number;

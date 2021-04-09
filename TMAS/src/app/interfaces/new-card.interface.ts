@@ -1,4 +1,4 @@
-export interface NewCard {
+export interface INewCard {
   title: string;
   text: string;
   columnId: number;

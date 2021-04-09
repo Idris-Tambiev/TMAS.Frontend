@@ -1,4 +1,4 @@
-export interface AuthorizationUser {
+export interface IAuthorizationUser {
   username: string;
   password: string;
   scope: string;

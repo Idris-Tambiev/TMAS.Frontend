@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { NewHistory } from 'src/app/interfaces/new-history.interface';
+import { INewHistory } from 'src/app/interfaces/new-history.interface';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,7 +14,7 @@ export class HistoryService {
     return this.httpClient.get(this.configUrl + '/api/history/get');
   }
 
-  createHistory(history: NewHistory): Observable<any> {
+  createHistory(history: INewHistory): Observable<any> {
     return this.httpClient.post(
       this.configUrl + '/api/history/create',
       history

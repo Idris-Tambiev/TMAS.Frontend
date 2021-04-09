@@ -1,4 +1,4 @@
-export interface History {
+export interface IHistory {
   id: number;
   createdDate: Date;
   actionType: number;

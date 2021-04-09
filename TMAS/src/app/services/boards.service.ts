@@ -16,8 +16,7 @@ export class BoardsService {
 
   createBoard(title: string): Observable<any> {
     const params = new HttpParams().set('title', title);
-    console.log(params);
-    return this.http.post(this.configUrl + '/api/boards/create', {
+    return this.http.get(this.configUrl + '/api/boards/create', {
       params,
     });
   }

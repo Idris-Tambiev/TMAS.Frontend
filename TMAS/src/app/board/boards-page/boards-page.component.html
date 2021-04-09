@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="boards-container">
     <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
+    
         <div class="new-board-div">
             <div  (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
                 <mat-icon>add_circle_outline</mat-icon>

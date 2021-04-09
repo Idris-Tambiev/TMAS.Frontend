@@ -8,7 +8,7 @@ import { IHistory } from 'src/app/interfaces/history.interface';
 })
 export class HistoryPageComponent implements OnInit {
   constructor(private historyHttpSrvice: HistoryService) {}
-  histories: History[] = [];
+  histories: IHistory[] = [];
   ngOnInit(): void {
     this.getAll();
   }

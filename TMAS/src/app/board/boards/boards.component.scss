@@ -1,4 +1,7 @@
 .board-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 288px;
   height: 140px;
   cursor: pointer;
@@ -9,8 +12,5 @@
     0px 8px 16px -6px rgba(24, 39, 75, 0.08);
   border-radius: 6px;
   font-size: 20pt;
-}
-.title {
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 16px;
 }

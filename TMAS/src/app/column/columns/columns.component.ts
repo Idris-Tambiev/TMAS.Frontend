@@ -5,18 +5,18 @@ import {
   OnInit,
   Output,
   ViewChild,
+  OnDestroy,
 } from '@angular/core';
 
 import { CardsService } from 'src/app/services/cards.service';
 import { ColumnsService } from 'src/app/services/columns.service';
-import { INewCard } from 'src/app/interfaces/new-card.interface';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/card/cards-drag/drag-card.component';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
-
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-columns',
   templateUrl: './columns.component.html',
@@ -26,26 +26,40 @@ export class ColumnsComponent implements OnInit {
   insertFormStatus: boolean = false;
   newCardTitle: string;
   newCardText: string = '';
-  cards: ICard[] = [];
-  newCard: INewCard;
+  newCard: ICard;
   editColumn: boolean = false;
   newColumnTitle: string;
   newColumn: IColumn;
   history: History;
+  columnView: boolean = true;
+  cardsCount: number;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService,
-    private createHistoryService: CreateHistory
+    private createHistoryService: CreateHistory,
+    private searchService: SearchService
   ) {}
 
+  Subscription;
+
   ngOnInit(): void {
-    this.getAll();
+    this.Subscription = this.searchService.searchText.subscribe((text) => {
+      if (text == '') {
+        console.log('empty');
+        this.columnView = true;
+      } else this.searchCards(this.column.id, text);
+    });
   }
-  getAll() {
-    this.cardsHttpService.getAllCards(this.column.id).subscribe(
+
+  searchCards(columnId: number, text: string) {
+    this.cardsHttpService.searchCards(columnId, text).subscribe(
       (response) => {
-        this.cards = response;
+        if (response.length == 0) {
+          this.columnView = false;
+        } else {
+          this.columnView = true;
+        }
       },
       (error) => console.log(error)
     );
@@ -73,7 +87,7 @@ export class ColumnsComponent implements OnInit {
         title: this.newCardTitle,
         text: this.newCardText,
         columnId: this.column.id,
-        SortBy: this.cards.length,
+        sortBy: this.cardsCount,
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
@@ -83,7 +97,6 @@ export class ColumnsComponent implements OnInit {
             null,
             null
           );
-          this.getAll();
           this.child.getAll();
         },
         (error) => {
@@ -125,12 +138,19 @@ export class ColumnsComponent implements OnInit {
     }
   }
 
+  getCardsCount(count: number) {
+    this.cardsCount = count;
+  }
+
   columnUpdate() {
     this.editColumn = true;
   }
 
   getNewCardTitle(event: any) {
     this.newCardTitle = event.target.value;
+  }
+  ngOnDestroy() {
+    this.Subscription.unsubscribe();
   }
 
   @Output() updateColumnsList = new EventEmitter<number>();

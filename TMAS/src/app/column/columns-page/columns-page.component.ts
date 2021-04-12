@@ -48,7 +48,6 @@ export class ColumnsPageComponent implements OnInit {
   createNewColumn() {
     if (this.columnNewTitle != '') {
       this.newColumn = {
-        id: 0,
         boardId: this.boardId,
         title: this.columnNewTitle,
         sortBy: this.columns.length,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,9 +11,11 @@ export class HeaderComponent implements OnInit {
   authPages: boolean = false;
   logStatus: boolean = true;
   user = {};
+  searchText: string = '';
   constructor(
     private route: ActivatedRoute,
-    private userHttpService: UserService
+    private userHttpService: UserService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +29,14 @@ export class HeaderComponent implements OnInit {
     if (myRoute == 'registration') {
       this.logStatus = false;
     }
+  }
+  getSearchText(event: any) {
+    // this.searchText = event.target.value;
+    this.searchService.searchText.next(event.target.value);
+  }
+  search() {
+    this.searchService.searchText.next(this.searchText);
+    console.log(this.searchText);
   }
   getName() {
     this.userHttpService.getUserName().subscribe(

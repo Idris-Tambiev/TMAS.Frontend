@@ -1,5 +1,5 @@
 import { HistoryService } from 'src/app/services/history.service';
-import { INewHistory } from 'src/app/interfaces/new-history.interface';
+import { IHistory } from 'src/app/interfaces/history.interface';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -14,11 +14,11 @@ export class CreateHistory {
     dest: number,
     source: number
   ) {
-    var history: INewHistory = {
-      ActionType: action,
-      ActionObject: actionObject,
-      DestinationAction: dest,
-      SourceAction: source,
+    var history: IHistory = {
+      actionType: action,
+      actionObject: actionObject,
+      destinationAction: dest,
+      sourceAction: source,
     };
 
     this.historyHttpService.createHistory(history).subscribe(

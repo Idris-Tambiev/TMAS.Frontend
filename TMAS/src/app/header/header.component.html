@@ -20,7 +20,7 @@
     <div class="search-block">
         <mat-icon class="search-icon" matSuffix>search</mat-icon>
         <mat-form-field class="search-input" appearance="">
-            <input matInput placeholder="SEARCH">
+            <input matInput placeholder="SEARCH" (input)="getSearchText($event)">
           </mat-form-field>
     </div>
 

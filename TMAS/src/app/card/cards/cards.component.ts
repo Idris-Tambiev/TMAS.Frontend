@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { CardsService } from 'src/app/services/cards.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
-
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',

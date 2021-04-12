@@ -20,4 +20,11 @@ export class BoardsService {
       params,
     });
   }
+
+  searchBoards(text: string): Observable<any> {
+    const params = new HttpParams().set('text', text);
+    return this.http.get(this.configUrl + '/api/boards/search', {
+      params,
+    });
+  }
 }

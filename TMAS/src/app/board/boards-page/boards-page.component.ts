@@ -1,25 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardsService } from 'src/app/services/boards.service';
 import { IBoard } from 'src/app/interfaces/board.interface';
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  constructor(private httpService: BoardsService) {}
+  constructor(
+    private httpService: BoardsService,
+    private search: SearchService
+  ) {}
   boards: IBoard[] = [];
   newBoardTitle: string;
   insertFormStatus: boolean = false;
+  subscription;
   ngOnInit(): void {
-    this.getAll();
+    this.subscription = this.search.searchText.subscribe((text) => {
+      if (text == '') this.getAll();
+      else this.searchBoards(text);
+    });
   }
 
   getAll() {
     this.httpService.getAllBoards().subscribe(
       (respone) => {
         this.boards = respone;
-        console.log(respone);
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  searchBoards(text: string) {
+    this.httpService.searchBoards(text).subscribe(
+      (response) => {
+        this.boards = response;
       },
       (error) => console.log(error)
     );
@@ -27,7 +43,6 @@ export class BoardsPageComponent implements OnInit {
   getBoardTitle(event: any) {
     if (event.target.value != '') {
       this.newBoardTitle = event.target.value;
-      console.log(event.target.value);
     }
   }
   createBoard() {
@@ -41,5 +56,9 @@ export class BoardsPageComponent implements OnInit {
         }
       );
     }
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    //this.search.searchText.unsubscribe();
   }
 }

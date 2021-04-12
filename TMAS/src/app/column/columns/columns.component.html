@@ -1,31 +1,34 @@
-<div class="column-container">
-    <div class="column-header">
-        <span class="column-title" *ngIf="!editColumn" (click)="columnUpdate()">{{column.title}}</span>
-        <input matInput type="text" *ngIf="editColumn" value="{{column.title}}" (change)="getUpdateColumn($event)" (keyup.enter)="submitNewColumnTitle()">
-        <button mat-icon-button class="column-delete-icon" (click)="deleteThisColumn()"> 
-            <mat-icon >delete</mat-icon>
-        </button>
-    </div>
-
-    <app-drag-card [column]="column"></app-drag-card>
-
-      <div *ngIf="insertFormStatus" class="new-card">
-        <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >
-        <div class="new-card-buttons">
-            <button mat-button (click)="createNewCard()">
-                SAVE
-            </button>
-            <button mat-button class="cancel" (click)="insertFormStatus=!insertFormStatus">
-                CANCEL
+<div [ngClass]="{invisible:!columnView}">
+    <div class="column-container" >
+        <div class="column-header">
+            <span class="column-title" *ngIf="!editColumn" (click)="columnUpdate()">{{column.title}}</span>
+            <input matInput type="text" *ngIf="editColumn" value="{{column.title}}" (change)="getUpdateColumn($event)" (keyup.enter)="submitNewColumnTitle()">
+            <button mat-icon-button class="column-delete-icon" (click)="deleteThisColumn()"> 
+                <mat-icon >delete</mat-icon>
             </button>
         </div>
-      </div>
-
-    <div class="columns-footer"></div>
-</div>
-
-<div  class="todo-add-button" (click)="insertFormStatus=!insertFormStatus">
-        <mat-icon>add_circle_outline</mat-icon>
-        <span class="add-span">ADD TODO</span> 
+    
+        <app-drag-card [column]="column" (cardsCount)="getCardsCount($event)"></app-drag-card>
+    
+          <div *ngIf="insertFormStatus" class="new-card">
+            <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >
+            <div class="new-card-buttons">
+                <button mat-button (click)="createNewCard()">
+                    SAVE
+                </button>
+                <button mat-button class="cancel" (click)="insertFormStatus=!insertFormStatus">
+                    CANCEL
+                </button>
+            </div>
+          </div>
+    
+        <div class="columns-footer"></div>
+    </div>
+    
+    <div  class="todo-add-button" (click)="insertFormStatus=!insertFormStatus">
+            <mat-icon>add_circle_outline</mat-icon>
+            <span class="add-span">ADD TODO</span> 
+    </div>
+    
 </div>
 

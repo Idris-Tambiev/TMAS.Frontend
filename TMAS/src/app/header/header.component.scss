@@ -113,3 +113,11 @@
   background-color: #fef2c4;
   border: 1px;
 }
+@media (max-width: 768px) {
+  .logo-container {
+    margin-left: 8px;
+  }
+  .user-container {
+    margin-right: 16px;
+  }
+}

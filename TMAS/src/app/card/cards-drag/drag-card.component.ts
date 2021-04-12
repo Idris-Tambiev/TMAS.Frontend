@@ -3,11 +3,11 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { CreateHistory } from 'src/app/services/create-history.service';
-
+import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-drag-card',
   templateUrl: './drag-card.component.html',
@@ -15,20 +15,33 @@ import { CreateHistory } from 'src/app/services/create-history.service';
 })
 export class DragCardComponent implements OnInit {
   cards: ICard[] = [];
-
+  subscription;
   constructor(
     private cardsHttpService: CardsService,
-    private createHistoryService: CreateHistory
+    private createHistoryService: CreateHistory,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
-    this.getAll();
+    this.subscription = this.searchService.searchText.subscribe((text) => {
+      if (text == '') this.getAll();
+      else this.searchCards(this.column.id, text);
+    });
   }
 
+  searchCards(columnId: number, text: string) {
+    this.cardsHttpService.searchCards(columnId, text).subscribe(
+      (response) => {
+        this.cards = response;
+      },
+      (error) => console.log(error)
+    );
+  }
   getAll() {
     this.cardsHttpService.getAllCards(this.column.id).subscribe(
       (response) => {
         this.cards = response;
+        this.cardsCount.emit(this.cards.length);
       },
       (error) => console.log(error)
     );
@@ -94,6 +107,9 @@ export class DragCardComponent implements OnInit {
       }
     );
   }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  @Output() cardsCount = new EventEmitter<number>();
   @Input() column;
 }

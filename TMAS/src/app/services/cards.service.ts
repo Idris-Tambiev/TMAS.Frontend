@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ICard } from 'src/app/interfaces/card.interface';
-import { INewCard } from 'src/app/interfaces/new-card.interface';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +15,14 @@ export class CardsService {
     const params = new HttpParams().set('id', columnId.toString());
     return this.httpClient.get(this.configUrl + '/api/cards/get', { params });
   }
-
+  searchCards(columnId: number, text: string): Observable<any> {
+    const params = new HttpParams()
+      .set('columnId', columnId.toString())
+      .set('text', text);
+    return this.httpClient.get(this.configUrl + '/api/cards/search', {
+      params,
+    });
+  }
   deleteCard(cardId: number): Observable<any> {
     const params = new HttpParams().set('id', cardId.toString());
     return this.httpClient.delete(this.configUrl + '/api/cards/delete', {
@@ -23,7 +30,7 @@ export class CardsService {
     });
   }
 
-  createCard(card: INewCard): Observable<any> {
+  createCard(card: ICard): Observable<any> {
     return this.httpClient.post(this.configUrl + '/api/cards/create', card);
   }
 
@@ -40,12 +47,12 @@ export class CardsService {
     return this.httpClient.put(this.configUrl + '/api/cards/update', card);
   }
 
-  moveCardPosition(card: object): Observable<any> {
+  moveCardPosition(card: ICard): Observable<any> {
     console.log(card);
     return this.httpClient.put(this.configUrl + '/api/cards/move', card);
   }
 
-  moveCardOnOtherColumn(card: INewCard): Observable<any> {
+  moveCardOnOtherColumn(card: ICard): Observable<any> {
     return this.httpClient.put(
       this.configUrl + '/api/cards/moveoncolumn',
       card

@@ -3,7 +3,7 @@
     <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
     
         <div class="new-board-div">
-            <div  (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
+            <div class="text-board" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
                 <mat-icon>add_circle_outline</mat-icon>
                 <span class="add-board-span">  ADD NEW BOARD</span>
             </div>

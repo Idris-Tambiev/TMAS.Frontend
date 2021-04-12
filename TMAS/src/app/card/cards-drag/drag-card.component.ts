@@ -54,6 +54,7 @@ export class DragCardComponent implements OnInit {
       var card: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
+
       const oldColumn = card.columnId;
       card.columnId = parseInt(event.container.element.nativeElement.id);
       card.sortBy = event.currentIndex;

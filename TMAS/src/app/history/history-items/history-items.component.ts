@@ -46,7 +46,6 @@ export class HistoryItemsComponent implements OnInit {
     this.columnsHttpService.getOneColumn(this.history.sourceAction).subscribe(
       (response) => {
         this.source = response;
-        console.log(response);
       },
       (error) => {
         console.log(error);

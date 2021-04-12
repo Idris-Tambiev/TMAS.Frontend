@@ -77,7 +77,6 @@ export class ColumnsComponent implements OnInit {
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
-          console.log('create card');
           this.createHistoryService.createHistory(
             UserActions['Created card'],
             this.newCard.title,
@@ -104,7 +103,7 @@ export class ColumnsComponent implements OnInit {
         id: this.column.id,
         title: this.newColumnTitle,
         boardId: this.column.boardId,
-        sortBy: this.column.SortBy,
+        sortBy: this.column.sortBy,
       };
       this.columnsHttpService.updateColumn(this.newColumn).subscribe(
         (response) => {
@@ -121,7 +120,7 @@ export class ColumnsComponent implements OnInit {
           console.log(error);
         }
       );
-    } else if (this.newColumnTitle === this.column.Title) {
+    } else if (this.newColumnTitle === this.column.title) {
       this.editColumn = false;
     }
   }
@@ -135,5 +134,5 @@ export class ColumnsComponent implements OnInit {
   }
 
   @Output() updateColumnsList = new EventEmitter<number>();
-  @Input() column;
+  @Input() column: IColumn;
 }

@@ -36,7 +36,6 @@ export class ColumnsService {
   }
 
   getOneColumn(columnId: number): Observable<any> {
-    console.log(columnId);
     const params = new HttpParams().set('id', columnId.toString());
     return this.httpClient.get(this.configUrl + '/api/columns/get/one', {
       params,

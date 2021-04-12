@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -8,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-  newUser: IUser = {
+  user: IUser = {
     name: '',
     lastName: '',
     userName: '',
@@ -20,43 +21,18 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getUserName(event: any) {
-    if (event.target.value != '') this.newUser.name = event.target.value;
-  }
-  getUserLastName(event: any) {
-    if (event.target.value != '') this.newUser.lastName = event.target.value;
-  }
-  getUserEmail(event: any) {
-    if (event.target.value != '') {
-      this.newUser.email = event.target.value;
-      this.newUser.userName = event.target.value;
-    }
-  }
-  getUserPassword(event: any) {
-    if (event.target.value != '') this.newUser.password = event.target.value;
-  }
-  confirmUserPassword(event: any) {
-    if (event.target.value != '') this.confirmedPassword = event.target.value;
-  }
-  registrationUser() {
-    if (
-      this.newUser.password == this.confirmedPassword &&
-      this.newUser.password != null &&
-      this.newUser.email != null &&
-      this.newUser.name != null &&
-      this.newUser.lastName != null &&
-      this.newUser.userName != null
-    ) {
-      this.userHttpService.createUser(this.newUser).subscribe(
-        (response) => {
-          console.log(response);
-          this.getToken(this.newUser.userName, this.newUser.password);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
+  registrationUser(form: NgForm) {
+    this.user.userName = this.user.email;
+    console.log(this.user);
+    this.userHttpService.createUser(this.user).subscribe(
+      (response) => {
+        console.log(response);
+        this.getToken(this.user.userName, this.user.password);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   getToken(userName, password) {

@@ -3,6 +3,6 @@ export interface IHistory {
   createdDate: Date;
   actionType: number;
   actionObject: string;
-  sourceAction: number;
-  destinationAction: number;
+  sourceAction?: number;
+  destinationAction?: number;
 }

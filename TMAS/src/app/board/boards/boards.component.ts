@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IBoard } from 'src/app/interfaces/board.interface';
 
 @Component({
   selector: 'app-boards',
@@ -16,5 +17,5 @@ export class BoardsComponent implements OnInit {
     var retrievedObject = JSON.parse(localStorage.getItem('userToken'));
     console.log('mytoken: ', retrievedObject.access_token);
   }
-  @Input() board;
+  @Input() board: IBoard;
 }

@@ -1,22 +1,23 @@
-    <div class="authorization-field-container">
+<form #myForm="ngForm" class="authorization-field-container" novalidate >
         <div class="text-login">
            LOG IN 
         </div>
-        <div class="username-input">
+        <div class="username-input form-group">
             <span>E-mail</span>
-            <input class="auth-input" matInput (input)="getUserName($event)">
+            <input class="auth-input form-control" name="email" matInput [(ngModel)]="email" required email>
         </div>
-        <div class="username-input">
+        <div class="username-input form-group">
             <span>Password</span>
-            <input class="auth-input" matInput type="password" (input)="getUserPassword($event)">
+            <input class="auth-input form-control" name="userPass" matInput [(ngModel)]="pass" type="password" ngModel 
+            required>
         </div>
-        <div class="buttons">
-            <button class="login-button" mat-raised-button   (click)="clickOnLoginButton()">LOG IN</button>
+        <div class="buttons form-group">
+            <button class="login-button" mat-raised-button [disabled]="myForm.invalid" (click)="clickOnLoginButton(myForm)">LOG IN</button>
             <button  class="unActiveButton forgot-button"  mat-raised-button>FORGOT PASSWORD</button>
         </div>
         <div *ngIf="incorrectedData">
                 <span> Неправильный логин или пароль</span>
         </div>
-    </div>
+</form>
 
 

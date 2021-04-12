@@ -28,7 +28,7 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { AuthPageComponent } from './auth/auth-page/auth-page.component';
 import { HistoryPageComponent } from './history/history-page/history-page.component';
 import { HistoryItemsComponent } from './history/history-items/history-items.component';
-
+import { FormsModule } from '@angular/forms';
 const appRoutes: Routes = [
   { path: '', component: AuthPageComponent },
   { path: 'registration', component: AuthPageComponent },
@@ -67,6 +67,7 @@ const appRoutes: Routes = [
     MatCheckboxModule,
     MatMenuModule,
     DragDropModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [

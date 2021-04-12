@@ -28,7 +28,6 @@ export class ParamInterceptor implements HttpInterceptor {
         },
       });
     }
-
     return next.handle(request);
   }
 }

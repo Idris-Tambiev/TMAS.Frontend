@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,38 +10,26 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AuthorizationComponent implements OnInit {
   incorrectedData: boolean = false;
-  userName: string;
-  userPass: string;
+  email: string;
+  pass: string;
   constructor(private httpService: UserService, public router: Router) {}
 
   ngOnInit(): void {}
 
-  getUserName(event: any) {
-    this.userName = event.target.value;
-  }
-
-  getUserPassword(event: any) {
-    this.userPass = event.target.value;
-  }
-
-  clickOnLoginButton() {
-    if (this.userName !== '' || this.userPass !== '') {
-      this.httpService
-        .userAuthorization(this.userName, this.userPass)
-        .subscribe(
-          (response) => {
-            this.incorrectedData = false;
-            localStorage.clear();
-            localStorage.setItem('userToken', JSON.stringify(response));
-            this.redirect(true);
-          },
-          (error) => {
-            this.incorrectedData = true;
-            this.redirect(false);
-            console.log(error);
-          }
-        );
-    }
+  clickOnLoginButton(form: NgForm) {
+    this.httpService.userAuthorization(this.email, this.pass).subscribe(
+      (response) => {
+        this.incorrectedData = false;
+        localStorage.clear();
+        localStorage.setItem('userToken', JSON.stringify(response));
+        this.redirect(true);
+      },
+      (error) => {
+        this.incorrectedData = true;
+        this.redirect(false);
+        console.log(error);
+      }
+    );
   }
 
   redirect(type: boolean) {

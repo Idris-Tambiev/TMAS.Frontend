@@ -1,5 +1,5 @@
 export interface IColumn {
-  id: number;
+  id?: number;
   title: string;
   sortBy: number;
   boardId: number;

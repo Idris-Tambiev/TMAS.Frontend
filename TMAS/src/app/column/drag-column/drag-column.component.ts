@@ -32,11 +32,9 @@ export class DragColumnComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-
-      // var movedColumn: IColumn = JSON.parse(
-      //   JSON.stringify(event.container.data[event.currentIndex])
-      // );
-      var moved = event.container.data[event.currentIndex];
+      var moved: IColumn = JSON.parse(
+        JSON.stringify(event.container.data[event.currentIndex])
+      );
       if (event.previousIndex !== event.currentIndex)
         this.moveColumn(moved, event.currentIndex);
     }
@@ -58,5 +56,5 @@ export class DragColumnComponent implements OnInit {
       }
     );
   }
-  @Input() boardId;
+  @Input() boardId: number;
 }

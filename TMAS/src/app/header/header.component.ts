@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
     }
   }
   getSearchText(event: any) {
-    // this.searchText = event.target.value;
     this.searchService.searchText.next(event.target.value);
   }
   search() {

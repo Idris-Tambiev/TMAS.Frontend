@@ -54,7 +54,6 @@ export class DragCardComponent implements OnInit {
       var movedCard: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-
       if (event.previousIndex !== event.currentIndex)
         this.moveCard(movedCard, event.currentIndex);
     } else {

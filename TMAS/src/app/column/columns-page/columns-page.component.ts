@@ -17,7 +17,7 @@ export class ColumnsPageComponent implements OnInit {
   newColumn: IColumn;
   boardId: number;
   columns: IColumn[] = [];
-  viewHistory: boolean = false;
+  viewHistory: boolean = true;
   history: History;
   constructor(
     private route: ActivatedRoute,

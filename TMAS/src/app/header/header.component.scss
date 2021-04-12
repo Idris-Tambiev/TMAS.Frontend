@@ -49,6 +49,7 @@
 }
 .search-block {
   @include flexRow();
+  @include font();
   align-items: center;
   background: #fef2c4;
   border-radius: 50px;
@@ -56,13 +57,18 @@
   width: 208px;
   height: 32px;
 }
-.search-input {
+.search-input-div {
   @include font();
   font-weight: 600;
   font-size: 9px;
   line-height: 140.1%;
+  border-bottom: 0px;
   text-transform: uppercase;
+  width: 70%;
+  background: #fef2c4;
+  border: none;
 }
+
 .search-icon {
   margin-left: 13px;
   font-size: 15px;

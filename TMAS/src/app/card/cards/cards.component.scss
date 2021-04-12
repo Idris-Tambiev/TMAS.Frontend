@@ -65,3 +65,8 @@
   word-wrap: break-word;
   border-bottom: 1px solid black;
 }
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-radius: 2px !important;
+}

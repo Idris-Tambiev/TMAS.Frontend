@@ -5,6 +5,7 @@ import { CardsService } from 'src/app/services/cards.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { SearchService } from 'src/app/services/search.service';
+import { ICard } from 'src/app/interfaces/card.interface';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -71,7 +72,7 @@ export class CardsComponent implements OnInit {
   }
 
   updateThisCard() {
-    if (this.newTitle !== '') {
+    if (this.newTitle !== '' && this.newTitle !== this.card.title) {
       const newCard = {
         id: this.card.id,
         title: this.newTitle,
@@ -94,5 +95,5 @@ export class CardsComponent implements OnInit {
 
   @Output() updateCardsList = new EventEmitter<number>();
   @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
-  @Input() card;
+  @Input() card: ICard;
 }

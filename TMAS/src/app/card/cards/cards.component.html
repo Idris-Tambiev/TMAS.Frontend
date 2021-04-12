@@ -7,7 +7,7 @@
         <mat-icon class="menu-icon">more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item class="menu-buttons" (click)="editCard=true">
+            <button mat-menu-item class="menu-buttons" (click)="editCard=true;newTitle=card.title">
                 <mat-icon class="menu-items-icon">edit_outline</mat-icon>
                 EDIT
             </button>

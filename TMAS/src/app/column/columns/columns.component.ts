@@ -111,7 +111,10 @@ export class ColumnsComponent implements OnInit {
   }
 
   submitNewColumnTitle() {
-    if (this.newColumnTitle != '') {
+    if (
+      this.newColumnTitle != '' &&
+      this.newColumnTitle !== this.column.title
+    ) {
       this.newColumn = {
         id: this.column.id,
         title: this.newColumnTitle,
@@ -143,6 +146,7 @@ export class ColumnsComponent implements OnInit {
   }
 
   columnUpdate() {
+    this.newColumnTitle = this.column.title;
     this.editColumn = true;
   }
 

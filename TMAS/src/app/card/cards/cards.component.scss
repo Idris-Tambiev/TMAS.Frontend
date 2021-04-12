@@ -9,6 +9,7 @@
 }
 .cards-container {
   @include flexRow();
+  align-items: center;
   margin-left: 16px;
   background: #ffffff;
   width: 256px;
@@ -21,10 +22,10 @@
 }
 .card-span {
   width: 192px;
-  margin-top: 14px;
+  //margin-top: 14px;
   margin-left: 7px;
+  height: 18px;
   @include font();
-
   font-size: 14px;
   line-height: 146.1%;
   color: #334681;
@@ -33,7 +34,7 @@
 .checkbox-card {
   border-radius: 3px;
   margin-left: 16px;
-  margin-top: 16px;
+  // margin-top: 16px;
   width: 16px;
   height: 16px;
 }
@@ -62,4 +63,5 @@
   line-height: 146.1%;
   color: #334681;
   word-wrap: break-word;
+  border-bottom: 1px solid black;
 }

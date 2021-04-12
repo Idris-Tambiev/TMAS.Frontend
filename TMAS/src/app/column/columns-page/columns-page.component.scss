@@ -99,3 +99,21 @@
 .history-button-none {
   opacity: 0;
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #d0e2fe;
+  border-radius: 6px;
+  transform: rotate(-90deg);
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(55, 125, 255, 0.5);
+}

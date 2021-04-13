@@ -22,9 +22,7 @@
   font-size: 20pt;
   color: #334681;
 }
-.new-board-div:hover {
-  background: rgba(223, 238, 255, 1);
-}
+
 .new-board {
   width: 80%;
   display: flex;
@@ -39,6 +37,7 @@
   margin-right: 0;
 }
 .text-board {
+  background: rgba(223, 238, 255, 0.4);
   display: flex;
   width: 288px;
   height: 100%;
@@ -49,4 +48,7 @@
 .board-create-input {
   width: 100%;
   height: 25px;
+}
+.add-board-span {
+  font-size: 17pt;
 }

@@ -3,10 +3,10 @@
     <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
     
         <div class="new-board-div" >
-            <div class="text-board" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
+            <button mat-raised-button class="text-board" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
                 <mat-icon>add_circle_outline</mat-icon>
                 <span class="add-board-span">  ADD NEW BOARD</span>
-            </div>
+            </button>
 
             <div *ngIf="insertFormStatus" class="new-board" >
                 <input matInput placeholder="Enter a board title" class="board-create-input" [(ngModel)]="newBoardTitle"  >

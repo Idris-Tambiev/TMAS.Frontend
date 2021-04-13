@@ -58,15 +58,15 @@
   background-color: rgba(55, 125, 255, 0.1);
   border-radius: 6px;
 }
-.new-column-container:hover {
-  background-color: rgba(55, 125, 255, 0.3);
-}
+
 .new-column-div {
   @include flexRow();
+  @include font();
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: rgba(55, 125, 255, 0.1);
 }
 
 .add-column-span {

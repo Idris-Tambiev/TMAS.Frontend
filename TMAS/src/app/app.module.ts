@@ -29,6 +29,11 @@ import { AuthPageComponent } from './auth/auth-page/auth-page.component';
 import { HistoryPageComponent } from './history/history-page/history-page.component';
 import { HistoryItemsComponent } from './history/history-items/history-items.component';
 import { FormsModule } from '@angular/forms';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 const appRoutes: Routes = [
   { path: '', component: AuthPageComponent },
@@ -70,12 +75,27 @@ const appRoutes: Routes = [
     DragDropModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    SocialLoginModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ParamInterceptor,
       multi: true,
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '376665190064-ndjak54aopiu113g92lhvore6660eale.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
     },
   ],
   bootstrap: [AppComponent],

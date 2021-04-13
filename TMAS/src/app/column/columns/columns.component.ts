@@ -33,6 +33,8 @@ export class ColumnsComponent implements OnInit {
   history: History;
   columnView: boolean = true;
   cardsCount: number;
+  Subscription;
+
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
@@ -40,8 +42,6 @@ export class ColumnsComponent implements OnInit {
     private createHistoryService: CreateHistory,
     private searchService: SearchService
   ) {}
-
-  Subscription;
 
   ngOnInit(): void {
     this.Subscription = this.searchService.searchText.subscribe((text) => {

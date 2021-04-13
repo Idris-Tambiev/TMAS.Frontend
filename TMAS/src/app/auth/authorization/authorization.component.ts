@@ -25,12 +25,7 @@ export class AuthorizationComponent implements OnInit {
     private socialAuthService: SocialAuthService
   ) {}
 
-  ngOnInit(): void {
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      console.log(this.socialUser);
-    });
-  }
+  ngOnInit(): void {}
 
   clickOnLoginButton(form: NgForm) {
     this.httpService.userAuthorization(this.email, this.pass).subscribe(
@@ -48,12 +43,33 @@ export class AuthorizationComponent implements OnInit {
     );
   }
 
+  checkToken(token: string) {
+    this.httpService.loginWithGoogle(token, 'google').subscribe(
+      (response) => {
+        //localStorage.clear();
+        ///localStorage.setItem('userToken', JSON.stringify(response));
+        console.log(response);
+        //this.redirect(true);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   redirect(type: boolean) {
     if (type) this.router.navigate(['boards']);
   }
+
   loginWithGoogle() {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      console.log(this.socialUser);
+      this.checkToken(this.socialUser.idToken);
+    });
   }
+
   logOut() {
     this.socialAuthService.signOut();
   }

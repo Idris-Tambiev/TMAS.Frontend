@@ -19,9 +19,14 @@
                 <span> Неправильный логин или пароль</span>
         </div>
 
-
-       
+        <button class="google" mat-raised-button (click)="loginWithGoogle()">
+            <div class="google-button-content">
+                <div class="google-logo"></div>
+                <span class="google-span"> Sign in with Google</span>
+            </div>
+            
+        </button>   
 </form>
-<button class="google" (click)="loginWithGoogle()">Google AUTH</button>
+
 
 

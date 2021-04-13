@@ -25,7 +25,7 @@ export class UserService {
     return this.http.get(this.configUrl + '/api/users/get');
   }
 
-  loginWithGoogle(token: string, provider: 'google'): Observable<any> {
+  loginWithGoogle(token: string, provider: 'google'): Observable<object> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
@@ -34,7 +34,7 @@ export class UserService {
       .set('grant_type', 'external')
       .set('provider', provider)
       .set('scope', 'email profile openid api.read')
-      .set('client_id', 'angular_spa')
+      .set('client_id', 'angular_spa_google')
       .set('external_token', token);
 
     return this.http.post(this.configUrl + '/connect/token', params, {

@@ -72,8 +72,4 @@ export class ColumnsPageComponent implements OnInit {
       );
     }
   }
-
-  // getNewColumnTitle(event: any) {
-  //   this.columnNewTitle = event.target.value;
-  // }
 }

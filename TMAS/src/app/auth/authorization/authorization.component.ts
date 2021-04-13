@@ -46,10 +46,9 @@ export class AuthorizationComponent implements OnInit {
   checkToken(token: string) {
     this.httpService.loginWithGoogle(token, 'google').subscribe(
       (response) => {
-        //localStorage.clear();
-        ///localStorage.setItem('userToken', JSON.stringify(response));
-        console.log(response);
-        //this.redirect(true);
+        localStorage.clear();
+        localStorage.setItem('userToken', JSON.stringify(response));
+        this.redirect(true);
       },
       (error) => {
         console.log(error);
@@ -66,7 +65,7 @@ export class AuthorizationComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       console.log(this.socialUser);
-      this.checkToken(this.socialUser.idToken);
+      this.checkToken(this.socialUser.authToken);
     });
   }
 

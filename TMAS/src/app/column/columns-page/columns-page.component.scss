@@ -72,11 +72,13 @@
 .add-column-span {
   margin-left: 8px;
 }
+
 .column-create-input {
+  width: 222px;
+  margin-left: 16px;
   min-height: 40px;
   background-color: white;
   margin-top: 10px;
-  padding-bottom: 24px;
   padding-left: 10px;
   box-sizing: border-box;
 }

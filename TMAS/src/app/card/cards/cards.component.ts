@@ -15,10 +15,12 @@ export class CardsComponent implements OnInit {
   editCard = false;
   newTitle: string;
   history: History;
+
   constructor(
     private httpService: CardsService,
     private createHistoryService: CreateHistory
   ) {}
+
   ngOnInit(): void {}
 
   deleteThisCard() {
@@ -65,10 +67,6 @@ export class CardsComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-  }
-
-  getUpdatedCard(event: any) {
-    this.newTitle = event.target.value;
   }
 
   updateThisCard() {

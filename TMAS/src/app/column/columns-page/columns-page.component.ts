@@ -17,7 +17,7 @@ export class ColumnsPageComponent implements OnInit {
   newColumn: IColumn;
   boardId: number;
   columns: IColumn[] = [];
-  viewHistory: boolean = true;
+  viewHistory: boolean = false;
   history: History;
   constructor(
     private route: ActivatedRoute,
@@ -73,7 +73,7 @@ export class ColumnsPageComponent implements OnInit {
     }
   }
 
-  getNewColumnTitle(event: any) {
-    this.columnNewTitle = event.target.value;
-  }
+  // getNewColumnTitle(event: any) {
+  //   this.columnNewTitle = event.target.value;
+  // }
 }

@@ -82,6 +82,7 @@ export class ColumnsComponent implements OnInit {
   }
 
   createNewCard() {
+    console.log(this.newCardTitle);
     if (this.newCardTitle !== '' && this.newCardTitle != null) {
       this.newCard = {
         title: this.newCardTitle,
@@ -97,6 +98,7 @@ export class ColumnsComponent implements OnInit {
             null,
             null
           );
+          this.newCardTitle = '';
           this.child.getAll();
         },
         (error) => {
@@ -104,10 +106,6 @@ export class ColumnsComponent implements OnInit {
         }
       );
     }
-  }
-
-  getUpdateColumn(event: any) {
-    this.newColumnTitle = event.target.value;
   }
 
   submitNewColumnTitle() {
@@ -150,9 +148,6 @@ export class ColumnsComponent implements OnInit {
     this.editColumn = true;
   }
 
-  getNewCardTitle(event: any) {
-    this.newCardTitle = event.target.value;
-  }
   ngOnDestroy() {
     this.Subscription.unsubscribe();
   }

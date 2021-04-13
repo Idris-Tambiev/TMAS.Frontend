@@ -14,7 +14,7 @@
          <div class="new-column-container"[ngClass]="{newHeight:insertFormStatus}" >
              
             <div *ngIf="insertFormStatus" class="new-column" >
-                <input matInput placeholder="Enter a title for this column" class="column-create-input" (input)="getNewColumnTitle($event)" >
+                <input matInput placeholder="Enter a title for this column" class="column-create-input" [(ngModel)]="columnNewTitle" >
                 <div class="new-column-buttons">
                     <button mat-button (click)="createNewColumn()">
                         SAVE

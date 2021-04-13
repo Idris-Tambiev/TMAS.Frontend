@@ -2,7 +2,7 @@
     <div class="column-container" >
         <div class="column-header">
             <span class="column-title" *ngIf="!editColumn" (click)="columnUpdate()">{{column.title}}</span>
-            <input class="title-edit-input" matInput type="text" *ngIf="editColumn" value="{{column.title}}" (input)="getUpdateColumn($event)" (keyup.enter)="submitNewColumnTitle()">
+            <input class="title-edit-input" matInput type="text" *ngIf="editColumn" value="{{column.title}}" [(ngModel)]="newColumnTitle" (keyup.enter)="submitNewColumnTitle()">
             <button mat-icon-button class="column-delete-icon" (click)="deleteThisColumn()"> 
                 <mat-icon >delete</mat-icon>
             </button>
@@ -11,7 +11,7 @@
         <app-drag-card [column]="column" (cardsCount)="getCardsCount($event)"></app-drag-card>
     
           <div *ngIf="insertFormStatus" class="new-card">
-            <input matInput placeholder="Enter a title for this task" class="create-input" (input)="getNewCardTitle($event)" >
+            <input matInput placeholder="Enter a title for this task" [(ngModel)]="newCardTitle" class="create-input" >
             <div class="new-card-buttons">
                 <button mat-button (click)="createNewCard()">
                     SAVE

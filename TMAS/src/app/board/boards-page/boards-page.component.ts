@@ -8,14 +8,16 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  constructor(
-    private httpService: BoardsService,
-    private search: SearchService
-  ) {}
   boards: IBoard[] = [];
   newBoardTitle: string;
   insertFormStatus: boolean = false;
   subscription;
+
+  constructor(
+    private httpService: BoardsService,
+    private search: SearchService
+  ) {}
+
   ngOnInit(): void {
     this.subscription = this.search.searchText.subscribe((text) => {
       if (text == '') this.getAll();
@@ -40,11 +42,7 @@ export class BoardsPageComponent implements OnInit {
       (error) => console.log(error)
     );
   }
-  getBoardTitle(event: any) {
-    if (event.target.value != '') {
-      this.newBoardTitle = event.target.value;
-    }
-  }
+
   createBoard() {
     if (this.newBoardTitle != null) {
       this.httpService.createBoard(this.newBoardTitle).subscribe(
@@ -59,6 +57,5 @@ export class BoardsPageComponent implements OnInit {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    //this.search.searchText.unsubscribe();
   }
 }

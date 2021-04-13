@@ -9,7 +9,7 @@
             </div>
 
             <div *ngIf="insertFormStatus" class="new-board" >
-                <input matInput placeholder="Enter a board title" class="board-create-input" (input)="getBoardTitle($event)" >
+                <input matInput placeholder="Enter a board title" class="board-create-input" [(ngModel)]="newBoardTitle"  >
                 <div class="new-board-buttons">
                     <button mat-button (click)="createBoard()">
                         SAVE

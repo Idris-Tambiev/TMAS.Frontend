@@ -14,7 +14,6 @@ export class BoardsComponent implements OnInit {
 
   get() {
     var retrievedObject = JSON.parse(localStorage.getItem('userToken'));
-    console.log('mytoken: ', retrievedObject.access_token);
   }
   @Input() board: IBoard;
 }

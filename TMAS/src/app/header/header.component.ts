@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
   getName() {
     this.userHttpService.getUserName().subscribe(
       (response) => {
+        console.log(response);
         this.user = response;
       },
       (error) => {

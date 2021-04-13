@@ -27,6 +27,9 @@
 }
 .new-board {
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
 }
 .new-board-buttons {
   display: flex;
@@ -36,6 +39,14 @@
   margin-right: 0;
 }
 .text-board {
+  display: flex;
   width: 288px;
-  margin-left: 16px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.board-create-input {
+  width: 100%;
+  height: 25px;
 }

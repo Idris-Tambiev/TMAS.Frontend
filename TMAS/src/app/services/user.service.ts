@@ -45,4 +45,11 @@ export class UserService {
   createUser(user: IUser): Observable<any> {
     return this.http.post(this.configUrl + '/api/users/create', user);
   }
+
+  confirmEmail(userId: string, token: string): Observable<any> {
+    const params = new HttpParams().set('userid', userId).set('token', token);
+    return this.http.get(this.configUrl + '/api/users/confirmemail', {
+      params,
+    });
+  }
 }

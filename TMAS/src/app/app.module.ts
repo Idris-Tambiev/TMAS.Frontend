@@ -16,9 +16,10 @@ import {
 } from 'angularx-social-login';
 
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { EmailConfirmComponent } from './components/auth/email-confirm/email-confirm.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EmailConfirmComponent],
   imports: [
     AppComponentsModule,
     AppRoutingModule,

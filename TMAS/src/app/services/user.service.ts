@@ -47,7 +47,7 @@ export class UserService {
   }
 
   confirmEmail(userId: string, token: string): Observable<any> {
-    const params = new HttpParams().set('userid', userId).set('token', token);
+    const params = new HttpParams().set('userId', userId).set('token', token);
     return this.http.get(this.configUrl + '/api/users/confirmemail', {
       params,
     });

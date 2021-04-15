@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: 'boards', component: BoardsPageComponent },
   { path: 'board/:id', component: ColumnsPageComponent },
   {
-    path: 'confirmemail/:userid/:token',
+    path: 'confirmemail',
     component: EmailConfirmComponent,
   },
 ];

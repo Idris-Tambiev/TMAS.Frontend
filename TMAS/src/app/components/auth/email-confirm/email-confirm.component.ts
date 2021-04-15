@@ -14,8 +14,17 @@ export class EmailConfirmComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.params['userid'];
-    const token = this.route.snapshot.params['token'];
+    const userId = this.route.snapshot.queryParams['userid'];
+    const token = this.route.snapshot.queryParams['token'];
     console.log(token);
+
+    this.userHttpService.confirmEmail(userId, token).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

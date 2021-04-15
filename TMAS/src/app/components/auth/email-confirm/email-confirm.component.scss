@@ -1,0 +1,33 @@
+@mixin font {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: #334681;
+}
+.confirm-email-container {
+  display: flex;
+  flex-direction: column;
+  width: 592px;
+  height: 432px;
+  margin: 0 auto;
+  margin-top: 109px;
+  background-color: white;
+  box-shadow: 0px 4px 44px rgb(51 70 129 / 30%);
+  border-radius: 6px;
+  text-align: center;
+}
+.confirm-email-button {
+  width: 120px;
+  margin: 0 auto;
+  margin-top: 57px;
+}
+span {
+  @include font();
+  font-size: 20pt;
+}
+.email-span {
+  margin-top: 100px;
+}
+.click-span {
+  margin-top: 100px;
+}

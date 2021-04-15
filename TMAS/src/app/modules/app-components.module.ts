@@ -18,6 +18,7 @@ import { ColumnsPageComponent } from '../components/column/columns-page/columns-
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MatComponentsModule } from './mat-components.module';
+import { EmailConfirmComponent } from 'src/app/components/auth/email-confirm/email-confirm.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatComponentsModule } from './mat-components.module';
     AuthPageComponent,
     HistoryPageComponent,
     HistoryItemsComponent,
+    EmailConfirmComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -56,6 +58,7 @@ import { MatComponentsModule } from './mat-components.module';
     AuthPageComponent,
     HistoryPageComponent,
     HistoryItemsComponent,
+    EmailConfirmComponent,
   ],
 })
 export class AppComponentsModule {}

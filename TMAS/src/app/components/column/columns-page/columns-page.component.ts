@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { DragColumnComponent } from 'src/app/column/drag-column/drag-column.component';
+import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-column.component';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';

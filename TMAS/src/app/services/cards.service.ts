@@ -15,6 +15,7 @@ export class CardsService {
     const params = new HttpParams().set('id', columnId.toString());
     return this.httpClient.get(this.configUrl + '/api/cards/get', { params });
   }
+
   getOneCard(cardId: number): Observable<any> {
     const params = new HttpParams().set('id', cardId.toString());
     return this.httpClient.get(this.configUrl + '/api/cards/get/one', {
@@ -51,6 +52,13 @@ export class CardsService {
 
   updateCardTitle(card: object): Observable<any> {
     return this.httpClient.put(this.configUrl + '/api/cards/update', card);
+  }
+
+  updateCardChanges(card: ICard): Observable<any> {
+    return this.httpClient.put(
+      this.configUrl + '/api/cards/update/changes',
+      card
+    );
   }
 
   moveCardPosition(card: ICard): Observable<any> {

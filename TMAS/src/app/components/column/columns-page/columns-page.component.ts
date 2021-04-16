@@ -91,6 +91,8 @@ export class ColumnsPageComponent implements OnInit {
       this.viewCard = true;
       this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
       this.columnTitle = this.currentColumn.title;
+    } else {
+      this.viewCard = false;
     }
   }
 }

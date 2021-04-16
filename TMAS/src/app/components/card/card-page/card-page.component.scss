@@ -13,7 +13,7 @@
 .card-page {
   @include flexColumn();
   @include font();
-  width: 768px;
+  width: 749px;
   height: 800px;
   background-color: white;
   opacity: 1;
@@ -40,7 +40,7 @@
 .card-page__title-container {
   @include flexColumn();
   @include font();
-  margin-left: 16px;
+  margin-left: 30px;
   color: #334681;
   font-weight: bold;
   font-size: 15pt;
@@ -53,19 +53,21 @@
 .card-page__current-date {
   user-select: none;
   @include flexRow();
+  @include font();
   justify-content: center;
   margin-top: 20px;
+  font-size: 11pt;
 }
 .card-page__time {
   font-size: 11pt;
-  width: 76px;
+  width: 186px;
+  padding-left: 8px;
 }
 
 .card-page__new-date-time {
   @include flexRow();
   margin-left: 50px;
 }
-
 .card-page__new-time {
   @include flexColumn();
   align-items: center;
@@ -76,10 +78,12 @@
   align-items: center;
 }
 .card-page__date-info {
-  margin-left: 16px;
   @include font();
+  margin-left: 16px;
+  font-size: 11pt;
 }
 .card-page__user-name {
+  @include font();
   font-size: 12pt;
 }
 .card-page__column-title {
@@ -88,9 +92,36 @@
 }
 .card-page__input {
   width: 654px;
-  height: 500px;
+  min-height: 160px;
+  max-height: 500px;
+  margin-left: 20px;
+  height: auto;
   margin: 0 auto;
+  padding-bottom: 24px;
+  padding-left: 10px;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: break-word;
 }
 .card-page__content {
   @include flexColumn();
+  @include font();
+  font-size: 11pt;
+}
+.card-page__description {
+  margin-left: 16px;
+  @include font();
+  font-size: 11pt;
+}
+.card-page__description-text {
+  margin-left: 16px;
+  @include font();
+  font-size: 12pt;
+}
+.card-page__save-button {
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #377dff;
+  color: white;
 }

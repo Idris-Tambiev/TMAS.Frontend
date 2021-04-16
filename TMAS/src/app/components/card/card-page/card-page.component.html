@@ -10,7 +10,7 @@
     </div>
     
       <div class="card-page__current-date">
-         <span>Execution period: {{card.executionPeriod | date:'medium'}}</span>
+         <span class="card-page__exec-period" [ngClass]="{red:expiredPeriod}">Execution period: {{card.executionPeriod | date:'medium'}}</span>
          <div class="card-page__new-date-time">
              <div class="card-page__new-time">
                 <span>Choose execution time:</span>
@@ -22,14 +22,20 @@
     <div class="card-page__content" *ngIf="inputText">
         <span class="card-page__description">Description:</span>
         <textarea type="text" name="" id="" class="card-page__input" [(ngModel)]="card.text">{{card.text}}</textarea>
+        <div class="save-buttons">
         <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
         <button class="card-page__save-button" mat-raised-button (click)="inputText=false">X</button>
+    </div>
     </div>
 
     <div class="card-page__content" *ngIf="!inputText">
         <span class="card-page__description">Description:</span>
         <span class="card-page__description-text">{{card.text}}</span>
-        <button class="card-page__save-button" mat-raised-button (click)="inputText=true">Edit</button>
+        <div class="save-buttons">
+            <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
+            <button class="card-page__save-button" mat-raised-button (click)="inputText=true">Edit</button>
+        </div>
+        
     </div>
 
     <div class="card-page__date-info">

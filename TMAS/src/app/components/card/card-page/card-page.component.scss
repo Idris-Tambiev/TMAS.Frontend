@@ -107,6 +107,7 @@
   @include flexColumn();
   @include font();
   font-size: 11pt;
+  margin-top: 30px;
 }
 .card-page__description {
   margin-left: 16px;
@@ -124,4 +125,18 @@
   margin-top: 20px;
   background-color: #377dff;
   color: white;
+}
+.save-buttons {
+  @include flexRow();
+}
+.card-page__exec-period {
+  display: flex;
+  align-items: center;
+  background-color: yellowgreen;
+  width: 322px;
+  justify-content: center;
+  border-radius: 10px;
+}
+.red {
+  background-color: red;
 }

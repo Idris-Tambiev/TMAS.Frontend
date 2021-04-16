@@ -25,6 +25,8 @@ export class CardPageComponent implements OnInit {
 
   dateTime: Date;
   inputText: boolean = false;
+  oldText: string;
+  expiredPeriod: boolean = false;
 
   constructor(
     private cardService: CardsService,
@@ -36,7 +38,8 @@ export class CardPageComponent implements OnInit {
     this.cardService.getOneCard(this.cardId).subscribe(
       (response) => {
         this.card = response;
-        console.log(this.card.executionPeriod);
+        this.oldText = this.card.text;
+        this.checkDate();
       },
       (error) => {
         console.log(error);
@@ -46,7 +49,6 @@ export class CardPageComponent implements OnInit {
     this.userService.getUserName().subscribe(
       (response) => {
         this.user = response;
-        console.log(this.user);
       },
       (error) => {
         console.log(error);
@@ -54,20 +56,36 @@ export class CardPageComponent implements OnInit {
     );
   }
 
+  checkDate() {
+    const now = new Date().toLocaleString();
+    if (this.card.executionPeriod.toLocaleString() < now) {
+      this.expiredPeriod = true;
+    }
+  }
+
   closeCardWindow() {
-    console.log(this.dateTime);
+    this.openCardService.getCard(null);
   }
   saveChanges() {
-    this.card.executionPeriod = this.dateTime;
-    this.cardService.updateCardChanges(this.card).subscribe(
-      (response) => {
-        this.card = response;
-        this.inputText = false;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (
+      (this.card.executionPeriod !== this.dateTime &&
+        this.dateTime !== undefined) ||
+      this.card.text !== this.oldText
+    ) {
+      if (this.dateTime !== undefined)
+        this.card.executionPeriod = this.dateTime;
+      this.cardService.updateCardChanges(this.card).subscribe(
+        (response) => {
+          this.inputText = false;
+          this.ngOnInit();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.inputText = false;
+    }
   }
 
   @Input() cardId: number;

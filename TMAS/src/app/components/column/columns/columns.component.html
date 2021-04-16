@@ -8,8 +8,8 @@
             </button>
         </div>
     
-        <app-drag-card [column]="column" (cardsCount)="getCardsCount($event)"></app-drag-card>
-    
+        <app-drag-card [column]="column" (cardsCount)="getCardsCount($event)" ></app-drag-card>
+        
           <div *ngIf="insertFormStatus" class="new-card">
             <input matInput placeholder="Enter a title for this task" [(ngModel)]="newCardTitle" class="create-input" >
             <div class="new-card-buttons">
@@ -30,4 +30,5 @@
     </div>
     
 </div>
+
 

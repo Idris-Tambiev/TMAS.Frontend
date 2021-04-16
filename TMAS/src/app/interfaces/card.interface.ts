@@ -5,4 +5,7 @@ export interface ICard {
   text: string;
   sortBy: number;
   columnId: number;
+  createdDate?: Date;
+  updatedDate?: Date;
+  executionPeriod?: Date;
 }

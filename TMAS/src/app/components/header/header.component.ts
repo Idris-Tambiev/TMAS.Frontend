@@ -35,12 +35,10 @@ export class HeaderComponent implements OnInit {
   }
   search() {
     this.searchService.searchText.next(this.searchText);
-    console.log(this.searchText);
   }
   getName() {
     this.userHttpService.getUserName().subscribe(
       (response) => {
-        console.log(response);
         this.user = response;
       },
       (error) => {

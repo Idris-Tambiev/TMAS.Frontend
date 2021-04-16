@@ -1,19 +1,22 @@
-<div class="cards-container" >
-        <!-- <mat-checkbox color="primary" [checked]="card.isDone" (change)="checkCard($event.checked)"></mat-checkbox> -->
-        <input class="checkbox-card" type="checkbox" [checked]="card.isDone" (change)="checkCard($event)">
-    <span class="card-span" *ngIf="!editCard" [ngClass]="{decoration:card.isDone}">{{card.title}}</span>
-    <input class="edit-input" matInput type="text" *ngIf="editCard" value="{{card.title}}" [(ngModel)]="newTitle" (keyup.enter)="updateThisCard()">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="cards-menu">
-        <mat-icon class="menu-icon">more_vert</mat-icon>
+<div class="card__container" >
+    <input class="card__checkbox" type="checkbox" [checked]="card.isDone" (change)="checkCard($event)">
+    <span class="card__span" *ngIf="!editCard" [ngClass]="{decoration:card.isDone}" (click)="openCardField(card)">{{card.title}}</span>
+    <input class="card__edit-input" matInput type="text" *ngIf="editCard" value="{{card.title}}" [(ngModel)]="newTitle" (keyup.enter)="updateThisCard()">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="card__menu">
+        <mat-icon class="card__menu-icon">more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu" class="mat-menu">
-            <button mat-menu-item class="menu-buttons" (click)="editCard=true;newTitle=card.title">
-                <mat-icon class="menu-items-icon">edit_outline</mat-icon>
+        <mat-menu #menu="matMenu" class="card__mat-menu">
+            <button mat-menu-item class="card__menu-buttons" (click)="editCard=true;newTitle=card.title">
+                <mat-icon class="card__menu-items-icon">edit_outline</mat-icon>
                 EDIT
             </button>
-            <button mat-menu-item class="menu-buttons" (click)="deleteThisCard()"> 
-                <mat-icon class="column-delete-icon menu-items-icon" >delete</mat-icon>
+            <button mat-menu-item class="card__menu-buttons" (click)="deleteThisCard()"> 
+                <mat-icon class="card__menu-items-icon" >delete</mat-icon>
                 DELETE
             </button>
     </mat-menu>
 </div>
+
+
+
+

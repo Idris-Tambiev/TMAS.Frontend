@@ -15,6 +15,12 @@ export class CardsService {
     const params = new HttpParams().set('id', columnId.toString());
     return this.httpClient.get(this.configUrl + '/api/cards/get', { params });
   }
+  getOneCard(cardId: number): Observable<any> {
+    const params = new HttpParams().set('id', cardId.toString());
+    return this.httpClient.get(this.configUrl + '/api/cards/get/one', {
+      params,
+    });
+  }
   searchCards(columnId: number, text: string): Observable<any> {
     const params = new HttpParams()
       .set('columnId', columnId.toString())

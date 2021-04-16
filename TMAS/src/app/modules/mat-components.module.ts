@@ -8,7 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [],
   imports: [
@@ -21,6 +22,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatIconModule,
@@ -32,6 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class MatComponentsModule {}

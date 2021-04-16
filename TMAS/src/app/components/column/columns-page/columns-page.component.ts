@@ -6,6 +6,8 @@ import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
+import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { ICard } from 'src/app/interfaces/card.interface';
 @Component({
   selector: 'app-columns-page',
   templateUrl: './columns-page.component.html',
@@ -19,10 +21,15 @@ export class ColumnsPageComponent implements OnInit {
   columns: IColumn[] = [];
   viewHistory: boolean = false;
   history: History;
+  viewCard: boolean = false;
+  columnTitle: string;
+  currentColumn: IColumn;
+  card: ICard;
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService,
-    private createHistoryService: CreateHistory
+    private createHistoryService: CreateHistory,
+    private openCardService: OpenCardServiceService
   ) {}
 
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
@@ -43,6 +50,11 @@ export class ColumnsPageComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+  }
+
+  openCardWindow(card) {
+    console.log(card);
+    this.viewCard = true;
   }
 
   createNewColumn() {
@@ -70,6 +82,15 @@ export class ColumnsPageComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+  }
+
+  ngDoCheck() {
+    this.card = this.openCardService.card;
+    if (this.card != null) {
+      this.viewCard = true;
+      this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
+      this.columnTitle = this.currentColumn.title;
     }
   }
 }

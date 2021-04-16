@@ -6,6 +6,7 @@ import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { SearchService } from 'src/app/services/search.service';
 import { ICard } from 'src/app/interfaces/card.interface';
+import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -18,7 +19,8 @@ export class CardsComponent implements OnInit {
 
   constructor(
     private httpService: CardsService,
-    private createHistoryService: CreateHistory
+    private createHistoryService: CreateHistory,
+    private openCardService: OpenCardServiceService
   ) {}
 
   ngOnInit(): void {}
@@ -90,7 +92,9 @@ export class CardsComponent implements OnInit {
     }
     this.editCard = false;
   }
-
+  openCardField() {
+    this.openCardService.getCard(this.card);
+  }
   @Output() updateCardsList = new EventEmitter<number>();
   @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
   @Input() card: ICard;

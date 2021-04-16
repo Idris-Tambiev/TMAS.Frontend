@@ -4,19 +4,22 @@
   font-weight: 600;
   color: #334681;
 }
-.confirm-email-container {
+@mixin flexColumn {
   display: flex;
   flex-direction: column;
+}
+.confirm-email__container {
+  @include flexColumn();
   width: 592px;
   height: 432px;
   margin: 0 auto;
-  margin-top: 109px;
+  margin-top: 250px;
   background-color: white;
   box-shadow: 0px 4px 44px rgb(51 70 129 / 30%);
   border-radius: 6px;
   text-align: center;
 }
-.confirm-email-button {
+.confirm-email__button {
   width: 120px;
   margin: 0 auto;
   margin-top: 57px;
@@ -25,9 +28,12 @@ span {
   @include font();
   font-size: 20pt;
 }
-.email-span {
+.confirm-email__message {
   margin-top: 100px;
 }
-.click-span {
+.confirm-email__span {
   margin-top: 100px;
+}
+.confirm-email__button-block {
+  @include flexColumn();
 }

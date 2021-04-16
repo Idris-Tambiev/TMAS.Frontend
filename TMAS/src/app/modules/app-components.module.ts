@@ -14,7 +14,7 @@ import { HistoryPageComponent } from '../components/history/history-page/history
 import { HistoryItemsComponent } from '../components/history/history-items/history-items.component';
 import { CardsComponent } from '../components/card/cards/cards.component';
 import { ColumnsPageComponent } from '../components/column/columns-page/columns-page.component';
-
+import { CardPageComponent } from '../components/card/card-page/card-page.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MatComponentsModule } from './mat-components.module';
@@ -22,6 +22,7 @@ import { EmailConfirmComponent } from 'src/app/components/auth/email-confirm/ema
 
 @NgModule({
   declarations: [
+    CardPageComponent,
     ColumnsComponent,
     ColumnsPageComponent,
     CardsComponent,

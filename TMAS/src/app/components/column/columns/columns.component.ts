@@ -46,7 +46,6 @@ export class ColumnsComponent implements OnInit {
   ngOnInit(): void {
     this.Subscription = this.searchService.searchText.subscribe((text) => {
       if (text == '') {
-        console.log('empty');
         this.columnView = true;
       } else this.searchCards(this.column.id, text);
     });
@@ -150,6 +149,9 @@ export class ColumnsComponent implements OnInit {
 
   ngOnDestroy() {
     this.Subscription.unsubscribe();
+  }
+  click() {
+    console.log('Clicked');
   }
 
   @Output() updateColumnsList = new EventEmitter<number>();

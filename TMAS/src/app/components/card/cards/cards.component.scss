@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 500;
 }
-.cards-container {
+.card__container {
   @include flexRow();
   align-items: center;
   margin-left: 16px;
@@ -20,7 +20,7 @@
   min-height: 48px;
   cursor: pointer;
 }
-.card-span {
+.card__span {
   width: 192px;
   //margin-top: 14px;
   margin-left: 7px;
@@ -31,17 +31,17 @@
   color: #334681;
   word-wrap: break-word;
 }
-.checkbox-card {
+.card__checkbox {
   border-radius: 3px;
   margin-left: 16px;
   // margin-top: 16px;
   width: 16px;
   height: 16px;
 }
-.menu-icon {
+.card__menu-icon {
   color: #377dff;
 }
-.menu-buttons {
+.card__menu-buttons {
   @include font();
   font-size: 14px;
   line-height: 140.1%;
@@ -50,13 +50,14 @@
   color: #ffffff;
   background-color: #377dff;
 }
-.menu-items-icon {
+.card__menu-items-icon {
   color: #ffffff;
 }
 .decoration {
   text-decoration: line-through;
 }
-.edit-input {
+.card__edit-input {
+  width: 166px;
   margin-left: 7px;
   @include font();
   font-size: 17px;

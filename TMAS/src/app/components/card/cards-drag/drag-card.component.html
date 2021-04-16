@@ -1,4 +1,5 @@
 <div cdkDropList id="{{column.id}}" class="example-list" [cdkDropListConnectedTo]="" (cdkDropListDropped)="drop($event)" [cdkDropListData]="cards">
-    <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (updateCardsList)="getAll()" cdkDrag></app-cards>
+    <app-cards class="example-box" *ngFor="let card of cards" [card]="card" (updateCardsList)="getAll()"  cdkDrag></app-cards>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
 </div>
+

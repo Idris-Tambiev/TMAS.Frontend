@@ -1,0 +1,96 @@
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+}
+@mixin font {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+}
+.card-page {
+  @include flexColumn();
+  @include font();
+  width: 768px;
+  height: 800px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 23px;
+  overflow: auto;
+}
+.card-page__date-block {
+  width: 128px;
+  background: #fef2c4;
+  height: 52px;
+}
+.card-page__close-icon {
+  cursor: pointer;
+  user-select: none;
+  margin-left: auto;
+  margin-right: 16px;
+}
+.card-page__header {
+  @include flexRow();
+  align-items: center;
+  height: 80px;
+  background-color: #dfeeff;
+}
+.card-page__title-container {
+  @include flexColumn();
+  @include font();
+  margin-left: 16px;
+  color: #334681;
+  font-weight: bold;
+  font-size: 15pt;
+}
+.card-page__date-info {
+  @include flexColumn();
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+.card-page__current-date {
+  user-select: none;
+  @include flexRow();
+  justify-content: center;
+  margin-top: 20px;
+}
+.card-page__time {
+  font-size: 11pt;
+  width: 76px;
+}
+
+.card-page__new-date-time {
+  @include flexRow();
+  margin-left: 50px;
+}
+
+.card-page__new-time {
+  @include flexColumn();
+  align-items: center;
+}
+.card-page__new-date {
+  @include flexColumn();
+  margin-left: 65px;
+  align-items: center;
+}
+.card-page__date-info {
+  margin-left: 16px;
+  @include font();
+}
+.card-page__user-name {
+  font-size: 12pt;
+}
+.card-page__column-title {
+  font-size: 12pt;
+  color: #377dff;
+}
+.card-page__input {
+  width: 654px;
+  height: 500px;
+  margin: 0 auto;
+}
+.card-page__content {
+  @include flexColumn();
+}

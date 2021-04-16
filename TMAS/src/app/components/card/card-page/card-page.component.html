@@ -1,0 +1,42 @@
+<div class="card-page">
+    
+    <div class="card-page__header" >
+        <div class="card-page__title-container">
+            <span class="card-page__title">{{card.title}}</span>
+            <span class="card-page__column-title">Column {{columnTitle}}</span>
+            <span class="card-page__user-name">{{user.name}} {{user.lastName}}</span>
+        </div>
+        <mat-icon class="card-page__close-icon">highlight_off</mat-icon>
+    </div>
+
+    
+      <div class="card-page__current-date">
+         <span>Execution period: {{card.executionPeriod | date:'medium'}}</span>
+         <div class="card-page__new-date-time">
+             <div class="card-page__new-time">
+                <span>Choose execution time:</span>
+                <input type="time" name="" id="" class="card-page__time">
+             </div>
+             <div class="card-page__new-date">
+                 <span>Choose execution date:</span>
+                <mat-form-field appearance="fill" class="card-page__date-block">
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="card-page__content">
+        <span>Description:</span>
+        <input type="text" name="" id="" class="card-page__input">
+    </div>
+
+    <div class="card-page__date-info">
+        <span>Created Date: {{card.createdDate | date:'medium'}}</span>
+        <br>
+        <span>Last Update: {{card.updatedDate | date:'medium'}}</span>
+    </div>
+    </div>

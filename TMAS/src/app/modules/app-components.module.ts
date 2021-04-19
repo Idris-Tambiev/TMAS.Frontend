@@ -19,9 +19,10 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MatComponentsModule } from './mat-components.module';
 import { EmailConfirmComponent } from 'src/app/components/auth/email-confirm/email-confirm.component';
-
+import { FileComponent } from 'src/app/components/file/file.component';
 @NgModule({
   declarations: [
+    FileComponent,
     CardPageComponent,
     ColumnsComponent,
     ColumnsPageComponent,

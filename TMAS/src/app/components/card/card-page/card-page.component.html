@@ -35,7 +35,12 @@
             <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
             <button class="card-page__save-button" mat-raised-button (click)="inputText=true">Edit</button>
         </div>
-        
+    </div>
+
+    <input type="file" name="" id="" (change)="fileUpload($event.target.files)">
+
+    <div>
+        <app-file *ngFor="let file of files" [file]="file"></app-file>
     </div>
 
     <div class="card-page__date-info">

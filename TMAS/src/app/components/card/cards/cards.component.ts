@@ -29,12 +29,7 @@ export class CardsComponent implements OnInit {
     const deletedCardName = this.card.title;
     this.httpService.deleteCard(this.card.id).subscribe(
       (response) => {
-        this.createHistoryService.createHistory(
-          UserActions['Deleted card'],
-          deletedCardName,
-          null,
-          null
-        );
+        this.sendHistory(UserActions['Deleted card'], deletedCardName);
         this.updateCardsArray();
       },
       (error) => console.log(error)
@@ -51,19 +46,9 @@ export class CardsComponent implements OnInit {
     this.httpService.cardCheck(this.card.id, status).subscribe(
       (response) => {
         if (status == true) {
-          this.createHistoryService.createHistory(
-            UserActions['Checked card'],
-            this.card.title,
-            null,
-            null
-          );
+          this.sendHistory(UserActions['Checked card'], this.card.title);
         } else {
-          this.createHistoryService.createHistory(
-            UserActions['Unchecked card'],
-            this.card.title,
-            null,
-            null
-          );
+          this.sendHistory(UserActions['Unchecked card'], this.card.title);
         }
         this.updateCardsArray();
       },
@@ -80,17 +65,16 @@ export class CardsComponent implements OnInit {
       this.httpService.updateCardTitle(newCard).subscribe(
         (response) => {
           this.updateCardsArray();
-          this.createHistoryService.createHistory(
-            UserActions['Updated card'],
-            newCard.title,
-            null,
-            null
-          );
+          this.sendHistory(UserActions['Updated card'], newCard.title);
         },
         (error) => console.log(error)
       );
     }
     this.editCard = false;
+  }
+
+  sendHistory(action, title) {
+    this.createHistoryService.createHistory(action, title, null, null);
   }
   openCardField() {
     this.openCardService.getCard(this.card);

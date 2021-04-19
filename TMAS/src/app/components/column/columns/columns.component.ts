@@ -69,12 +69,7 @@ export class ColumnsComponent implements OnInit {
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
         this.updateColumnsList.emit();
-        this.createHistoryService.createHistory(
-          UserActions['Deleted column'],
-          deletedColumnTitle,
-          null,
-          null
-        );
+        this.sendHistory(UserActions['Deleted column'], deletedColumnTitle);
       },
       (error) => console.log(error)
     );
@@ -91,12 +86,8 @@ export class ColumnsComponent implements OnInit {
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
-          this.createHistoryService.createHistory(
-            UserActions['Created card'],
-            this.newCard.title,
-            null,
-            null
-          );
+          this.sendHistory(UserActions['Created card'], this.newCard.title);
+
           this.newCardTitle = '';
           this.child.getAll();
         },
@@ -122,12 +113,7 @@ export class ColumnsComponent implements OnInit {
         (response) => {
           this.updateColumnsList.emit();
           this.editColumn = false;
-          this.createHistoryService.createHistory(
-            UserActions['Updated column'],
-            this.newColumn.title,
-            null,
-            null
-          );
+          this.sendHistory(UserActions['Updated column'], this.newColumn.title);
         },
         (error) => {
           console.log(error);
@@ -146,7 +132,9 @@ export class ColumnsComponent implements OnInit {
     this.newColumnTitle = this.column.title;
     this.editColumn = true;
   }
-
+  sendHistory(action, title) {
+    this.createHistoryService.createHistory(action, title, null, null);
+  }
   ngOnDestroy() {
     this.Subscription.unsubscribe();
   }

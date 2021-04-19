@@ -5,6 +5,10 @@ import { IUserName } from 'src/app/interfaces/user-name.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { UserService } from 'src/app/services/user.service';
+import { CreateHistory } from 'src/app/services/create-history.service';
+import { UserActions } from 'src/app/enums/user-actions.enum';
+import { FileService } from 'src/app/services/file.service';
+import { IFile } from 'src/app/interfaces/file.interface';
 
 @Component({
   selector: 'app-card-page',
@@ -27,25 +31,50 @@ export class CardPageComponent implements OnInit {
   inputText: boolean = false;
   oldText: string;
   expiredPeriod: boolean = false;
+  executionPeriod: number;
+  currentTime: number;
 
+  fileToUpload: File = null;
+  files: IFile;
   constructor(
     private cardService: CardsService,
     private userService: UserService,
-    private openCardService: OpenCardServiceService
+    private openCardService: OpenCardServiceService,
+    private historyService: CreateHistory,
+    private fileService: FileService
   ) {}
 
   ngOnInit(): void {
-    this.cardService.getOneCard(this.cardId).subscribe(
+    this.getCurrentCard();
+    this.getName();
+  }
+  getFiles() {
+    this.fileService.getFiles(this.card.id).subscribe(
       (response) => {
-        this.card = response;
-        this.oldText = this.card.text;
-        this.checkDate();
+        this.files = response;
       },
       (error) => {
         console.log(error);
       }
     );
+  }
 
+  getCurrentCard() {
+    this.cardService.getOneCard(this.cardId).subscribe(
+      (response) => {
+        this.card = response;
+        this.oldText = this.card.text;
+        this.executionPeriod = Date.parse(this.card.executionPeriod.toString());
+        this.checkDate();
+        this.getFiles();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getName() {
     this.userService.getUserName().subscribe(
       (response) => {
         this.user = response;
@@ -58,8 +87,7 @@ export class CardPageComponent implements OnInit {
 
   checkDate() {
     const now = new Date();
-    const previousDate = Date.parse(this.card.executionPeriod.toString());
-    if (previousDate <= now.getTime()) {
+    if (this.executionPeriod <= now.getTime()) {
       this.expiredPeriod = true;
     } else {
       this.expiredPeriod = false;
@@ -71,16 +99,21 @@ export class CardPageComponent implements OnInit {
   }
 
   saveChanges() {
+    if (this.dateTime != undefined)
+      this.currentTime = Date.parse(this.dateTime.toString());
+
     if (
-      (this.card.executionPeriod !== this.dateTime &&
-        this.dateTime !== undefined) ||
+      (this.executionPeriod !== this.currentTime &&
+        this.currentTime !== undefined) ||
       this.card.text !== this.oldText
     ) {
-      if (this.dateTime !== undefined)
+      if (this.currentTime !== undefined)
         this.card.executionPeriod = this.dateTime;
+
       this.cardService.updateCardChanges(this.card).subscribe(
         (response) => {
           this.inputText = false;
+          this.createCardHistory(this.currentTime);
           this.ngOnInit();
         },
         (error) => {
@@ -92,6 +125,37 @@ export class CardPageComponent implements OnInit {
     }
   }
 
+  createCardHistory(currentTime) {
+    if (
+      this.executionPeriod !== currentTime &&
+      this.currentTime !== undefined
+    ) {
+      this.sendHistory(UserActions['Changed execution period of the card']);
+    } else if (this.oldText !== this.card.text && this.oldText !== '') {
+      this.sendHistory(UserActions['Edited description of the card']);
+    } else if (this.oldText !== this.card.text && this.oldText === '') {
+      this.sendHistory(UserActions['Added description of the card']);
+    }
+  }
+
+  sendHistory(action) {
+    this.historyService.createHistory(action, this.card.title, null, null);
+  }
+
+  fileUpload(files: FileList) {
+    this.fileToUpload = files.item(0);
+    const formData = new FormData();
+    formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    console.log(formData);
+    this.fileService.uploadFile(formData, this.card.id).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   @Input() cardId: number;
   @Input() columnTitle: string;
 }

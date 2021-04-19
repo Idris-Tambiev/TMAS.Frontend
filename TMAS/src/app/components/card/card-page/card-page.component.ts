@@ -93,6 +93,10 @@ export class CardPageComponent implements OnInit {
     } else {
       this.expiredPeriod = false;
     }
+    if (this.card.executionPeriod.toString() === '0001-01-01T00:00:00') {
+      this.expiredPeriod = false;
+    }
+    console.log(this.card.executionPeriod);
   }
 
   closeCardWindow() {
@@ -151,6 +155,7 @@ export class CardPageComponent implements OnInit {
     this.fileService.uploadFile(formData, this.card.id).subscribe(
       (response) => {
         console.log(response);
+        this.getFiles();
       },
       (error) => {
         console.log(error);

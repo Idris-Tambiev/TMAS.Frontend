@@ -11,7 +11,7 @@ export class FileComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public createImgPath = (fileName: string) => {
+  public createPath = (fileName: string) => {
     return `https://localhost:44324/Files/${fileName}`;
   };
 

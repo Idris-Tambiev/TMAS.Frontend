@@ -1,7 +1,40 @@
-.file-div {
+@mixin flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.image-div {
   margin-top: 10px;
-
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   background-size: cover;
+  cursor: pointer;
+}
+.txt-file {
+  margin-top: 10px;
+  width: 70px;
+  height: 70px;
+  background-image: url("/assets/img/Txt_logo.png");
+  background-size: cover;
+}
+.pdf-file {
+  margin-top: 10px;
+  width: 70px;
+  height: 70px;
+  background-image: url("/assets/img/Pdf_logo.png");
+  background-size: cover;
+}
+.word-file {
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  background-image: url("/assets/img/Word_logo.png");
+  background-size: cover;
+}
+.file-container {
+  @include flexRow();
+  margin-left: 30px;
+  margin-top: 20px;
+  width: auto;
+  cursor: pointer;
 }

@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <input type="file" name="" id="" (change)="fileUpload($event.target.files)">
+    <input type="file" name="" id="" (change)="fileUpload($event.target.files)" class="file-input">
 
     <div>
         <app-file *ngFor="let file of files" [file]="file"></app-file>

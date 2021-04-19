@@ -34,6 +34,7 @@
 
     <app-history-page *ngIf="viewHistory" (closeField)="viewHistory=!viewHistory"></app-history-page>
 </div>
+
 <div class="view-card__container" *ngIf="viewCard">
     <app-card-page [cardId]="card.id" [columnTitle]="currentColumn.title"></app-card-page>
 </div>

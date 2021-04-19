@@ -48,16 +48,6 @@ export class CardPageComponent implements OnInit {
     this.getCurrentCard();
     this.getName();
   }
-  getFiles() {
-    this.fileService.getFiles(this.card.id).subscribe(
-      (response) => {
-        this.files = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
 
   getCurrentCard() {
     this.cardService.getOneCard(this.cardId).subscribe(
@@ -67,6 +57,17 @@ export class CardPageComponent implements OnInit {
         this.executionPeriod = Date.parse(this.card.executionPeriod.toString());
         this.checkDate();
         this.getFiles();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getFiles() {
+    this.fileService.getFiles(this.card.id).subscribe(
+      (response) => {
+        this.files = response;
       },
       (error) => {
         console.log(error);
@@ -156,6 +157,7 @@ export class CardPageComponent implements OnInit {
       }
     );
   }
+
   @Input() cardId: number;
   @Input() columnTitle: string;
 }

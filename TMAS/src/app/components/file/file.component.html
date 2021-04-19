@@ -1,5 +1,28 @@
 <div class="file">
-    <div class="file-div" [ngStyle]="{'background-image':'url('+createImgPath(file.path)+')'}">
+    <div class="image-div" [ngStyle]="{'background-image':'url('+createPath(file.path)+')'}" *ngIf="file.fileType=='image/jpeg'">
     </div>
-</div>
 
+<a  href="{{createPath(file.path)}}" download="{{file.path}}" target="_blank">
+    <button *ngIf="file.fileType=='text/plain'" class="file-container" mat-raised-button>
+        <div class="txt-file">
+        </div>
+        <span>{{file.name}}</span>
+    </button>
+</a>  
+
+<a href="{{createPath(file.path)}}" target="_blank" >
+    <button *ngIf="file.fileType=='application/pdf'" class="file-container" mat-raised-button>
+        <div class="pdf-file">
+        </div>
+        <span>{{file.name}}</span>
+    </button>
+</a>
+    
+<a href="{{createPath(file.path)}}" target="_blank" >
+    <button *ngIf="file.fileType=='application/octet-stream'" class="file-container" mat-raised-button>
+        <div class="word-file">
+        </div>
+        <span>{{file.name}}</span>
+    </button>
+</a>
+</div>

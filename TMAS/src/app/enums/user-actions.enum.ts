@@ -10,4 +10,7 @@ export enum UserActions {
   'Moved column' = 8,
   'Checked card' = 9,
   'Unchecked card' = 10,
+  'Added description' = 11,
+  'Edited description' = 12,
+  'Changed execution period of the card' = 13,
 }

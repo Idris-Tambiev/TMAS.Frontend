@@ -57,15 +57,19 @@ export class CardPageComponent implements OnInit {
   }
 
   checkDate() {
-    const now = new Date().toLocaleString();
-    if (this.card.executionPeriod.toLocaleString() < now) {
+    const now = new Date();
+    const previousDate = Date.parse(this.card.executionPeriod.toString());
+    if (previousDate <= now.getTime()) {
       this.expiredPeriod = true;
+    } else {
+      this.expiredPeriod = false;
     }
   }
 
   closeCardWindow() {
     this.openCardService.getCard(null);
   }
+
   saveChanges() {
     if (
       (this.card.executionPeriod !== this.dateTime &&

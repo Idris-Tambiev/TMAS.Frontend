@@ -21,7 +21,7 @@ export class UserService {
     return this.http.post(this.configUrl + '/connect/token', user);
   }
 
-  getUserName(): Observable<any> {
+  getUser(): Observable<any> {
     return this.http.get(this.configUrl + '/api/users/get');
   }
 
@@ -51,5 +51,9 @@ export class UserService {
     return this.http.get(this.configUrl + '/api/users/confirmemail', {
       params,
     });
+  }
+
+  uploadPhoto(file): Observable<any> {
+    return this.http.post(this.configUrl + '/api/users/upload/photo', file);
   }
 }

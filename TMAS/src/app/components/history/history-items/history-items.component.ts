@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IHistory } from 'src/app/interfaces/history.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { UserService } from 'src/app/services/user.service';
-import { IUserName } from 'src/app/interfaces/user-name.interface';
+import { IUser } from 'src/app/interfaces/user.interface';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { from } from 'rxjs';
@@ -13,10 +13,11 @@ import { from } from 'rxjs';
 })
 export class HistoryItemsComponent implements OnInit {
   action: string;
-  user: IUserName = { name: '', lastName: '' };
+  user: IUser = { name: '', lastName: '' };
   source: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
   dest: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
   movedOtherColumn: boolean;
+  defaultLogo: boolean = true;
   constructor(
     private userService: UserService,
     private columnsHttpService: ColumnsService
@@ -24,10 +25,12 @@ export class HistoryItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.action = UserActions[this.history.actionType];
-
-    this.userService.getUserName().subscribe(
+    this.userService.getUser().subscribe(
       (response) => {
         this.user = response;
+        if (this.user.photo !== null) {
+          this.defaultLogo = false;
+        }
       },
       (error) => {
         console.log(error);
@@ -61,6 +64,10 @@ export class HistoryItemsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+  createPath(fileName: string) {
+    return `https://localhost:44324/Files/${fileName}`;
   }
   @Input() history: IHistory;
 }

@@ -1,5 +1,6 @@
 <div class="history-item-container">
-    <mat-icon >account_circle</mat-icon>
+    <mat-icon *ngIf="defaultLogo">account_circle</mat-icon>
+    <div class="user-logo-no-default" *ngIf="!defaultLogo" [ngStyle]="{'background-image':'url('+createPath(user.photo)+')'}"></div>
     <div class="history-item-content">
         <span class="span-name">{{user.name}} {{user.lastName}}</span>
         <div class="action-div" *ngIf="!movedOtherColumn">
@@ -15,7 +16,6 @@
             to
             <span class="history-objects">{{dest.title}}</span>
         </div>
-
         <span class="span-date">{{history.createdDate | date:'medium'}}</span>
     </div>
 </div>

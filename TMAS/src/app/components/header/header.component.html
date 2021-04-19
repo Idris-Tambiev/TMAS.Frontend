@@ -22,17 +22,21 @@
             <input class="search-input-div" matInput placeholder="SEARCH" (input)="getSearchText($event)">
     </div>
 
-    <div class="user-container" *ngIf="!authPages">
+    <div class="user-container" *ngIf="!authPages" (click)="addPhoto=!addPhoto">
         <div class="user-photo">
-            <mat-icon >account_circle</mat-icon>
+            <mat-icon *ngIf="defaultLogo">account_circle</mat-icon>
+            <div class="no-default-logo" *ngIf="!defaultLogo" [ngStyle]="{'background-image':'url('+createPath(user.photo)+')'}"></div>
         </div>
         <div class="user-full-name">
             <span>{{user.name}}</span>
             <span>{{user.lastName}}</span>
         </div>
-        
         <button mat-raised-button class="logout-button" (click)="logOut()" [routerLink]="['']">LOG OUT</button>
     </div>
+
+    <button *ngIf="addPhoto" class="photo-add-input" mat-raised-button>
+        <input type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
+    </button>
 
     <div *ngIf="authPages" class="log-buttons">
         <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['registration']">SIGN UP</button>

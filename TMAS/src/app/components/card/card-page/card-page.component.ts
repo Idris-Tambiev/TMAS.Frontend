@@ -1,7 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card.interface';
-import { IUserName } from 'src/app/interfaces/user-name.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { UserService } from 'src/app/services/user.service';
@@ -9,6 +8,7 @@ import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
+import { IUser } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-card-page',
@@ -22,7 +22,7 @@ export class CardPageComponent implements OnInit {
     text: '',
     columnId: 0,
   };
-  user: IUserName = {
+  user: IUser = {
     name: '',
     lastName: '',
   };
@@ -76,7 +76,7 @@ export class CardPageComponent implements OnInit {
   }
 
   getName() {
-    this.userService.getUserName().subscribe(
+    this.userService.getUser().subscribe(
       (response) => {
         this.user = response;
       },
@@ -147,7 +147,8 @@ export class CardPageComponent implements OnInit {
     this.historyService.createHistory(action, this.card.title, null, null);
   }
 
-  fileUpload(files: FileList) {
+  fileUpload(event: any) {
+    const files: FileList = event.target.files;
     this.fileToUpload = files.item(0);
     const formData = new FormData();
     formData.append('file', this.fileToUpload, this.fileToUpload.name);
@@ -156,6 +157,7 @@ export class CardPageComponent implements OnInit {
       (response) => {
         console.log(response);
         this.getFiles();
+        event.target.value = '';
       },
       (error) => {
         console.log(error);

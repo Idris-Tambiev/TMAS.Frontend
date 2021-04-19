@@ -1,25 +1,27 @@
 <div class="file">
-    <div class="image-div" [ngStyle]="{'background-image':'url('+createPath(file.path)+')'}" *ngIf="file.fileType=='image/jpeg'">
+    <a  href="{{createPath(file.path)}}" download="{{file.path}}" target="_blank"  *ngIf="file.fileType=='image/jpeg'">
+    <div class="image-div" [ngStyle]="{'background-image':'url('+createPath(file.path)+')'}">
     </div>
+</a>
 
-<a  href="{{createPath(file.path)}}" download="{{file.path}}" target="_blank">
-    <button *ngIf="file.fileType=='text/plain'" class="file-container" mat-raised-button>
+<a  href="{{createPath(file.path)}}" target="_blank" *ngIf="file.fileType=='text/plain'">
+    <button  class="file-container" mat-raised-button>
         <div class="txt-file">
         </div>
         <span>{{file.name}}</span>
     </button>
 </a>  
 
-<a href="{{createPath(file.path)}}" target="_blank" >
-    <button *ngIf="file.fileType=='application/pdf'" class="file-container" mat-raised-button>
+<a href="{{createPath(file.path)}}" target="_blank" *ngIf="file.fileType=='application/pdf'">
+    <button  class="file-container" mat-raised-button>
         <div class="pdf-file">
         </div>
         <span>{{file.name}}</span>
     </button>
 </a>
     
-<a href="{{createPath(file.path)}}" target="_blank" >
-    <button *ngIf="file.fileType=='application/octet-stream'" class="file-container" mat-raised-button>
+<a href="{{createPath(file.path)}}" target="_blank" *ngIf="file.fileType=='application/octet-stream'">
+    <button  class="file-container" mat-raised-button>
         <div class="word-file">
         </div>
         <span>{{file.name}}</span>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -7,7 +7,8 @@ import {
   GoogleLoginProvider,
   SocialUser,
 } from 'angularx-social-login';
-
+import { UserAuthService } from 'src/app/services/user-auth.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
@@ -20,56 +21,40 @@ export class AuthorizationComponent implements OnInit {
   socialUser: SocialUser;
 
   constructor(
-    private httpService: UserService,
     public router: Router,
-    private socialAuthService: SocialAuthService
+    private userAuth: UserAuthService,
+    private socialAuthService: SocialAuthService,
+    private httpService: UserService,
+    private behaviorsService: BehaviorSubjectService
   ) {}
 
   ngOnInit(): void {}
 
   clickOnLoginButton(form: NgForm) {
-    this.httpService.userAuthorization(this.email, this.pass).subscribe(
+    this.Login(this.email, this.pass);
+  }
+  Login(email: string, password: string) {
+    this.httpService.userAuthorization(email, password).subscribe(
       (response) => {
         this.incorrectedData = false;
         localStorage.clear();
         localStorage.setItem('userToken', JSON.stringify(response));
-        this.redirect(true);
+        this.userAuth.redirect(true);
       },
       (error) => {
         this.incorrectedData = true;
-        this.redirect(false);
+        this.userAuth.redirect(false);
         console.log(error);
       }
     );
-  }
-
-  checkToken(token: string) {
-    this.httpService.loginWithGoogle(token, 'google').subscribe(
-      (response) => {
-        localStorage.clear();
-        localStorage.setItem('userToken', JSON.stringify(response));
-        this.redirect(true);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  redirect(type: boolean) {
-    if (type) this.router.navigate(['boards']);
   }
 
   loginWithGoogle() {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      console.log(this.socialUser);
-      this.checkToken(this.socialUser.authToken);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
+      this.socialAuthService.authState.subscribe((user) => {
+        this.socialUser = user;
+        this.userAuth.sendUserToken(this.socialUser.authToken);
+      });
     });
-  }
-
-  logOut() {
-    this.socialAuthService.signOut();
   }
 }

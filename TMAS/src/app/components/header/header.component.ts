@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { SearchService } from 'src/app/services/search.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { UserAuthService } from 'src/app/services/user-auth.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -19,7 +21,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userHttpService: UserService,
-    private searchService: SearchService
+    private searchService: BehaviorSubjectService,
+    private userAuth: UserAuthService
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +40,6 @@ export class HeaderComponent implements OnInit {
   getSearchText(event: any) {
     this.searchService.searchText.next(event.target.value);
   }
-  search() {
-    this.searchService.searchText.next(this.searchText);
-  }
 
   getUser() {
     this.userHttpService.getUser().subscribe(
@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
+
   logOut() {
     localStorage.clear();
   }
@@ -61,22 +62,4 @@ export class HeaderComponent implements OnInit {
   public createPath = (fileName: string) => {
     return `https://localhost:44324/Files/${fileName}`;
   };
-
-  fileUpload(event: any) {
-    const files: FileList = event.target.files;
-    this.fileToUpload = files.item(0);
-    const formData = new FormData();
-    formData.append('file', this.fileToUpload, this.fileToUpload.name);
-    console.log(formData);
-    this.userHttpService.uploadPhoto(formData).subscribe(
-      (response) => {
-        console.log(response);
-        this.ngOnInit();
-        event.target.value = '';
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
 }

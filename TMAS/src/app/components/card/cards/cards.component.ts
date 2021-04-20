@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { CardsService } from 'src/app/services/cards.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
-import { SearchService } from 'src/app/services/search.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 @Component({

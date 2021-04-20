@@ -3,13 +3,17 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../interfaces/user.interface';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   configUrl: string = environment.Url;
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private socialAuthService: SocialAuthService
+  ) {}
 
   userAuthorization(userName: string, userPass: string): Observable<object> {
     const user = new HttpParams()
@@ -55,5 +59,11 @@ export class UserService {
 
   uploadPhoto(file): Observable<any> {
     return this.http.post(this.configUrl + '/api/users/upload/photo', file);
+  }
+  searchUsers(name: string): Observable<any> {
+    const params = new HttpParams().set('name', name);
+    return this.http.get(this.configUrl + '/api/users/get/users', {
+      params,
+    });
   }
 }

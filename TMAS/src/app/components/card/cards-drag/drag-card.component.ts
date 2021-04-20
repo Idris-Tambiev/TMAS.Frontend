@@ -14,7 +14,7 @@ import {
 import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { CreateHistory } from 'src/app/services/create-history.service';
-import { SearchService } from 'src/app/services/search.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ColumnsPageComponent } from 'src/app/components/column/columns-page/columns-page.component';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 
@@ -30,7 +30,7 @@ export class DragCardComponent implements OnInit {
   constructor(
     private cardsHttpService: CardsService,
     private createHistoryService: CreateHistory,
-    private searchService: SearchService
+    private searchService: BehaviorSubjectService
   ) {}
 
   ngOnInit(): void {

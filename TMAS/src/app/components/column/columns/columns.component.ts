@@ -16,7 +16,7 @@ import { IColumn } from 'src/app/interfaces/column.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
-import { SearchService } from 'src/app/services/search.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 @Component({
   selector: 'app-columns',
   templateUrl: './columns.component.html',
@@ -40,7 +40,7 @@ export class ColumnsComponent implements OnInit {
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService,
     private createHistoryService: CreateHistory,
-    private searchService: SearchService
+    private searchService: BehaviorSubjectService
   ) {}
 
   ngOnInit(): void {

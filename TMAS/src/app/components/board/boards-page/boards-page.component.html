@@ -1,6 +1,9 @@
 <app-header></app-header>
+
 <div class="boards-container">
-    <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
+    <span class="boards-title">My boards</span>
+    <div class="my-boards">
+        <app-boards *ngFor="let board of boards" [board]="board"></app-boards>
     
         <div class="new-board-div" >
             <button mat-raised-button class="text-board" (click)="insertFormStatus=!insertFormStatus" *ngIf="!insertFormStatus">
@@ -20,5 +23,14 @@
                 </div>
               </div>
         </div>
-        
+    </div>
+    
+</div>
+
+<div class="assigned-boards-container" *ngIf="assigned">
+    <span class="boards-title">Assigned boards</span>
+    <div class="assigned-boards">
+        <app-boards *ngFor="let board of assignedBoards" [board]="board"></app-boards>
+    </div>
+    
 </div>

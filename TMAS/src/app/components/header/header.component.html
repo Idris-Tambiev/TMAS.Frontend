@@ -34,9 +34,7 @@
         <button mat-raised-button class="logout-button" (click)="logOut()" [routerLink]="['']">LOG OUT</button>
     </div>
 
-    <button *ngIf="addPhoto" class="photo-add-input" mat-raised-button>
-        <input type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
-    </button>
+    <app-user-menu *ngIf="addPhoto" class="app-user-menu"></app-user-menu>
 
     <div *ngIf="authPages" class="log-buttons">
         <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['registration']">SIGN UP</button>

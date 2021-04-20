@@ -1,8 +1,19 @@
-.boards-container {
+@mixin flexRow {
   display: flex;
   flex-direction: row;
+}
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+.boards-container {
+  @include flexColumn();
   margin-top: 79px;
   margin-left: 40px;
+}
+.my-boards {
+  margin-top: 20px;
+  @include flexRow();
   width: 100%;
 }
 .new-board-div {
@@ -25,8 +36,7 @@
 
 .new-board {
   width: 80%;
-  display: flex;
-  flex-direction: column;
+  @include flexColumn();
   margin-top: 30px;
 }
 .new-board-buttons {
@@ -51,4 +61,17 @@
 }
 .add-board-span {
   font-size: 17pt;
+}
+.assigned-boards-container {
+  @include flexColumn();
+  margin-top: 80px;
+  margin-left: 40px;
+  width: 100%;
+}
+.assigned-boards {
+  @include flexRow();
+  margin-top: 20px;
+}
+.boards-title {
+  font-size: 20pt;
 }

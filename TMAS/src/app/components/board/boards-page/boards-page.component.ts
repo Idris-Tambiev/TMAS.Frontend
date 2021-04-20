@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardsService } from 'src/app/services/boards.service';
 import { IBoard } from 'src/app/interfaces/board.interface';
-import { SearchService } from 'src/app/services/search.service';
+import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
+import { BoardAccessService } from 'src/app/services/board-access.service';
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
@@ -9,13 +10,16 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class BoardsPageComponent implements OnInit {
   boards: IBoard[] = [];
+  assignedBoards: IBoard[] = [];
+  assigned: boolean = false;
   newBoardTitle: string;
   insertFormStatus: boolean = false;
   subscription;
 
   constructor(
     private httpService: BoardsService,
-    private search: SearchService
+    private search: BehaviorSubjectService,
+    private accessService: BoardAccessService
   ) {}
 
   ngOnInit(): void {
@@ -23,6 +27,16 @@ export class BoardsPageComponent implements OnInit {
       if (text == '') this.getAll();
       else this.searchBoards(text);
     });
+
+    this.accessService.getBoards().subscribe(
+      (response) => {
+        this.assignedBoards = response;
+        if (this.assignedBoards.length > 0) this.assigned = true;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   getAll() {

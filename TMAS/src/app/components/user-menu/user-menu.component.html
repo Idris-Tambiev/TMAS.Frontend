@@ -1,4 +1,4 @@
-<div class="user-menu">
+<div class="user-menu" *ngIf="assign">
     <div class="user-menu__avatar">
         <span>Choose Avatar</span>
         <button mat-raised-button class="photo-add-input">
@@ -6,7 +6,7 @@
         </button>
     </div>
     
-    <div class="user-menu__search">
+    <div class="user-menu__search" >
         <span>Assign user</span>
         <input type="text"
             placeholder="Enter user email"
@@ -16,13 +16,31 @@
             [matAutocomplete]="auto"
             (input)="getUserName($event)"
         >
-        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="getUserEmail($event.option)">
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option)">
             <mat-option *ngFor="let user of users" [value]="user.email">
                   {{user.email}}
             </mat-option>
-       
         </mat-autocomplete>
+        <button mat-raised-button class="assign-user" (click)="assignUser()">Assign User</button>
     </div>
 
-    <button mat-raised-button class="assign-user" (click)="assignUser()">Assign User</button>
+    <div class="user-menu__search" *ngIf="boardCreator">
+        <span>Delete user</span>
+        <input type="text"
+            placeholder="Enter user email"
+            aria-label="Number"
+            matInput
+            class="user-input"
+            [matAutocomplete]="auto"
+            (input)="getAssignedUserName($event)"
+        >
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectDeleteUser($event.option)">
+            <mat-option *ngFor="let user of assignedUsers" [value]="user.email">
+                  {{user.email}}
+            </mat-option>
+        </mat-autocomplete>
+        <button mat-raised-button class="assign-user" (click)="deleteUser()">Delete User</button>
+    </div>
+
+    
 </div>

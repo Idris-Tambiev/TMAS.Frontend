@@ -64,6 +64,7 @@ export class UserService {
   uploadPhoto(file): Observable<any> {
     return this.http.post(this.configUrl + '/api/users/upload/photo', file);
   }
+
   searchUsers(name: string): Observable<any> {
     const params = new HttpParams().set('name', name);
     return this.http.get(this.configUrl + '/api/users/get/users', {

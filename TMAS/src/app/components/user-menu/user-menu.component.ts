@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IBoardAccess } from 'src/app/interfaces/board-access.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
+import { BoardsService } from 'src/app/services/boards.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,18 +15,36 @@ export class UserMenuComponent implements OnInit {
   fileToUpload: File = null;
   userSelected: boolean = false;
   selectedUserEmail: string;
+
+  deleteUserSelected: boolean = false;
+  deleteUserEmail: string;
+
   users: IUser[] = [];
   boardAccess: IBoardAccess;
   currentBoardId: number;
+  assign: boolean = false;
+  boardCreator: boolean = false;
+  deletedUserName: string;
+  assignedUsers: IUser[] = [];
+  deletedUser: IBoardAccess;
   constructor(
+    private boardsService: BoardsService,
     private userHttpService: UserService,
     private router: ActivatedRoute,
-    private accesService: BoardAccessService
+    private accesService: BoardAccessService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     const routeParams = this.router.snapshot.paramMap;
     this.currentBoardId = Number(routeParams.get('id'));
+    const myRoute = this.route.snapshot.routeConfig.path;
+    if (myRoute == 'boards') {
+      this.assign = false;
+    } else {
+      this.assign = true;
+      this.checkUser();
+    }
   }
 
   getUserName(event: any) {
@@ -40,10 +59,28 @@ export class UserMenuComponent implements OnInit {
     );
   }
 
-  getUserEmail(event) {
+  selectUser(event) {
     this.selectedUserEmail = event.value;
     this.userSelected = true;
-    console.log(this.selectedUserEmail);
+  }
+
+  checkUser() {
+    var userEmail = this.selectedUserEmail;
+    var findedUser: IUser = this.users.find(function (user, index, arr) {
+      if (user.email === userEmail) {
+        return user;
+      }
+    });
+
+    this.boardsService.getOneBoard(this.currentBoardId).subscribe(
+      (response) => {
+        if (response) this.boardCreator = true;
+        else this.boardCreator = false;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   assignUser() {
@@ -54,12 +91,10 @@ export class UserMenuComponent implements OnInit {
           return user;
         }
       });
-
       this.boardAccess = {
         userId: newUser.id,
         boardId: this.currentBoardId,
       };
-
       this.accesService.create(this.boardAccess).subscribe(
         (response) => {
           console.log(response);
@@ -69,6 +104,53 @@ export class UserMenuComponent implements OnInit {
         }
       );
     }
+  }
+
+  getAssignedUserName(event) {
+    this.deletedUserName = event.target.value;
+    this.getAssignedUsers();
+  }
+
+  selectDeleteUser(event) {
+    console.log(event.value);
+    this.deletedUserName = event.value;
+  }
+
+  getAssignedUsers() {
+    this.accesService
+      .getUsers(this.currentBoardId, this.deletedUserName)
+      .subscribe(
+        (response) => {
+          this.assignedUsers = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  deleteUser() {
+    var userEmail = this.deletedUserName;
+    var newUser: IUser = this.assignedUsers.find(function (user, index, arr) {
+      if (user.email === userEmail) {
+        return user;
+      }
+    });
+
+    this.deletedUser = {
+      userId: newUser.id,
+      boardId: this.currentBoardId,
+    };
+
+    this.accesService.deleteAccess(this.deletedUser).subscribe(
+      (response) => {
+        console.log(response);
+        this.ngOnInit();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   fileUpload(event: any) {

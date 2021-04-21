@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,5 +17,15 @@ export class BoardAccessService {
 
   getBoards(): Observable<any> {
     return this.http.get(this.configUrl + '/api/access/get');
+  }
+  getUsers(boardId: number, name: string): Observable<any> {
+    const params = new HttpParams()
+      .set('id', boardId.toString())
+      .set('text', name);
+    return this.http.get(this.configUrl + '/api/access/get/users', { params });
+  }
+
+  deleteAccess(access: IBoardAccess): Observable<any> {
+    return this.http.post(this.configUrl + '/api/access/delete', access);
   }
 }

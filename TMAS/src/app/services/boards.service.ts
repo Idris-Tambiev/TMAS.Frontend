@@ -13,6 +13,10 @@ export class BoardsService {
   getAllBoards(): Observable<any> {
     return this.http.get(this.configUrl + '/api/boards/get');
   }
+  getOneBoard(boardId: number): Observable<any> {
+    const params = new HttpParams().set('id', boardId.toString());
+    return this.http.get(this.configUrl + '/api/boards/get/one', { params });
+  }
 
   createBoard(title: string): Observable<any> {
     const params = new HttpParams().set('title', title);

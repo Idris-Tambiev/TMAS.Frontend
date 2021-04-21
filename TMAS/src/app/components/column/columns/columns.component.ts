@@ -17,6 +17,7 @@ import { UserActions } from 'src/app/enums/user-actions.enum';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-columns',
   templateUrl: './columns.component.html',
@@ -34,16 +35,19 @@ export class ColumnsComponent implements OnInit {
   columnView: boolean = true;
   cardsCount: number;
   Subscription;
-
+  boardId: number;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService,
     private createHistoryService: CreateHistory,
-    private searchService: BehaviorSubjectService
+    private searchService: BehaviorSubjectService,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    const routeParams = this.router.snapshot.paramMap;
+    this.boardId = Number(routeParams.get('id'));
     this.Subscription = this.searchService.searchText.subscribe((text) => {
       if (text == '') {
         this.columnView = true;
@@ -133,7 +137,13 @@ export class ColumnsComponent implements OnInit {
     this.editColumn = true;
   }
   sendHistory(action, title) {
-    this.createHistoryService.createHistory(action, title, null, null);
+    this.createHistoryService.createHistory(
+      action,
+      title,
+      null,
+      null,
+      this.boardId
+    );
   }
   ngOnDestroy() {
     this.Subscription.unsubscribe();

@@ -4,6 +4,7 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-drag-column',
@@ -13,10 +14,10 @@ import { UserActions } from 'src/app/enums/user-actions.enum';
 export class DragColumnComponent implements OnInit {
   constructor(
     private columnsHttpService: ColumnsService,
-    private createHistoryService: CreateHistory
+    private createHistoryService: CreateHistory,
+    private router: ActivatedRoute
   ) {}
   columns: IColumn[] = [];
-
   ngOnInit(): void {
     this.getAll();
   }
@@ -49,7 +50,8 @@ export class DragColumnComponent implements OnInit {
           UserActions['Moved column'],
           movedColumn.title,
           null,
-          null
+          null,
+          this.boardId
         );
       },
       (error) => {

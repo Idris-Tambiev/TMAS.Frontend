@@ -7,6 +7,7 @@ import { CreateHistory } from 'src/app/services/create-history.service';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -16,14 +17,18 @@ export class CardsComponent implements OnInit {
   editCard = false;
   newTitle: string;
   history: History;
-
+  boardId: number;
   constructor(
     private httpService: CardsService,
     private createHistoryService: CreateHistory,
-    private openCardService: OpenCardServiceService
+    private openCardService: OpenCardServiceService,
+    private router: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const routeParams = this.router.snapshot.paramMap;
+    this.boardId = Number(routeParams.get('id'));
+  }
 
   deleteThisCard() {
     const deletedCardName = this.card.title;
@@ -74,7 +79,13 @@ export class CardsComponent implements OnInit {
   }
 
   sendHistory(action, title) {
-    this.createHistoryService.createHistory(action, title, null, null);
+    this.createHistoryService.createHistory(
+      action,
+      title,
+      null,
+      null,
+      this.boardId
+    );
   }
   openCardField() {
     this.openCardService.getCard(this.card);

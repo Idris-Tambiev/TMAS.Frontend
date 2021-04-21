@@ -9,6 +9,7 @@ import { UserActions } from 'src/app/enums/user-actions.enum';
 import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-card-page',
@@ -33,7 +34,7 @@ export class CardPageComponent implements OnInit {
   expiredPeriod: boolean = false;
   executionPeriod: number;
   currentTime: number;
-
+  boardId: number;
   fileToUpload: File = null;
   files: IFile;
   constructor(
@@ -41,12 +42,15 @@ export class CardPageComponent implements OnInit {
     private userService: UserService,
     private openCardService: OpenCardServiceService,
     private historyService: CreateHistory,
-    private fileService: FileService
+    private fileService: FileService,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.getCurrentCard();
     this.getName();
+    const routeParams = this.router.snapshot.paramMap;
+    this.boardId = Number(routeParams.get('id'));
   }
 
   getCurrentCard() {
@@ -144,7 +148,13 @@ export class CardPageComponent implements OnInit {
   }
 
   sendHistory(action) {
-    this.historyService.createHistory(action, this.card.title, null, null);
+    this.historyService.createHistory(
+      action,
+      this.card.title,
+      null,
+      null,
+      this.boardId
+    );
   }
 
   fileUpload(event: any) {

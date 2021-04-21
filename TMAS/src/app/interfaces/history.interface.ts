@@ -5,4 +5,6 @@ export interface IHistory {
   actionObject: string;
   sourceAction: number;
   destinationAction: number;
+  boardId: number;
+  authorId?: string;
 }

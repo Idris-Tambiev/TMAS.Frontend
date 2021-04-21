@@ -17,6 +17,7 @@ import { CreateHistory } from 'src/app/services/create-history.service';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ColumnsPageComponent } from 'src/app/components/column/columns-page/columns-page.component';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-drag-card',
@@ -26,14 +27,17 @@ import { OpenCardServiceService } from 'src/app/services/open-card-service.servi
 export class DragCardComponent implements OnInit {
   cards: ICard[] = [];
   subscription;
-
+  boardId: number;
   constructor(
     private cardsHttpService: CardsService,
     private createHistoryService: CreateHistory,
-    private searchService: BehaviorSubjectService
+    private searchService: BehaviorSubjectService,
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    const routeParams = this.router.snapshot.paramMap;
+    this.boardId = Number(routeParams.get('id'));
     this.subscription = this.searchService.searchText.subscribe((text) => {
       if (text == '') this.getAll();
       else this.searchCards(this.column.id, text);
@@ -93,7 +97,8 @@ export class DragCardComponent implements OnInit {
           3,
           movedCard.title,
           null,
-          movedCard.columnId
+          movedCard.columnId,
+          this.boardId
         );
       },
       (error) => {
@@ -109,7 +114,8 @@ export class DragCardComponent implements OnInit {
           4,
           movedCard.title,
           movedCard.columnId,
-          oldColumn
+          oldColumn,
+          this.boardId
         );
       },
       (error) => {

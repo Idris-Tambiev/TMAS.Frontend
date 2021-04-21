@@ -28,6 +28,10 @@ export class UserService {
   getUser(): Observable<any> {
     return this.http.get(this.configUrl + '/api/users/get');
   }
+  getFullUser(userId: string): Observable<any> {
+    const params = new HttpParams().set('id', userId);
+    return this.http.get(this.configUrl + '/api/users/getfull', { params });
+  }
 
   loginWithGoogle(token: string, provider: 'google'): Observable<object> {
     const headers = new HttpHeaders({

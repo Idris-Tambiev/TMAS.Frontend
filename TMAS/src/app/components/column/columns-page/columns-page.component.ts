@@ -72,7 +72,8 @@ export class ColumnsPageComponent implements OnInit {
             UserActions['Created column'],
             this.newColumn.title,
             null,
-            null
+            null,
+            this.boardId
           );
 
           this.child.getAll();

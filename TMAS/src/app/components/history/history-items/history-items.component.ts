@@ -25,7 +25,7 @@ export class HistoryItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.action = UserActions[this.history.actionType];
-    this.userService.getUser().subscribe(
+    this.userService.getFullUser(this.history.authorId).subscribe(
       (response) => {
         this.user = response;
         if (this.user.photo !== null) {

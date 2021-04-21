@@ -27,6 +27,7 @@ export class UserMenuComponent implements OnInit {
   deletedUserName: string;
   assignedUsers: IUser[] = [];
   deletedUser: IBoardAccess;
+
   constructor(
     private boardsService: BoardsService,
     private userHttpService: UserService,
@@ -48,7 +49,6 @@ export class UserMenuComponent implements OnInit {
   }
 
   getUserName(event: any) {
-    console.log(event.target.value);
     this.userHttpService.searchUsers(event.target.value).subscribe(
       (response) => {
         this.users = response;
@@ -97,7 +97,7 @@ export class UserMenuComponent implements OnInit {
       };
       this.accesService.create(this.boardAccess).subscribe(
         (response) => {
-          console.log(response);
+          this.ngOnInit();
         },
         (error) => {
           console.log(error);
@@ -112,7 +112,6 @@ export class UserMenuComponent implements OnInit {
   }
 
   selectDeleteUser(event) {
-    console.log(event.value);
     this.deletedUserName = event.value;
   }
 
@@ -144,7 +143,6 @@ export class UserMenuComponent implements OnInit {
 
     this.accesService.deleteAccess(this.deletedUser).subscribe(
       (response) => {
-        console.log(response);
         this.ngOnInit();
       },
       (error) => {
@@ -161,7 +159,6 @@ export class UserMenuComponent implements OnInit {
     console.log(formData);
     this.userHttpService.uploadPhoto(formData).subscribe(
       (response) => {
-        console.log(response);
         this.ngOnInit();
         event.target.value = '';
       },

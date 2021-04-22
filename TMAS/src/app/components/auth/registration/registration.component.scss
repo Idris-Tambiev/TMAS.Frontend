@@ -11,7 +11,8 @@
 .registration-field-container {
   @include flexibleColumn();
   width: 592px;
-  height: 694px;
+  min-height: 694px;
+  max-height: 792px;
   margin: 0 auto;
   margin-top: 109px;
   background-color: white;
@@ -73,4 +74,11 @@
 .buttons {
   margin-top: 24px;
   margin-left: 72px;
+  margin-bottom: 24px;
+}
+.incorrect {
+  @include font();
+  margin: 0 auto;
+  margin-top: 10px;
+  color: red;
 }

@@ -17,22 +17,27 @@ export class RegistrationComponent implements OnInit {
     password: '',
   };
   confirmedPassword: string;
+  passwordsInCorrected: boolean = false;
   constructor(private userHttpService: UserService, public router: Router) {}
 
   ngOnInit(): void {}
 
   registrationUser(form: NgForm) {
     this.user.userName = this.user.email;
-    console.log(this.user);
-    this.userHttpService.createUser(this.user).subscribe(
-      (response) => {
-        console.log(response);
-        this.getToken(this.user.userName, this.user.password);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.user.password === this.confirmedPassword) {
+      this.passwordsInCorrected = false;
+      this.userHttpService.createUser(this.user).subscribe(
+        (response) => {
+          console.log(response);
+          this.getToken(this.user.userName, this.user.password);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.passwordsInCorrected = true;
+    }
   }
 
   getToken(userName, password) {

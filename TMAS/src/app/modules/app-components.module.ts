@@ -21,6 +21,8 @@ import { MatComponentsModule } from './mat-components.module';
 import { EmailConfirmComponent } from 'src/app/components/auth/email-confirm/email-confirm.component';
 import { FileComponent } from 'src/app/components/file/file.component';
 import { UserMenuComponent } from 'src/app/components/user-menu/user-menu.component';
+import { PasswordResetPageComponent } from '../components/password/password-reset-page/password-reset-page.component';
+import { NewPasswordPageComponent } from '../components/password/new-password-page/new-password-page.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { UserMenuComponent } from 'src/app/components/user-menu/user-menu.compon
     HistoryPageComponent,
     HistoryItemsComponent,
     EmailConfirmComponent,
+    PasswordResetPageComponent,
+    NewPasswordPageComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -64,6 +68,8 @@ import { UserMenuComponent } from 'src/app/components/user-menu/user-menu.compon
     HistoryPageComponent,
     HistoryItemsComponent,
     EmailConfirmComponent,
+    PasswordResetPageComponent,
+    NewPasswordPageComponent,
   ],
 })
 export class AppComponentsModule {}

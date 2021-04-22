@@ -16,7 +16,7 @@
             [matAutocomplete]="auto"
             (input)="getUserName($event)"
         >
-        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option)">
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option)" >
             <mat-option *ngFor="let user of users" [value]="user.email">
                   {{user.email}}
             </mat-option>

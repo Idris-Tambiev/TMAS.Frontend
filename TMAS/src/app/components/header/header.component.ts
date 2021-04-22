@@ -27,7 +27,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     const myRoute = this.route.snapshot.routeConfig.path;
-    if (myRoute == '' || myRoute == 'registration') {
+    if (
+      myRoute == '' ||
+      myRoute == 'registration' ||
+      myRoute == 'reset' ||
+      myRoute == 'new/pass'
+    ) {
       this.authPages = true;
     } else {
       this.authPages = false;

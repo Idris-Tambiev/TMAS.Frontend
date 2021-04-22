@@ -39,6 +39,7 @@ export class UserMenuComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.router.snapshot.paramMap;
     this.currentBoardId = Number(routeParams.get('id'));
+
     const myRoute = this.route.snapshot.routeConfig.path;
     if (myRoute == 'boards') {
       this.assign = false;
@@ -49,14 +50,17 @@ export class UserMenuComponent implements OnInit {
   }
 
   getUserName(event: any) {
-    this.userHttpService.searchUsers(event.target.value).subscribe(
-      (response) => {
-        this.users = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.accesService
+      .getAllUsers(this.currentBoardId, event.target.value)
+      .subscribe(
+        (response) => {
+          this.users = response;
+          console.log(this.users);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   selectUser(event) {
@@ -65,13 +69,6 @@ export class UserMenuComponent implements OnInit {
   }
 
   checkUser() {
-    var userEmail = this.selectedUserEmail;
-    var findedUser: IUser = this.users.find(function (user, index, arr) {
-      if (user.email === userEmail) {
-        return user;
-      }
-    });
-
     this.boardsService.getOneBoard(this.currentBoardId).subscribe(
       (response) => {
         if (response) this.boardCreator = true;
@@ -117,7 +114,7 @@ export class UserMenuComponent implements OnInit {
 
   getAssignedUsers() {
     this.accesService
-      .getUsers(this.currentBoardId, this.deletedUserName)
+      .getAssignedUsers(this.currentBoardId, this.deletedUserName)
       .subscribe(
         (response) => {
           this.assignedUsers = response;

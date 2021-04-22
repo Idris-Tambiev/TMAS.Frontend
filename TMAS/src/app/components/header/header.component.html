@@ -37,7 +37,7 @@
     <app-user-menu *ngIf="addPhoto" class="app-user-menu"></app-user-menu>
 
     <div *ngIf="authPages" class="log-buttons">
-        <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['registration']">SIGN UP</button>
+        <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['/registration']">SIGN UP</button>
         <button mat-raised-button [ngClass]="{buttonStyle:!logStatus}" class="logout-button" (click)="logStatus=true" [routerLink]="['']">LOG IN</button>
     </div>
 </div>

@@ -54,21 +54,14 @@ export class UserService {
     return this.http.post(this.configUrl + '/api/users/create', user);
   }
 
-  confirmEmail(userId: string, token: string): Observable<any> {
-    const params = new HttpParams().set('userId', userId).set('token', token);
-    return this.http.get(this.configUrl + '/api/users/confirmemail', {
-      params,
-    });
-  }
-
   uploadPhoto(file): Observable<any> {
     return this.http.post(this.configUrl + '/api/users/upload/photo', file);
   }
 
-  searchUsers(name: string): Observable<any> {
-    const params = new HttpParams().set('name', name);
-    return this.http.get(this.configUrl + '/api/users/get/users', {
-      params,
-    });
-  }
+  // searchUsers(name: string): Observable<any> {
+  //   const params = new HttpParams().set('name', name);
+  //   return this.http.get(this.configUrl + '/api/users/get/users', {
+  //     params,
+  //   });
+  // }
 }

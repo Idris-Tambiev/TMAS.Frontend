@@ -18,11 +18,23 @@ export class BoardAccessService {
   getBoards(): Observable<any> {
     return this.http.get(this.configUrl + '/api/access/get');
   }
-  getUsers(boardId: number, name: string): Observable<any> {
+
+  getAllUsers(boardId: number, name: string): Observable<any> {
     const params = new HttpParams()
       .set('id', boardId.toString())
       .set('text', name);
-    return this.http.get(this.configUrl + '/api/access/get/users', { params });
+    return this.http.get(this.configUrl + '/api/access/get/all/users', {
+      params,
+    });
+  }
+
+  getAssignedUsers(boardId: number, name: string): Observable<any> {
+    const params = new HttpParams()
+      .set('id', boardId.toString())
+      .set('text', name);
+    return this.http.get(this.configUrl + '/api/access/get/assigned/users', {
+      params,
+    });
   }
 
   deleteAccess(access: IBoardAccess): Observable<any> {

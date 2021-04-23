@@ -15,7 +15,7 @@ import { HistoryItemsComponent } from '../components/history/history-items/histo
 import { CardsComponent } from '../components/card/cards/cards.component';
 import { ColumnsPageComponent } from '../components/column/columns-page/columns-page.component';
 import { CardPageComponent } from '../components/card/card-page/card-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { MatComponentsModule } from './mat-components.module';
 import { EmailConfirmComponent } from 'src/app/components/auth/email-confirm/email-confirm.component';
@@ -52,6 +52,7 @@ import { NewPasswordPageComponent } from '../components/password/new-password-pa
     BrowserModule,
     CommonModule,
     MatComponentsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ColumnsComponent,

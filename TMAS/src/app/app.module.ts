@@ -9,7 +9,6 @@ import { ParamInterceptor } from 'src/app/Interceptor/interceptor';
 import { FormsModule } from '@angular/forms';
 import { AppComponentsModule } from 'src/app/modules/app-components.module';
 import { AppRoutingModule } from 'src/app/modules/app-routing.module';
-
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,

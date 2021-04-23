@@ -24,8 +24,7 @@ export class AuthorizationComponent implements OnInit {
     public router: Router,
     private userAuth: UserAuthService,
     private socialAuthService: SocialAuthService,
-    private httpService: UserService,
-    private behaviorsService: BehaviorSubjectService
+    private httpService: UserService
   ) {}
 
   ngOnInit(): void {}

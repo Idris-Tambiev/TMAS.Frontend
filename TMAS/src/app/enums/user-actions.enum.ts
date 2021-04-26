@@ -13,4 +13,6 @@ export enum UserActions {
   'Added description of the card' = 11,
   'Edited description of the card' = 12,
   'Changed execution period of the card' = 13,
+  'Assigned user' = 14,
+  'Unassigned user' = 15,
 }

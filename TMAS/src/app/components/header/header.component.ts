@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { UserAuthService } from 'src/app/services/user-auth.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { UserMenuComponent } from '../user-menu/user-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +24,8 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private userHttpService: UserService,
     private searchService: BehaviorSubjectService,
-    private userAuth: UserAuthService
+    private userAuth: UserAuthService,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {

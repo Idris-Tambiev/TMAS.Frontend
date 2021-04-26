@@ -13,8 +13,8 @@
 .card-page {
   @include flexColumn();
   @include font();
-  width: 749px;
-  height: 860px;
+  width: 700px;
+  height: 939px;
   background-color: white;
   opacity: 1;
   border-radius: 50px;
@@ -59,8 +59,8 @@
   user-select: none;
   @include flexRow();
   @include font();
-  justify-content: center;
-  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
   margin-top: 20px;
   font-size: 11pt;
 }
@@ -74,10 +74,12 @@
 .date-info__span {
   margin-top: 10px;
 }
-
+.card-page__file {
+  @include flexColumn();
+  justify-content: center;
+}
 .card-page__new-date-time {
   @include flexRow();
-  margin-left: 50px;
 }
 .card-page__new-time {
   @include flexColumn();
@@ -85,7 +87,6 @@
 }
 .card-page__new-date {
   @include flexColumn();
-  margin-left: 65px;
   align-items: center;
 }
 
@@ -133,16 +134,27 @@
   background-color: #377dff;
   color: white;
 }
+.save-buttons__edit {
+  @include flexRow();
+  align-items: center;
+  height: 68px;
+}
 .save-buttons {
   @include flexRow();
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+  width: 93%;
 }
 .card-page__exec-period {
   display: flex;
   align-items: center;
   background-color: yellowgreen;
-  width: 322px;
+  width: 217px;
+  height: 29px;
   justify-content: center;
-  border-radius: 10px;
+
+  border-radius: 20px;
 }
 .red {
   background-color: red;

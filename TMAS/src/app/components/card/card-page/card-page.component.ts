@@ -111,7 +111,6 @@ export class CardPageComponent implements OnInit {
   saveChanges() {
     if (this.dateTime != undefined)
       this.currentTime = Date.parse(this.dateTime.toString());
-
     if (
       (this.executionPeriod !== this.currentTime &&
         this.currentTime !== undefined) ||
@@ -141,9 +140,11 @@ export class CardPageComponent implements OnInit {
       this.currentTime !== undefined
     ) {
       this.sendHistory(UserActions['Changed execution period of the card']);
-    } else if (this.oldText !== this.card.text && this.oldText !== '') {
+    }
+    if (this.oldText !== this.card.text && this.oldText !== '') {
       this.sendHistory(UserActions['Edited description of the card']);
-    } else if (this.oldText !== this.card.text && this.oldText === '') {
+    }
+    if (this.oldText !== this.card.text && this.oldText === '') {
       this.sendHistory(UserActions['Added description of the card']);
     }
   }

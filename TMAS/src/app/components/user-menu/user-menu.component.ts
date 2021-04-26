@@ -4,8 +4,9 @@ import { IBoardAccess } from 'src/app/interfaces/board-access.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
 import { BoardsService } from 'src/app/services/boards.service';
+import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserService } from 'src/app/services/user.service';
-
+import { UserActions } from 'src/app/enums/user-actions.enum';
 @Component({
   selector: 'app-user-menu',
   templateUrl: './user-menu.component.html',
@@ -33,7 +34,8 @@ export class UserMenuComponent implements OnInit {
     private userHttpService: UserService,
     private router: ActivatedRoute,
     private accesService: BoardAccessService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private createHistoryService: CreateHistory
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +81,15 @@ export class UserMenuComponent implements OnInit {
       }
     );
   }
+  createHistory(action, name) {
+    this.createHistoryService.createHistory(
+      action,
+      name,
+      null,
+      null,
+      this.currentBoardId
+    );
+  }
 
   assignUser() {
     if (this.userSelected) {
@@ -94,6 +105,10 @@ export class UserMenuComponent implements OnInit {
       };
       this.accesService.create(this.boardAccess).subscribe(
         (response) => {
+          this.createHistory(
+            UserActions['Assigned user'],
+            newUser.name + ' ' + newUser.lastName
+          );
           this.ngOnInit();
         },
         (error) => {
@@ -140,6 +155,10 @@ export class UserMenuComponent implements OnInit {
 
     this.accesService.deleteAccess(this.deletedUser).subscribe(
       (response) => {
+        this.createHistory(
+          UserActions['Unassigned user'],
+          newUser.name + ' ' + newUser.lastName
+        );
         this.ngOnInit();
       },
       (error) => {

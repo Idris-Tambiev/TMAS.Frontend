@@ -10,34 +10,36 @@
     </div>
     
       <div class="card-page__current-date">
-         <span class="card-page__exec-period" [ngClass]="{red:expiredPeriod}">Execution period: {{card.executionPeriod | date:'medium'}}</span>
-         <div class="card-page__new-date-time">
-             <div class="card-page__new-time">
-                <span>Choose execution time:</span>
-                <input type="datetime-local" name="" id="" class="card-page__time" [(ngModel)]="dateTime">
-             </div>
-        </div>
+          <span>Execution period:</span>
+         <span class="card-page__exec-period" [ngClass]="{red:expiredPeriod}"> {{card.executionPeriod | date:'medium'}}</span>   
     </div>
 
     <div class="card-page__content" *ngIf="inputText">
         <span class="card-page__description">Description:</span>
         <textarea type="text" name="" id="" class="card-page__input" [(ngModel)]="card.text">{{card.text}}</textarea>
-        <div class="save-buttons">
-        <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
-        <button class="card-page__save-button" mat-raised-button (click)="inputText=false">Close</button>
+        <div class="save-buttons edited">
+            <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
+            <button class="card-page__save-button" mat-raised-button (click)="inputText=false">Close</button>
+            <div class="card-page__new-date-time">
+                <div class="card-page__new-time">
+                     <span>Choose execution time:</span>
+                    <input type="datetime-local" name="" id="" class="card-page__time" [(ngModel)]="dateTime">
+            </div>
+       </div>
     </div>
     </div>
 
     <div class="card-page__content" *ngIf="!inputText">
         <span class="card-page__description">Description:</span>
         <span class="card-page__description-text">{{card.text}}</span>
-        <div class="save-buttons">
+        <div class="save-buttons__edit">
             <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
             <button class="card-page__save-button" mat-raised-button (click)="inputText=true">Edit</button>
         </div>
     </div>
-
-    <input type="file" (change)="fileUpload($event)" class="file-input">
+    <div class="card-page__file">
+        <input type="file" (change)="fileUpload($event)" class="file-input">
+    </div>
 
     <div class="files-container">
         <app-file *ngFor="let file of files" [file]="file"></app-file>

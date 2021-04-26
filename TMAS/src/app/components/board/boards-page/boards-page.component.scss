@@ -10,6 +10,8 @@
   @include flexColumn();
   margin-top: 79px;
   margin-left: 40px;
+  overflow-x: auto;
+  height: 220px;
 }
 .my-boards {
   margin-top: 20px;
@@ -67,6 +69,7 @@
   margin-top: 80px;
   margin-left: 40px;
   width: 100%;
+  overflow-x: auto;
 }
 .assigned-boards {
   @include flexRow();
@@ -74,4 +77,30 @@
 }
 .boards-title {
   font-size: 20pt;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #d0e2fe;
+  border-radius: 6px;
+  transform: rotate(-90deg);
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(55, 125, 255, 0.5);
+}
+@media (max-width: 820px) {
+  .boards-container {
+    margin-left: 0;
+  }
+  .boards-title {
+    margin-left: 11px;
+  }
 }

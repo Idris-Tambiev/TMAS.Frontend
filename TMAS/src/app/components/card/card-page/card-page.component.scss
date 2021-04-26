@@ -14,10 +14,10 @@
   @include flexColumn();
   @include font();
   width: 749px;
-  height: 800px;
+  height: 860px;
   background-color: white;
   opacity: 1;
-  border-radius: 23px;
+  border-radius: 50px;
   overflow: auto;
 }
 .card-page__date-block {
@@ -47,13 +47,19 @@
 }
 .card-page__date-info {
   @include flexColumn();
+  @include font();
   margin-top: auto;
-  margin-bottom: 16px;
+  align-items: center;
+  font-size: 11pt;
+  background-color: #dfeeff;
+  height: 80px;
+  color: #334681;
 }
 .card-page__current-date {
   user-select: none;
   @include flexRow();
   @include font();
+  justify-content: center;
   justify-content: center;
   margin-top: 20px;
   font-size: 11pt;
@@ -62,6 +68,11 @@
   font-size: 11pt;
   width: 186px;
   padding-left: 8px;
+  border: 1px solid #b0cfff;
+  color: #334681;
+}
+.date-info__span {
+  margin-top: 10px;
 }
 
 .card-page__new-date-time {
@@ -77,11 +88,7 @@
   margin-left: 65px;
   align-items: center;
 }
-.card-page__date-info {
-  @include font();
-  margin-left: 16px;
-  font-size: 11pt;
-}
+
 .card-page__user-name {
   @include font();
   font-size: 12pt;
@@ -151,4 +158,18 @@
   justify-content: center;
   height: 380px;
   overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+}
+::-webkit-scrollbar-track {
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(55, 125, 255, 0.5);
 }

@@ -15,8 +15,6 @@ import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { CreateHistory } from 'src/app/services/create-history.service';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
-import { ColumnsPageComponent } from 'src/app/components/column/columns-page/columns-page.component';
-import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

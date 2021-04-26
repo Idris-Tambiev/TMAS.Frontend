@@ -10,6 +10,7 @@ import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-card-page',
@@ -43,7 +44,8 @@ export class CardPageComponent implements OnInit {
     private openCardService: OpenCardServiceService,
     private historyService: CreateHistory,
     private fileService: FileService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -100,7 +102,6 @@ export class CardPageComponent implements OnInit {
     if (this.card.executionPeriod.toString() === '0001-01-01T00:00:00') {
       this.expiredPeriod = false;
     }
-    console.log(this.card.executionPeriod);
   }
 
   closeCardWindow() {

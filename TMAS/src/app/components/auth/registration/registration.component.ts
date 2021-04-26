@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/user.interface';
+import { interval, timer } from 'rxjs';
+
 import { UserService } from 'src/app/services/user.service';
 import { ValidatorService } from 'src/app/services/validator.service';
 @Component({
@@ -10,26 +11,24 @@ import { ValidatorService } from 'src/app/services/validator.service';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-  user: IUser = {
-    name: '',
-    lastName: '',
-    userName: '',
-    email: '',
-    password: '',
-  };
   confirmedPassword: string;
   passwordsInCorrected: boolean = false;
-
+  subscription;
   myForm: FormGroup;
+  message: string;
   constructor(
     private userHttpService: UserService,
     public router: Router,
     private validatorService: ValidatorService
   ) {
     this.myForm = new FormGroup({
-      name: new FormControl('', []),
-      lastName: new FormControl('', []),
+      name: new FormControl('', [Validators.minLength(3), Validators.required]),
+      lastName: new FormControl('', [
+        Validators.minLength(3),
+        Validators.required,
+      ]),
       email: new FormControl('', [Validators.email]),
+      userName: new FormControl(''),
       password: new FormControl('', [
         Validators.minLength(6),
         this.validatorService.passwordDigitsValidator,
@@ -39,22 +38,46 @@ export class RegistrationComponent implements OnInit {
       ]),
       confirmedPassword: new FormControl(''),
     });
+    this.myForm.controls['email'].untouched;
+
     this.myForm.valueChanges.subscribe((x) => {
-      console.log(this.myForm);
+      this.myForm.value.userName = this.myForm.value.email;
+      if (this.myForm.controls['email'].status == 'VALID') {
+        this.timerForEmail();
+      }
     });
   }
 
   ngOnInit(): void {}
 
-  registrationUser() {
-    console.log(this.myForm);
-    this.user.userName = this.user.email;
-    if (this.user.password === this.confirmedPassword) {
+  timerForEmail() {
+    const source = timer(300);
+    this.subscription = source.subscribe((x) => {
+      this.findEmail();
+    });
+  }
+
+  findEmail() {
+    this.userHttpService.find(this.myForm.value.email).subscribe(
+      (response) => {
+        if (!response.isSuccess) {
+          this.message = response.message;
+        } else this.message = '';
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.subscription.unsubscribe();
+  }
+
+  registrationUser(form) {
+    if (form.password === form.confirmedPassword) {
       this.passwordsInCorrected = false;
-      this.userHttpService.createUser(this.user).subscribe(
+      this.userHttpService.createUser(form).subscribe(
         (response) => {
           console.log(response);
-          this.getToken(this.user.userName, this.user.password);
+          this.getToken(form.userName, form.password);
         },
         (error) => {
           console.log(error);

@@ -14,18 +14,13 @@ import { ValidatorService } from 'src/app/services/validator.service';
   styleUrls: ['./new-password-page.component.scss'],
 })
 export class NewPasswordPageComponent implements OnInit {
-  newPassword: string;
-  confirmedPassword: string;
   incorrect: boolean = false;
   userId: string;
   token: string;
   isSuccess: boolean = false;
   email: string;
   message: string;
-  user: IUser = {
-    name: '',
-    lastName: '',
-  };
+
   myForm: FormGroup;
   constructor(
     private emailService: EmailService,
@@ -42,7 +37,7 @@ export class NewPasswordPageComponent implements OnInit {
         this.validatorService.passwordUpperCaseValidator,
         this.validatorService.passwordNonAlphanumericValidator,
       ]),
-      confrimPassword: new FormControl(''),
+      confirmPassword: new FormControl('', Validators.required),
     });
 
     this.myForm.valueChanges.subscribe((x) => {
@@ -57,11 +52,14 @@ export class NewPasswordPageComponent implements OnInit {
     console.log(this.token);
   }
 
-  resetPassword() {
-    if (this.newPassword == this.confirmedPassword) {
+  resetPassword(form) {
+    console.log(form.password);
+
+    console.log(form.confirmPassword);
+    if (form.password === form.confirmPassword) {
       this.incorrect = false;
       this.emailService
-        .confirmPassword(this.userId, this.token, this.newPassword)
+        .confirmPassword(this.userId, this.token, form.password)
         .subscribe(
           (response) => {
             if (response.isSuccess) {
@@ -81,16 +79,18 @@ export class NewPasswordPageComponent implements OnInit {
   }
 
   login() {
-    this.userService.userAuthorization(this.email, this.newPassword).subscribe(
-      (response) => {
-        localStorage.clear();
-        localStorage.setItem('userToken', JSON.stringify(response));
-        this.userAuth.redirect(true);
-      },
-      (error) => {
-        console.log(error);
-        this.userAuth.redirect(true);
-      }
-    );
+    this.userService
+      .userAuthorization(this.email, this.myForm.value.password)
+      .subscribe(
+        (response) => {
+          localStorage.clear();
+          localStorage.setItem('userToken', JSON.stringify(response));
+          this.userAuth.redirect(true);
+        },
+        (error) => {
+          console.log(error);
+          this.userAuth.redirect(true);
+        }
+      );
   }
 }

@@ -9,7 +9,7 @@ export class ValidatorService {
 
   passwordDigitsValidator(control: FormControl): { [s: string]: boolean } {
     var reg = new RegExp('^(?=.*[0-9])');
-    if (reg.test(control.value)) {
+    if (reg.test(control.value) || control.value == '') {
       return null;
     } else {
       return { digits: true };
@@ -18,7 +18,7 @@ export class ValidatorService {
 
   passwordUpperCaseValidator(control: FormControl): { [s: string]: boolean } {
     var reg = new RegExp('^(?=.*[A-Z])');
-    if (reg.test(control.value)) {
+    if (reg.test(control.value) || control.value == '') {
       return null;
     } else {
       return { upperCase: true };
@@ -27,7 +27,7 @@ export class ValidatorService {
 
   passwordLowerCasevalidator(control: FormControl): { [s: string]: boolean } {
     var reg = new RegExp('^(?=.*[a-z])');
-    if (reg.test(control.value)) {
+    if (reg.test(control.value) || control.value == '') {
       return null;
     } else {
       return { lowerCase: true };
@@ -38,7 +38,7 @@ export class ValidatorService {
     control: FormControl
   ): { [s: string]: boolean } {
     var reg = new RegExp('^(?=.*[!@#$%^&_/])');
-    if (reg.test(control.value)) {
+    if (reg.test(control.value) || control.value == '') {
       return null;
     } else {
       return { alphanumeric: true };

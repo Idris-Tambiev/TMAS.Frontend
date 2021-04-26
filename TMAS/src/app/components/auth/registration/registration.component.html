@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" class="registration-field-container" novalidate (submit)="registrationUser()">
+<form [formGroup]="myForm" class="registration-field-container" novalidate >
     <div class="text-login">
       SIGN UP
     </div>
@@ -6,6 +6,7 @@
         <span>Name</span>
         <input class="auth-input form-control" formControlName="name" name="name"  matInput required>
     </div>
+
     <div [hidden]="myForm.controls['name'].valid || myForm.controls['name'].untouched" class="incorrect" >
         Name must be contain 3 or more symbols
     </div>
@@ -25,33 +26,37 @@
     <div [hidden]="myForm.controls['email'].valid || myForm.controls['email'].untouched" class="incorrect">
         Incorrect E-mail
     </div>
+
+    <div *ngIf="message!=''" class="incorrect">
+        {{message}}
+    </div>
     
     <div class="username-input form-group">
         <span>Password</span>
         <input class="auth-input form-control" id="password" formControlName="password" matInput type="password" name="password" required>
     </div>
 
-    <!-- pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#\$%\^&_/]).{6,}$" -->
+        <div [hidden]="myForm.controls['password'].valid || myForm.controls['password'].untouched" class="errors">
 
-    <div *ngIf="myForm.controls['password'].errors?.minlength" class="incorrect">
-        Passwords must be at least 6 characters
-    </div>
-    <div *ngIf="myForm.controls['password'].errors!==null">
-        <div *ngIf="myForm.controls['password'].errors.digits" class="incorrect">
-            Passwords must have at least one digit 
-        </div>
-        <div *ngIf="myForm.controls['password'].errors.lowerCase" class="incorrect">
-            Passwords must have at least one lowercase ('a'-'z') 
-        </div>
-        <div *ngIf="myForm.controls['password'].errors.upperCase" class="incorrect">
-            Passwords must have at least one uppercase ('A'-'Z')  
-        </div>
-        <div *ngIf="myForm.controls['password'].errors.alphanumeric" class="incorrect">
-            Passwords must have at least one non alphanumeric character 
-        </div>
-    </div>
-    
+            <div *ngIf="myForm.controls['password'].errors?.minlength" 
+            class="incorrect">
+                Passwords must be at least 6 characters
+            </div>
 
+            <div *ngIf="myForm.controls['password'].errors?.digits" class="incorrect">
+                Passwords must have at least one digit
+           </div>
+            <div *ngIf="myForm.controls['password'].errors?.lowerCase" class="incorrect">
+                 Passwords must have at least one lowercase ('a'-'z') 
+            </div>
+            <div *ngIf="myForm.controls['password'].errors?.upperCase" class="incorrect">
+                Passwords must have at least one uppercase ('A'-'Z')  
+            </div>
+            <div *ngIf="myForm.controls['password'].errors?.alphanumeric" class="incorrect">
+                Passwords must have at least one non alphanumeric character 
+         </div>
+    </div>
+        
     <div class="username-input form-group">
         <span>Confirm Password</span>
         <input class="auth-input form-control" formControlName="confirmedPassword" matInput type="password" required>
@@ -59,7 +64,7 @@
     
     <div class="incorrect" *ngIf="passwordsInCorrected">Incorrect passwords</div>
     <div class="buttons form-group">
-        <button class="login-button" [disabled]="myForm.invalid" mat-raised-button type="submit" >SIGN UP</button>
+        <button class="login-button" [disabled]="myForm.invalid" mat-raised-button (click)="registrationUser(myForm.value)" >SIGN UP</button>
         <button  class="unActiveButton"  mat-raised-button [routerLink]="['']">LOG IN</button>
     </div>
 </form>

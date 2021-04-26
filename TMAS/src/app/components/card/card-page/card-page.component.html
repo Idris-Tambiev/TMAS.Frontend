@@ -24,7 +24,7 @@
         <textarea type="text" name="" id="" class="card-page__input" [(ngModel)]="card.text">{{card.text}}</textarea>
         <div class="save-buttons">
         <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
-        <button class="card-page__save-button" mat-raised-button (click)="inputText=false">X</button>
+        <button class="card-page__save-button" mat-raised-button (click)="inputText=false">Close</button>
     </div>
     </div>
 
@@ -37,14 +37,14 @@
         </div>
     </div>
 
-    <input type="file" name="" id="" (change)="fileUpload($event)" class="file-input">
+    <input type="file" (change)="fileUpload($event)" class="file-input">
 
     <div class="files-container">
         <app-file *ngFor="let file of files" [file]="file"></app-file>
     </div>
 
     <div class="card-page__date-info">
-        <span>Created Date: {{card.createdDate | date:'medium'}}</span>
+        <span class="date-info__span">Created Date: {{card.createdDate | date:'medium'}}</span>
         <br>
         <span>Last Update: {{card.updatedDate | date:'medium'}}</span>
     </div>

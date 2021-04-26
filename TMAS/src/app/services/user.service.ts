@@ -10,10 +10,7 @@ import { SocialAuthService } from 'angularx-social-login';
 })
 export class UserService {
   configUrl: string = environment.Url;
-  constructor(
-    private http: HttpClient,
-    private socialAuthService: SocialAuthService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   userAuthorization(userName: string, userPass: string): Observable<object> {
     const user = new HttpParams()
@@ -28,6 +25,7 @@ export class UserService {
   getUser(): Observable<any> {
     return this.http.get(this.configUrl + '/api/users/get');
   }
+
   getFullUser(userId: string): Observable<any> {
     const params = new HttpParams().set('id', userId);
     return this.http.get(this.configUrl + '/api/users/getfull', { params });
@@ -56,6 +54,10 @@ export class UserService {
 
   uploadPhoto(file): Observable<any> {
     return this.http.post(this.configUrl + '/api/users/upload/photo', file);
+  }
+  find(email: string): Observable<any> {
+    const params = new HttpParams().set('email', email);
+    return this.http.get(this.configUrl + '/api/users/find', { params });
   }
 
   // searchUsers(name: string): Observable<any> {

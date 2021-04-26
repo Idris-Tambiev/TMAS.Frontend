@@ -87,9 +87,11 @@ export class CardsComponent implements OnInit {
       this.boardId
     );
   }
+
   openCardField() {
     this.openCardService.getCard(this.card);
   }
+
   @Output() updateCardsList = new EventEmitter<number>();
   @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
   @Input() card: ICard;

@@ -8,6 +8,9 @@ import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { ICard } from 'src/app/interfaces/card.interface';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CardPageComponent } from '../../card/card-page/card-page.component';
+
 @Component({
   selector: 'app-columns-page',
   templateUrl: './columns-page.component.html',
@@ -29,7 +32,8 @@ export class ColumnsPageComponent implements OnInit {
     private route: ActivatedRoute,
     private httpService: ColumnsService,
     private createHistoryService: CreateHistory,
-    private openCardService: OpenCardServiceService
+    private openCardService: OpenCardServiceService,
+    public matDialog: MatDialog
   ) {}
 
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
@@ -53,7 +57,6 @@ export class ColumnsPageComponent implements OnInit {
   }
 
   openCardWindow(card) {
-    console.log(card);
     this.viewCard = true;
   }
 
@@ -67,7 +70,6 @@ export class ColumnsPageComponent implements OnInit {
       this.httpService.createColumn(this.newColumn).subscribe(
         (response) => {
           this.insertFormStatus = false;
-
           this.createHistoryService.createHistory(
             UserActions['Created column'],
             this.newColumn.title,
@@ -92,8 +94,17 @@ export class ColumnsPageComponent implements OnInit {
       this.viewCard = true;
       this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
       this.columnTitle = this.currentColumn.title;
+      //this.openModalCard();
     } else {
       this.viewCard = false;
     }
+  }
+
+  openModalCard() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    const modalDialog = this.matDialog.open(CardPageComponent, dialogConfig);
+    modalDialog.componentInstance.cardId = this.card.id;
+    modalDialog.componentInstance.columnTitle = this.columnTitle;
   }
 }

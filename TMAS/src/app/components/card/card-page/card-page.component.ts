@@ -4,7 +4,6 @@ import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { UserService } from 'src/app/services/user.service';
-import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
@@ -42,13 +41,13 @@ export class CardPageComponent implements OnInit {
     private cardService: CardsService,
     private userService: UserService,
     private openCardService: OpenCardServiceService,
-    private historyService: CreateHistory,
     private fileService: FileService,
     private router: ActivatedRoute,
     public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    console.log(this.cardId);
     this.getCurrentCard();
     this.getName();
     const routeParams = this.router.snapshot.paramMap;
@@ -122,7 +121,6 @@ export class CardPageComponent implements OnInit {
       this.cardService.updateCardChanges(this.card).subscribe(
         (response) => {
           this.inputText = false;
-          this.createCardHistory(this.currentTime);
           this.ngOnInit();
         },
         (error) => {
@@ -132,31 +130,6 @@ export class CardPageComponent implements OnInit {
     } else {
       this.inputText = false;
     }
-  }
-
-  createCardHistory(currentTime) {
-    if (
-      this.executionPeriod !== currentTime &&
-      this.currentTime !== undefined
-    ) {
-      this.sendHistory(UserActions['Changed execution period of the card']);
-    }
-    if (this.oldText !== this.card.text && this.oldText !== '') {
-      this.sendHistory(UserActions['Edited description of the card']);
-    }
-    if (this.oldText !== this.card.text && this.oldText === '') {
-      this.sendHistory(UserActions['Added description of the card']);
-    }
-  }
-
-  sendHistory(action) {
-    this.historyService.createHistory(
-      action,
-      this.card.title,
-      null,
-      null,
-      this.boardId
-    );
   }
 
   fileUpload(event: any) {

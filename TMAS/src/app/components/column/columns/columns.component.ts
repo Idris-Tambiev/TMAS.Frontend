@@ -14,7 +14,6 @@ import { ICard } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/components/card/cards-drag/drag-card.component';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { UserActions } from 'src/app/enums/user-actions.enum';
-import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ActivatedRoute } from '@angular/router';
@@ -40,7 +39,6 @@ export class ColumnsComponent implements OnInit {
   constructor(
     private cardsHttpService: CardsService,
     private columnsHttpService: ColumnsService,
-    private createHistoryService: CreateHistory,
     private searchService: BehaviorSubjectService,
     private router: ActivatedRoute
   ) {}
@@ -73,7 +71,6 @@ export class ColumnsComponent implements OnInit {
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
         this.updateColumnsList.emit();
-        this.sendHistory(UserActions['Deleted column'], deletedColumnTitle);
       },
       (error) => console.log(error)
     );
@@ -90,8 +87,6 @@ export class ColumnsComponent implements OnInit {
       };
       this.cardsHttpService.createCard(this.newCard).subscribe(
         (response) => {
-          this.sendHistory(UserActions['Created card'], this.newCard.title);
-
           this.newCardTitle = '';
           this.child.getAll();
         },
@@ -117,7 +112,6 @@ export class ColumnsComponent implements OnInit {
         (response) => {
           this.updateColumnsList.emit();
           this.editColumn = false;
-          this.sendHistory(UserActions['Updated column'], this.newColumn.title);
         },
         (error) => {
           console.log(error);
@@ -136,15 +130,7 @@ export class ColumnsComponent implements OnInit {
     this.newColumnTitle = this.column.title;
     this.editColumn = true;
   }
-  sendHistory(action, title) {
-    this.createHistoryService.createHistory(
-      action,
-      title,
-      null,
-      null,
-      this.boardId
-    );
-  }
+
   ngOnDestroy() {
     this.Subscription.unsubscribe();
   }

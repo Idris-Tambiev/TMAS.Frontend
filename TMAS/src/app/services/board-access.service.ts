@@ -38,6 +38,9 @@ export class BoardAccessService {
   }
 
   deleteAccess(access: IBoardAccess): Observable<any> {
-    return this.http.post(this.configUrl + '/api/access/delete', access);
+    const params = new HttpParams()
+      .set('boardid', access.boardId.toString())
+      .set('userId', access.userId);
+    return this.http.delete(this.configUrl + '/api/access/delete', { params });
   }
 }

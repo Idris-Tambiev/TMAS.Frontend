@@ -2,7 +2,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { CreateHistory } from 'src/app/services/create-history.service';
 import { UserActions } from 'src/app/enums/user-actions.enum';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +13,6 @@ import { ActivatedRoute } from '@angular/router';
 export class DragColumnComponent implements OnInit {
   constructor(
     private columnsHttpService: ColumnsService,
-    private createHistoryService: CreateHistory,
     private router: ActivatedRoute
   ) {}
   columns: IColumn[] = [];
@@ -45,15 +43,7 @@ export class DragColumnComponent implements OnInit {
   moveColumn(movedColumn, position: number) {
     movedColumn.sortBy = position;
     this.columnsHttpService.moveColumnPosition(movedColumn).subscribe(
-      (response) => {
-        this.createHistoryService.createHistory(
-          UserActions['Moved column'],
-          movedColumn.title,
-          null,
-          null,
-          this.boardId
-        );
-      },
+      (response) => {},
       (error) => {
         console.log(error);
       }

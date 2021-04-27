@@ -4,7 +4,6 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-column.component';
 import { UserActions } from 'src/app/enums/user-actions.enum';
-import { CreateHistory } from 'src/app/services/create-history.service';
 import { from } from 'rxjs';
 import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
 import { ICard } from 'src/app/interfaces/card.interface';
@@ -31,7 +30,6 @@ export class ColumnsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService,
-    private createHistoryService: CreateHistory,
     private openCardService: OpenCardServiceService,
     public matDialog: MatDialog
   ) {}
@@ -70,14 +68,6 @@ export class ColumnsPageComponent implements OnInit {
       this.httpService.createColumn(this.newColumn).subscribe(
         (response) => {
           this.insertFormStatus = false;
-          this.createHistoryService.createHistory(
-            UserActions['Created column'],
-            this.newColumn.title,
-            null,
-            null,
-            this.boardId
-          );
-
           this.child.getAll();
           this.getAllColumns();
         },

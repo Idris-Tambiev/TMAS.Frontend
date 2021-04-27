@@ -13,7 +13,6 @@ import {
 } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
-import { CreateHistory } from 'src/app/services/create-history.service';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,7 +27,6 @@ export class DragCardComponent implements OnInit {
   boardId: number;
   constructor(
     private cardsHttpService: CardsService,
-    private createHistoryService: CreateHistory,
     private searchService: BehaviorSubjectService,
     private router: ActivatedRoute
   ) {}
@@ -90,15 +88,7 @@ export class DragCardComponent implements OnInit {
   moveCard(movedCard, position: number) {
     movedCard.sortBy = position;
     this.cardsHttpService.moveCardPosition(movedCard).subscribe(
-      (response) => {
-        this.createHistoryService.createHistory(
-          3,
-          movedCard.title,
-          null,
-          movedCard.columnId,
-          this.boardId
-        );
-      },
+      (response) => {},
       (error) => {
         console.log(error);
       }
@@ -107,15 +97,7 @@ export class DragCardComponent implements OnInit {
 
   moveCardColumn(movedCard, oldColumn) {
     this.cardsHttpService.moveCardOnOtherColumn(movedCard).subscribe(
-      (response) => {
-        this.createHistoryService.createHistory(
-          4,
-          movedCard.title,
-          movedCard.columnId,
-          oldColumn,
-          this.boardId
-        );
-      },
+      (response) => {},
       (error) => {
         console.log(error);
       }

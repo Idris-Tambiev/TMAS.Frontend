@@ -25,7 +25,6 @@ import { ActivatedRoute } from '@angular/router';
 export class ColumnsComponent implements OnInit {
   insertFormStatus: boolean = false;
   newCardTitle: string;
-  newCardText: string = '';
   newCard: ICard;
   editColumn: boolean = false;
   newColumnTitle: string;
@@ -81,7 +80,6 @@ export class ColumnsComponent implements OnInit {
     if (this.newCardTitle !== '' && this.newCardTitle != null) {
       this.newCard = {
         title: this.newCardTitle,
-        text: this.newCardText,
         columnId: this.column.id,
         sortBy: this.cardsCount,
       };
@@ -102,21 +100,17 @@ export class ColumnsComponent implements OnInit {
       this.newColumnTitle != '' &&
       this.newColumnTitle !== this.column.title
     ) {
-      this.newColumn = {
-        id: this.column.id,
-        title: this.newColumnTitle,
-        boardId: this.column.boardId,
-        sortBy: this.column.sortBy,
-      };
-      this.columnsHttpService.updateColumn(this.newColumn).subscribe(
-        (response) => {
-          this.updateColumnsList.emit();
-          this.editColumn = false;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this.columnsHttpService
+        .updateColumn(this.column.id, this.newColumnTitle)
+        .subscribe(
+          (response) => {
+            this.updateColumnsList.emit();
+            this.editColumn = false;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     } else if (this.newColumnTitle === this.column.title) {
       this.editColumn = false;
     }

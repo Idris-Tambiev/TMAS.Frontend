@@ -13,11 +13,10 @@ import { from } from 'rxjs';
 })
 export class HistoryItemsComponent implements OnInit {
   action: string;
-  user: IUser = { name: '', lastName: '' };
+  user: IUser = { name: '', lastName: '', photo: '' };
   source: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
   dest: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
   movedOtherColumn: boolean;
-  defaultLogo: boolean = true;
   constructor(
     private userService: UserService,
     private columnsHttpService: ColumnsService
@@ -28,9 +27,6 @@ export class HistoryItemsComponent implements OnInit {
     this.userService.getFullUser(this.history.authorId).subscribe(
       (response) => {
         this.user = response;
-        if (this.user.photo !== null) {
-          this.defaultLogo = false;
-        }
       },
       (error) => {
         console.log(error);
@@ -66,8 +62,9 @@ export class HistoryItemsComponent implements OnInit {
       );
   }
 
-  createPath(fileName: string) {
-    return `https://localhost:44324/Files/${fileName}`;
+  getLogo() {
+    return this.user.photo;
   }
+
   @Input() history: IHistory;
 }

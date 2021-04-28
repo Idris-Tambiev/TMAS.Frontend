@@ -48,6 +48,7 @@ export class DragCardComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
   getAll() {
     this.cardsHttpService.getAllCards(this.column.id).subscribe(
       (response) => {
@@ -65,6 +66,7 @@ export class DragCardComponent implements OnInit {
       var movedCard: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
+
       if (event.previousIndex !== event.currentIndex)
         this.moveCard(movedCard, event.currentIndex);
     } else {
@@ -77,7 +79,6 @@ export class DragCardComponent implements OnInit {
       var card: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-
       const oldColumn = card.columnId;
       card.columnId = parseInt(event.container.element.nativeElement.id);
       card.sortBy = event.currentIndex;

@@ -4,4 +4,5 @@ export interface IFile {
   cardId: number;
   fileType: string;
   path: string;
+  fileUrl: string;
 }

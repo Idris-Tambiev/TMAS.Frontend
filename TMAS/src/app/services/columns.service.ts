@@ -27,8 +27,13 @@ export class ColumnsService {
     return this.httpClient.put(this.configUrl + '/api/columns/move', column);
   }
 
-  updateColumn(column: IColumn): Observable<any> {
-    return this.httpClient.put(this.configUrl + '/api/columns/update', column);
+  updateColumn(id: number, title: string): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id.toString())
+      .set('title', title);
+    return this.httpClient.get(this.configUrl + '/api/columns/update', {
+      params,
+    });
   }
 
   createColumn(column: IColumn): Observable<any> {

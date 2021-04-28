@@ -1,6 +1,5 @@
 <div class="history-item-container">
-    <mat-icon *ngIf="defaultLogo">account_circle</mat-icon>
-    <div class="user-logo-no-default" *ngIf="!defaultLogo" [ngStyle]="{'background-image':'url('+createPath(user.photo)+')'}"></div>
+    <div class="user-logo-no-default" [ngStyle]="{'background-image':'url('+getLogo()+')'}"></div>
     <div class="history-item-content">
         <span class="span-name">{{user.name}} {{user.lastName}}</span>
         <div class="action-div" *ngIf="!movedOtherColumn">

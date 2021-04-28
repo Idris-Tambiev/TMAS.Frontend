@@ -15,16 +15,14 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
 export class HeaderComponent implements OnInit {
   authPages: boolean = false;
   logStatus: boolean = true;
-  user: IUser = { name: '', lastName: '' };
+  user: IUser = { name: '', lastName: '', photo: '' };
   searchText: string = '';
   addPhoto: boolean = false;
   fileToUpload: File = null;
-  defaultLogo: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private userHttpService: UserService,
     private searchService: BehaviorSubjectService,
-    private userAuth: UserAuthService,
     public matDialog: MatDialog
   ) {}
 
@@ -53,9 +51,6 @@ export class HeaderComponent implements OnInit {
     this.userHttpService.getUser().subscribe(
       (response) => {
         this.user = response;
-        if (this.user.photo !== null) {
-          this.defaultLogo = false;
-        }
       },
       (error) => {
         console.log(error);
@@ -67,7 +62,7 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
   }
 
-  public createPath = (fileName: string) => {
-    return `https://localhost:44324/Files/${fileName}`;
-  };
+  getLogo() {
+    return this.user.photo;
+  }
 }

@@ -26,6 +26,7 @@ export class CardPageComponent implements OnInit {
   user: IUser = {
     name: '',
     lastName: '',
+    photo: '',
   };
 
   dateTime: Date;
@@ -47,7 +48,6 @@ export class CardPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.cardId);
     this.getCurrentCard();
     this.getName();
     const routeParams = this.router.snapshot.paramMap;

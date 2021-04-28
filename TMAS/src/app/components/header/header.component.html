@@ -24,8 +24,7 @@
 
     <div class="user-container" *ngIf="!authPages" (click)="addPhoto=!addPhoto">
         <div class="user-photo">
-            <mat-icon *ngIf="defaultLogo">account_circle</mat-icon>
-            <div class="no-default-logo" *ngIf="!defaultLogo" [ngStyle]="{'background-image':'url('+createPath(user.photo)+')'}"></div>
+            <div class="no-default-logo" [ngStyle]="{'background-image':'url('+getLogo()+')'}"></div>
         </div>
         <div class="user-full-name">
             <span>{{user.name}}</span>

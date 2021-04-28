@@ -55,11 +55,7 @@ export class CardsComponent implements OnInit {
 
   updateThisCard() {
     if (this.newTitle !== '' && this.newTitle !== this.card.title) {
-      const newCard = {
-        id: this.card.id,
-        title: this.newTitle,
-      };
-      this.httpService.updateCardTitle(newCard).subscribe(
+      this.httpService.updateCardTitle(this.card.id, this.newTitle).subscribe(
         (response) => {
           this.updateCardsArray();
         },

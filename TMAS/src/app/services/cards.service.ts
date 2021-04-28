@@ -22,6 +22,7 @@ export class CardsService {
       params,
     });
   }
+
   searchCards(columnId: number, text: string): Observable<any> {
     const params = new HttpParams()
       .set('columnId', columnId.toString())
@@ -50,13 +51,18 @@ export class CardsService {
     });
   }
 
-  updateCardTitle(card: object): Observable<any> {
-    return this.httpClient.put(this.configUrl + '/api/cards/update', card);
+  updateCardTitle(id: number, title: string): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id.toString())
+      .set('title', title.toString());
+    return this.httpClient.get(this.configUrl + '/api/cards/update', {
+      params,
+    });
   }
 
   updateCardChanges(card: ICard): Observable<any> {
     return this.httpClient.put(
-      this.configUrl + '/api/cards/update/changes',
+      this.configUrl + '/api/cards/update/content',
       card
     );
   }

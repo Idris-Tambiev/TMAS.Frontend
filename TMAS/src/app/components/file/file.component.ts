@@ -12,9 +12,10 @@ export class FileComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public createPath = (fileName: string) => {
-    return `https://localhost:44324/Files/${fileName}`;
-  };
+  getFile() {
+    console.log(this.file.fileUrl);
+    return this.file.fileUrl;
+  }
 
   @Input() file: IFile;
 }

@@ -50,17 +50,19 @@ export class UserMenuComponent implements OnInit {
   }
 
   getUserName(event: any) {
-    this.accesService
-      .getAllUsers(this.currentBoardId, event.target.value)
-      .subscribe(
-        (response) => {
-          this.users = response;
-          console.log(this.users);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    if (event.target.value !== '') {
+      this.accesService
+        .getAllUsers(this.currentBoardId, event.target.value)
+        .subscribe(
+          (response) => {
+            this.users = response;
+            console.log(this.users);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
   }
 
   selectUser(event) {
@@ -104,8 +106,10 @@ export class UserMenuComponent implements OnInit {
   }
 
   getAssignedUserName(event) {
-    this.deletedUserName = event.target.value;
-    this.getAssignedUsers();
+    if (event.target.value !== '') {
+      this.deletedUserName = event.target.value;
+      this.getAssignedUsers();
+    }
   }
 
   selectDeleteUser(event) {

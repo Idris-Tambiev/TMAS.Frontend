@@ -8,14 +8,14 @@ import {
 } from '@angular/common/http';
 
 @Injectable()
-export class ParamInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    var token = JSON.parse(localStorage.getItem('userToken'));
+    const tokenObject = JSON.parse(localStorage.getItem('userToken'));
 
-    if (token == null) {
+    if (tokenObject == null) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${''}`,
@@ -24,7 +24,7 @@ export class ParamInterceptor implements HttpInterceptor {
     } else {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token.access_token}`,
+          Authorization: `Bearer ${tokenObject.access_token}`,
         },
       });
     }

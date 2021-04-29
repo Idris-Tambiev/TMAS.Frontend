@@ -13,7 +13,6 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/components/card/cards-drag/drag-card.component';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 import { from } from 'rxjs';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ActivatedRoute } from '@angular/router';
@@ -23,16 +22,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./columns.component.scss'],
 })
 export class ColumnsComponent implements OnInit {
-  insertFormStatus: boolean = false;
+  @Input() column: IColumn;
+  @Output() updateColumnsList = new EventEmitter<number>();
+
+  insertFormStatus = false;
   newCardTitle: string;
   newCard: ICard;
-  editColumn: boolean = false;
+  editColumn = false;
   newColumnTitle: string;
   newColumn: IColumn;
   history: History;
-  columnView: boolean = true;
+  columnView = true;
   cardsCount: number;
-  Subscription;
+  subscription;
   boardId: number;
   @ViewChild(DragCardComponent) child: DragCardComponent;
   constructor(
@@ -43,12 +45,13 @@ export class ColumnsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const routeParams = this.router.snapshot.paramMap;
-    this.boardId = Number(routeParams.get('id'));
-    this.Subscription = this.searchService.searchText.subscribe((text) => {
+    this.boardId = this.router.snapshot.params.id;
+    this.subscription = this.searchService.searchText.subscribe((text) => {
       if (text == '') {
         this.columnView = true;
-      } else this.searchCards(this.column.id, text);
+      } else {
+        this.searchCards(this.column.id, text);
+      }
     });
   }
 
@@ -66,7 +69,6 @@ export class ColumnsComponent implements OnInit {
   }
 
   deleteThisColumn() {
-    const deletedColumnTitle = this.column.title;
     this.columnsHttpService.deleteColumn(this.column.id).subscribe(
       (response) => {
         this.updateColumnsList.emit();
@@ -76,7 +78,6 @@ export class ColumnsComponent implements OnInit {
   }
 
   createNewCard() {
-    console.log(this.newCardTitle);
     if (this.newCardTitle !== '' && this.newCardTitle != null) {
       this.newCard = {
         title: this.newCardTitle,
@@ -126,12 +127,9 @@ export class ColumnsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.Subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
   click() {
     console.log('Clicked');
   }
-
-  @Output() updateColumnsList = new EventEmitter<number>();
-  @Input() column: IColumn;
 }

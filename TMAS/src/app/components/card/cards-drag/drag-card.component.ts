@@ -22,6 +22,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./drag-card.component.scss'],
 })
 export class DragCardComponent implements OnInit {
+  @Input() column;
+  @Output() cardsCount = new EventEmitter<number>();
+
   cards: ICard[] = [];
   subscription;
   boardId: number;
@@ -32,11 +35,13 @@ export class DragCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const routeParams = this.router.snapshot.paramMap;
-    this.boardId = Number(routeParams.get('id'));
+    this.boardId = this.router.snapshot.params.id;
     this.subscription = this.searchService.searchText.subscribe((text) => {
-      if (text == '') this.getAll();
-      else this.searchCards(this.column.id, text);
+      if (text == '') {
+        this.getAll();
+      } else {
+        this.searchCards(this.column.id, text);
+      }
     });
   }
 
@@ -63,12 +68,13 @@ export class DragCardComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(this.cards, event.previousIndex, event.currentIndex);
 
-      var movedCard: ICard = JSON.parse(
+      const movedCard: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
 
-      if (event.previousIndex !== event.currentIndex)
+      if (event.previousIndex !== event.currentIndex) {
         this.moveCard(movedCard, event.currentIndex);
+      }
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -76,7 +82,7 @@ export class DragCardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-      var card: ICard = JSON.parse(
+      let card: ICard = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
       const oldColumn = card.columnId;
@@ -108,6 +114,4 @@ export class DragCardComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  @Output() cardsCount = new EventEmitter<number>();
-  @Input() column;
 }

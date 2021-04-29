@@ -1,11 +1,4 @@
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-}
-@mixin font {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-}
+@import "src/app/styles/global-styles.scss";
 .column-container {
   width: 288px;
   background: #dfeeff;
@@ -16,16 +9,12 @@
   height: auto;
 }
 .column-header {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   margin-top: 15px;
 }
 .column-title {
-  @include font();
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 18px;
-  color: #334681;
+  @include font(bold, 14px, 18px);
   margin-left: 15px;
 }
 .column-delete-icon {
@@ -33,15 +22,10 @@
   margin-left: auto;
 }
 .todo-add-button {
+  @include centering();
   width: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 15px;
-  @include font();
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 140.1%;
+  @include font(500, 14px, 140.1%);
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: #377dff;
@@ -79,7 +63,7 @@
   cursor: pointer;
 }
 .new-card-buttons {
-  @include flexRow();
+  @include flex-d(flex, row);
   width: 288px;
   margin-left: -16px;
   color: #377dff;

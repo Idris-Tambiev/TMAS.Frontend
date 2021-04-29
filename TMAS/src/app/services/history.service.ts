@@ -10,8 +10,10 @@ export class HistoryService {
   constructor(private httpClient: HttpClient) {}
   configUrl: string = environment.Url;
 
-  getHistory(boardId): Observable<any> {
-    const params = new HttpParams().set('id', boardId.toString());
+  getHistory(boardId: number, skipCount: number): Observable<any> {
+    const params = new HttpParams()
+      .set('id', boardId.toString())
+      .set('skip', skipCount.toString());
     return this.httpClient.get(this.configUrl + '/api/history/get', { params });
   }
 }

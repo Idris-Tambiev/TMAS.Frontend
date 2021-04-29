@@ -2,7 +2,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,11 +10,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./drag-column.component.scss'],
 })
 export class DragColumnComponent implements OnInit {
+  @Input() boardId: number;
+  columns: IColumn[] = [];
+
   constructor(
     private columnsHttpService: ColumnsService,
     private router: ActivatedRoute
   ) {}
-  columns: IColumn[] = [];
+
   ngOnInit(): void {
     this.getAll();
   }
@@ -35,8 +37,9 @@ export class DragColumnComponent implements OnInit {
       var moved: IColumn = JSON.parse(
         JSON.stringify(event.container.data[event.currentIndex])
       );
-      if (event.previousIndex !== event.currentIndex)
+      if (event.previousIndex !== event.currentIndex) {
         this.moveColumn(moved, event.currentIndex);
+      }
     }
   }
 
@@ -49,5 +52,4 @@ export class DragColumnComponent implements OnInit {
       }
     );
   }
-  @Input() boardId: number;
 }

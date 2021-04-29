@@ -11,14 +11,14 @@ export class EmailService {
 
   confirmEmail(userId: string, token: string): Observable<any> {
     const params = new HttpParams().set('userId', userId).set('token', token);
-    return this.http.get(this.configUrl + '/api/emails/confirm/email', {
+    return this.http.get(this.configUrl + '/api/users/confirm/email', {
       params,
     });
   }
 
   sendEmail(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
-    return this.http.get(this.configUrl + '/api/emails/reset', { params });
+    return this.http.get(this.configUrl + '/api/users/reset', { params });
   }
 
   confirmPassword(
@@ -30,7 +30,7 @@ export class EmailService {
       .set('userId', userId)
       .set('token', token)
       .set('password', password);
-    return this.http.get(this.configUrl + '/api/emails/confirm/new/password', {
+    return this.http.get(this.configUrl + '/api/users/confirm/new/password', {
       params,
     });
   }

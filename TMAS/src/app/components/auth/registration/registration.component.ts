@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { interval, timer } from 'rxjs';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 import { UserService } from 'src/app/services/user.service';
 import { ValidatorService } from 'src/app/services/validator.service';
@@ -12,14 +13,16 @@ import { ValidatorService } from 'src/app/services/validator.service';
 })
 export class RegistrationComponent implements OnInit {
   confirmedPassword: string;
-  passwordsInCorrected: boolean = false;
+  passwordsInCorrected = false;
   subscription;
   myForm: FormGroup;
   message: string;
+
   constructor(
     private userHttpService: UserService,
     public router: Router,
-    private validatorService: ValidatorService
+    private validatorService: ValidatorService,
+    private userAuth: UserAuthService
   ) {
     this.myForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(3), Validators.required]),
@@ -62,7 +65,9 @@ export class RegistrationComponent implements OnInit {
       (response) => {
         if (!response.isSuccess) {
           this.message = response.message;
-        } else this.message = '';
+        } else {
+          this.message = '';
+        }
       },
       (error) => {
         console.log(error);
@@ -89,7 +94,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getToken(userName, password) {
-    this.userHttpService.userAuthorization(userName, password).subscribe(
+    this.userAuth.login(userName, password).subscribe(
       (response) => {
         localStorage.clear();
         localStorage.setItem('userToken', JSON.stringify(response));

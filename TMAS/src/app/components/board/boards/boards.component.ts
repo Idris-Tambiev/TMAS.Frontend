@@ -6,14 +6,14 @@ import { IBoard } from 'src/app/interfaces/board.interface';
   styleUrls: ['./boards.component.scss'],
 })
 export class BoardsComponent implements OnInit {
+  @Input() board: IBoard;
   constructor() {}
 
   ngOnInit(): void {
-    this.get();
+    //this.get();
   }
 
   get() {
     var retrievedObject = JSON.parse(localStorage.getItem('userToken'));
   }
-  @Input() board: IBoard;
 }

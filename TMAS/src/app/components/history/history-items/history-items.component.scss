@@ -1,19 +1,7 @@
-@mixin font {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-  line-height: 140.1%;
-  color: #334681;
-}
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-}
-@mixin flexColumn {
-  display: flex;
-  flex-direction: column;
-}
+@import "src/app/styles/global-styles.scss";
+
 .history-item-container {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   width: 380px;
   height: 57px;
@@ -21,34 +9,27 @@
   margin-left: 24px;
 }
 .history-item-content {
-  @include flexColumn();
+  @include flex-d(flex, column);
   justify-content: left;
   margin-left: 16px;
 }
 .span-name {
-  @include font();
-  font-weight: bold;
-  font-size: 14px;
+  @include font(bold, 14px, 140.1%);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 .span-action {
-  @include font();
-  font-weight: normal;
-  font-size: 14px;
+  @include font(normal, 14px);
 }
 .span-date {
-  @include font();
-  font-weight: normal;
-  font-size: 10px;
+  @include font(normal, 10px);
 }
 .action-div {
   width: 332px;
   word-wrap: break-word;
 }
 .history-objects {
-  @include font();
-  font-size: 14px;
+  @include font(500, 14px);
   color: #377dff !important;
 }
 .user-logo-no-default {

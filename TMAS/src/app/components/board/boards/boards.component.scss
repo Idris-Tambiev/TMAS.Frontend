@@ -1,7 +1,6 @@
+@import "src/app/styles/global-styles.scss";
 .board-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include centering();
   width: 288px;
   height: 140px;
   cursor: pointer;

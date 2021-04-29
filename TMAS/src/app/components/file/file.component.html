@@ -2,8 +2,7 @@
     
     <a  href="{{getFile()}}" download="{{file.path}}" target="_blank"  *ngIf="file.fileType=='image/jpeg' || file.fileType=='image/png'">
         <button  class="file-container file-img" mat-raised-button>
-            <div class="image-div" [ngStyle]="{'background-image':'url('+getFile()+')'}">
-            </div>
+                <img class="image-div" src="{{getFile()}}" alt="">
         </button>
     </a>
 

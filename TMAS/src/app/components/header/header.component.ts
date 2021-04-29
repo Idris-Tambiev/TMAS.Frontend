@@ -13,11 +13,11 @@ import { UserMenuComponent } from '../user-menu/user-menu.component';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  authPages: boolean = false;
-  logStatus: boolean = true;
+  authPages = false;
+  logStatus = true;
   user: IUser = { name: '', lastName: '', photo: '' };
   searchText: string = '';
-  addPhoto: boolean = false;
+  addPhoto = false;
   fileToUpload: File = null;
   constructor(
     private route: ActivatedRoute,

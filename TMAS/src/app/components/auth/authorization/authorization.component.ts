@@ -33,7 +33,7 @@ export class AuthorizationComponent implements OnInit {
     this.Login(this.email, this.pass);
   }
   Login(email: string, password: string) {
-    this.httpService.userAuthorization(email, password).subscribe(
+    this.userAuth.login(email, password).subscribe(
       (response) => {
         this.incorrectedData = false;
         localStorage.clear();

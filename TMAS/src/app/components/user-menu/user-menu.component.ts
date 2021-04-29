@@ -5,7 +5,6 @@ import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
 import { BoardsService } from 'src/app/services/boards.service';
 import { UserService } from 'src/app/services/user.service';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 @Component({
   selector: 'app-user-menu',
   templateUrl: './user-menu.component.html',
@@ -13,17 +12,17 @@ import { UserActions } from 'src/app/enums/user-actions.enum';
 })
 export class UserMenuComponent implements OnInit {
   fileToUpload: File = null;
-  userSelected: boolean = false;
+  userSelected = false;
   selectedUserEmail: string;
 
-  deleteUserSelected: boolean = false;
+  deleteUserSelected = false;
   deleteUserEmail: string;
 
   users: IUser[] = [];
   boardAccess: IBoardAccess;
   currentBoardId: number;
-  assign: boolean = false;
-  boardCreator: boolean = false;
+  assign = false;
+  boardCreator = false;
   deletedUserName: string;
   assignedUsers: IUser[] = [];
   deletedUser: IBoardAccess;
@@ -31,15 +30,12 @@ export class UserMenuComponent implements OnInit {
   constructor(
     private boardsService: BoardsService,
     private userHttpService: UserService,
-    private router: ActivatedRoute,
     private accesService: BoardAccessService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const routeParams = this.router.snapshot.paramMap;
-    this.currentBoardId = Number(routeParams.get('id'));
-
+    this.currentBoardId = this.route.snapshot.params.id;
     const myRoute = this.route.snapshot.routeConfig.path;
     if (myRoute == 'boards') {
       this.assign = false;
@@ -73,8 +69,11 @@ export class UserMenuComponent implements OnInit {
   checkUser() {
     this.boardsService.getOneBoard(this.currentBoardId).subscribe(
       (response) => {
-        if (response) this.boardCreator = true;
-        else this.boardCreator = false;
+        if (response) {
+          this.boardCreator = true;
+        } else {
+          this.boardCreator = false;
+        }
       },
       (error) => {
         console.log(error);
@@ -84,9 +83,8 @@ export class UserMenuComponent implements OnInit {
 
   assignUser() {
     if (this.userSelected) {
-      var userEmail = this.selectedUserEmail;
-      var newUser: IUser = this.users.find(function (user, index, arr) {
-        if (user.email === userEmail) {
+      let newUser: IUser = this.users.find((user, index, arr) => {
+        if (user.email === this.selectedUserEmail) {
           return user;
         }
       });
@@ -130,9 +128,8 @@ export class UserMenuComponent implements OnInit {
   }
 
   deleteUser() {
-    var userEmail = this.deletedUserName;
-    var newUser: IUser = this.assignedUsers.find(function (user, index, arr) {
-      if (user.email === userEmail) {
+    let newUser: IUser = this.assignedUsers.find((user, index, arr) => {
+      if (user.email === this.deletedUserName) {
         return user;
       }
     });

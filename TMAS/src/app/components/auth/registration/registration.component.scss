@@ -1,15 +1,7 @@
-@mixin flexibleColumn {
-  display: flex;
-  flex-direction: column;
-}
-@mixin font {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  color: #334681;
-}
+@import "src/app/styles/global-styles.scss";
+
 .registration-field-container {
-  @include flexibleColumn();
+  @include flex-d(flex, column);
   width: 592px;
   min-height: 694px;
   max-height: 900px;
@@ -20,11 +12,9 @@
   border-radius: 6px;
 }
 .login-button {
-  @include font();
+  @include font(600, 14px, 140.1%);
   width: 216px;
   height: 48px;
-  font-size: 14px;
-  line-height: 140.1%;
   text-align: center;
   background: #fef2c4;
   border-radius: 50px;
@@ -39,12 +29,9 @@
   border-radius: 4px;
 }
 .unActiveButton {
-  @include font();
+  @include font(600, 14px, 140.1%);
   width: 216px;
   height: 48px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 140.1%;
   text-align: center;
   border: none;
   box-shadow: none;
@@ -55,21 +42,15 @@
   background: #fef2c4;
 }
 .text-login {
-  @include font();
+  @include font(600, 33px, 140.1%);
   margin-top: 46px;
-  font-weight: 600;
-  font-size: 33px;
-  line-height: 140.1%;
   text-align: center;
 }
 .username-input {
-  @include flexibleColumn();
-  @include font();
+  @include flex-d(flex, column);
+  @include font(500, 14px, 146.1%);
   margin-top: 33px;
   margin-left: 72px;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 146.1%;
 }
 .buttons {
   margin-top: 24px;
@@ -83,6 +64,6 @@
   color: red;
 }
 .errors {
-  @include flexibleColumn();
+  @include flex-d(flex, column);
   justify-content: center;
 }

@@ -5,10 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ParamInterceptor } from 'src/app/Interceptor/interceptor';
+import { AuthInterceptor } from 'src/app/Interceptor/auth-interceptor';
 import { FormsModule } from '@angular/forms';
 import { AppComponentsModule } from 'src/app/modules/app-components.module';
-import { AppRoutingModule } from 'src/app/modules/app-routing.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
@@ -31,7 +31,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ParamInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
     {

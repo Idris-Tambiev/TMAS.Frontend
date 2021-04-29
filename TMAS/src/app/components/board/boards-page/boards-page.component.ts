@@ -11,9 +11,9 @@ import { BoardAccessService } from 'src/app/services/board-access.service';
 export class BoardsPageComponent implements OnInit {
   boards: IBoard[] = [];
   assignedBoards: IBoard[] = [];
-  assigned: boolean = false;
+  assigned = false;
   newBoardTitle: string;
-  insertFormStatus: boolean = false;
+  insertFormStatus = false;
   subscription;
 
   constructor(
@@ -24,14 +24,19 @@ export class BoardsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.search.searchText.subscribe((text) => {
-      if (text == '') this.getAll();
-      else this.searchBoards(text);
+      if (text == '') {
+        this.getAll();
+      } else {
+        this.searchBoards(text);
+      }
     });
 
     this.accessService.getBoards().subscribe(
       (response) => {
         this.assignedBoards = response;
-        if (this.assignedBoards.length > 0) this.assigned = true;
+        if (this.assignedBoards.length > 0) {
+          this.assigned = true;
+        }
       },
       (error) => {
         console.log(error);

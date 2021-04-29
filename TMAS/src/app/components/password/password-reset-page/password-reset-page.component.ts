@@ -7,12 +7,13 @@ import { EmailService } from 'src/app/services/email.service';
   styleUrls: ['./password-reset-page.component.scss'],
 })
 export class PasswordResetPageComponent implements OnInit {
+  newEmail: string;
+
   constructor(private emailService: EmailService) {}
-  email: string;
 
   ngOnInit(): void {}
   sendEmail() {
-    this.emailService.sendEmail(this.email).subscribe(
+    this.emailService.sendEmail(this.newEmail).subscribe(
       (response) => {
         console.log(response);
       },

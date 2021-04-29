@@ -12,6 +12,8 @@ import { from } from 'rxjs';
   styleUrls: ['./history-items.component.scss'],
 })
 export class HistoryItemsComponent implements OnInit {
+  @Input() history: IHistory;
+
   action: string;
   user: IUser = { name: '', lastName: '', photo: '' };
   source: IColumn = { id: 0, sortBy: 0, title: '', boardId: 0 };
@@ -65,6 +67,4 @@ export class HistoryItemsComponent implements OnInit {
   getLogo() {
     return this.user.photo;
   }
-
-  @Input() history: IHistory;
 }

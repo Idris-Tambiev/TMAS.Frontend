@@ -1,5 +1,5 @@
 <div class="history-item-container">
-    <div class="user-logo-no-default" [ngStyle]="{'background-image':'url('+getLogo()+')'}"></div>
+    <img class="user-logo-no-default" src="{{getLogo()}}" alt="">
     <div class="history-item-content">
         <span class="span-name">{{user.name}} {{user.lastName}}</span>
         <div class="action-div" *ngIf="!movedOtherColumn">

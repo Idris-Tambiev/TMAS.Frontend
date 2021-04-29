@@ -4,11 +4,14 @@ import { ICard } from '../interfaces/card.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class OpenCardServiceService {
+export class OpenCardService {
   card: ICard;
   constructor() {}
 
-  getCard(sendedCard: ICard) {
+  setCard(sendedCard: ICard) {
     this.card = sendedCard;
+  }
+  close() {
+    this.card = null;
   }
 }

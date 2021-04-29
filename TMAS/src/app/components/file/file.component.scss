@@ -1,8 +1,4 @@
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+@import "src/app/styles/global-styles.scss";
 .image-div {
   width: 100px;
   height: 100px;
@@ -31,7 +27,8 @@
   background-size: cover;
 }
 .file-container {
-  @include flexRow();
+  @include flex-d(flex, row);
+  align-items: center;
   margin-left: 30px;
   margin-top: 20px;
   width: auto;

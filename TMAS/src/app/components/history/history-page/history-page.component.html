@@ -4,8 +4,12 @@
             <span class="history-span">History</span>
             <mat-icon class="close-history-button" (click)="closeHistoryField()">highlight_off</mat-icon>
         </div>
-        <div class="history-items">
+        <div class="history-items" (scroll)="scroll($event)">
             <app-history-items *ngFor="let history of histories" [history]="history"></app-history-items>
+            
+        </div>
+        <div class="next-history-button">
+            <button *ngIf="scrollEnd"  mat-raised-button (click)="showNextHistory()">Next 20</button>
         </div>
     </div>
 </div>

@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { from } from 'rxjs';
 import { CardsService } from 'src/app/services/cards.service';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ICard } from 'src/app/interfaces/card.interface';
-import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { OpenCardService } from 'src/app/services/open-card.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-cards',
@@ -13,19 +12,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent implements OnInit {
+  @Input() card: ICard;
+  @Output() updateCardsList = new EventEmitter<number>();
+  @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
+
   editCard = false;
   newTitle: string;
   history: History;
   boardId: number;
   constructor(
     private httpService: CardsService,
-    private openCardService: OpenCardServiceService,
+    private openCardService: OpenCardService,
     private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const routeParams = this.router.snapshot.paramMap;
-    this.boardId = Number(routeParams.get('id'));
+    this.boardId = this.router.snapshot.params.id;
   }
 
   deleteThisCard() {
@@ -44,7 +46,6 @@ export class CardsComponent implements OnInit {
 
   checkCard(event: any) {
     const status = event.target.checked;
-    console.log(status);
     this.httpService.cardCheck(this.card.id, status).subscribe(
       (response) => {
         this.updateCardsArray();
@@ -66,10 +67,6 @@ export class CardsComponent implements OnInit {
   }
 
   openCardField() {
-    this.openCardService.getCard(this.card);
+    this.openCardService.setCard(this.card);
   }
-
-  @Output() updateCardsList = new EventEmitter<number>();
-  @Output() emitFunctionOfParent: EventEmitter<any> = new EventEmitter<any>();
-  @Input() card: ICard;
 }

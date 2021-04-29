@@ -8,14 +8,12 @@ import { IFile } from 'src/app/interfaces/file.interface';
   styleUrls: ['./file.component.scss'],
 })
 export class FileComponent implements OnInit {
+  @Input() file: IFile;
   constructor() {}
 
   ngOnInit(): void {}
 
   getFile() {
-    console.log(this.file.fileUrl);
     return this.file.fileUrl;
   }
-
-  @Input() file: IFile;
 }

@@ -1,3 +1,5 @@
+@import "src/app/styles/global-styles.scss";
+
 .example-list {
   width: 500px;
   max-width: 100%;
@@ -10,9 +12,8 @@
 }
 
 .example-box {
+  @include flex-d(flex, row);
   color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
 }
 
 .cdk-drag-animating {

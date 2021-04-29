@@ -24,7 +24,7 @@
 
     <div class="user-container" *ngIf="!authPages" (click)="addPhoto=!addPhoto">
         <div class="user-photo">
-            <div class="no-default-logo" [ngStyle]="{'background-image':'url('+getLogo()+')'}"></div>
+            <img class="no-default-logo" src="{{getLogo()}}" alt="" >
         </div>
         <div class="user-full-name">
             <span>{{user.name}}</span>
@@ -36,7 +36,16 @@
     <app-user-menu *ngIf="addPhoto" class="app-user-menu"></app-user-menu>
 
     <div *ngIf="authPages" class="log-buttons">
-        <button mat-raised-button [ngClass]="{buttonStyle:logStatus}" class="logout-button" (click)="logStatus=false" [routerLink]="['/registration']">SIGN UP</button>
-        <button mat-raised-button [ngClass]="{buttonStyle:!logStatus}" class="logout-button" (click)="logStatus=true" [routerLink]="['']">LOG IN</button>
+        <button mat-raised-button 
+            [class.buttonStyle]="logStatus" 
+            class="logout-button" 
+            (click)="logStatus=false" 
+            [routerLink]="['/registration']">SIGN UP</button>
+
+        <button mat-raised-button 
+            [class.buttonStyle]="!logStatus" 
+            class="logout-button" 
+            (click)="logStatus=true" 
+            [routerLink]="['']">LOG IN</button>
     </div>
 </div>

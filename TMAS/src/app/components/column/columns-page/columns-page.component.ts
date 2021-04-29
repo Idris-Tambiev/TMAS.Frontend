@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-column.component';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 import { from } from 'rxjs';
-import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { OpenCardService } from 'src/app/services/open-card.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CardPageComponent } from '../../card/card-page/card-page.component';
@@ -16,21 +15,21 @@ import { CardPageComponent } from '../../card/card-page/card-page.component';
   styleUrls: ['./columns-page.component.scss'],
 })
 export class ColumnsPageComponent implements OnInit {
-  insertFormStatus: boolean = false;
+  insertFormStatus = false;
   columnNewTitle: string;
   newColumn: IColumn;
   boardId: number;
   columns: IColumn[] = [];
-  viewHistory: boolean = false;
+  viewHistory = false;
   history: History;
-  viewCard: boolean = false;
+  viewCard = false;
   columnTitle: string;
   currentColumn: IColumn;
   card: ICard;
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService,
-    private openCardService: OpenCardServiceService,
+    private openCardService: OpenCardService,
     public matDialog: MatDialog
   ) {}
 
@@ -41,8 +40,7 @@ export class ColumnsPageComponent implements OnInit {
     this.getAllColumns();
   }
   getBoardId() {
-    const routeParams = this.route.snapshot.paramMap;
-    this.boardId = Number(routeParams.get('id'));
+    this.boardId = this.route.snapshot.params.id;
   }
 
   getAllColumns() {
@@ -52,10 +50,6 @@ export class ColumnsPageComponent implements OnInit {
       },
       (error) => console.log(error)
     );
-  }
-
-  openCardWindow(card) {
-    this.viewCard = true;
   }
 
   createNewColumn() {
@@ -80,21 +74,20 @@ export class ColumnsPageComponent implements OnInit {
 
   ngDoCheck() {
     this.card = this.openCardService.card;
-    if (this.card != null) {
+    if (this.card) {
       this.viewCard = true;
       this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
       this.columnTitle = this.currentColumn.title;
-      //this.openModalCard();
     } else {
       this.viewCard = false;
     }
   }
 
-  openModalCard() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    const modalDialog = this.matDialog.open(CardPageComponent, dialogConfig);
-    modalDialog.componentInstance.cardId = this.card.id;
-    modalDialog.componentInstance.columnTitle = this.columnTitle;
-  }
+  // openModalCard() {
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   const modalDialog = this.matDialog.open(CardPageComponent, dialogConfig);
+  //   modalDialog.componentInstance.cardId = this.card.id;
+  //   modalDialog.componentInstance.columnTitle = this.columnTitle;
+  // }
 }

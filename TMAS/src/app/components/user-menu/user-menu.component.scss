@@ -1,36 +1,23 @@
-@mixin flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-}
-@mixin font {
-  font-family: "Raleway";
-  font-style: normal;
-  letter-spacing: 0.07em;
-  color: #334681;
-}
+@import "src/app/styles/global-styles.scss";
+
 .user-menu {
-  @include flexColumn();
+  @include flex-d(flex, column);
+  @include centering();
   background-color: #dfeeff;
   width: 300px;
   min-height: 180px;
   height: 300px;
   overflow: hidden;
-  justify-content: center;
-  align-items: center;
   border-radius: 10px;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
     0px 2px 2px 0px rgb(0 0 0 / 30%), 0px 1px 5px 0px rgb(0 0 0 / 51%);
 }
 .user-menu__avatar {
-  @include flexColumn();
+  @include flex-d(flex, column);
   align-items: center;
 }
 .user-menu__search {
-  @include flexColumn();
+  @include flex-d(flex, column);
   align-items: center;
   margin-top: 10px;
 }

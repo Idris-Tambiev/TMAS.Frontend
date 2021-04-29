@@ -2,9 +2,8 @@ import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
-import { OpenCardServiceService } from 'src/app/services/open-card-service.service';
+import { OpenCardService } from 'src/app/services/open-card.service';
 import { UserService } from 'src/app/services/user.service';
-import { UserActions } from 'src/app/enums/user-actions.enum';
 import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
@@ -17,6 +16,9 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./card-page.component.scss'],
 })
 export class CardPageComponent implements OnInit {
+  @Input() cardId: number;
+  @Input() columnTitle: string;
+
   card: ICard = {
     title: '',
     sortBy: -1,
@@ -30,18 +32,19 @@ export class CardPageComponent implements OnInit {
   };
 
   dateTime: Date;
-  inputText: boolean = false;
+  inputText = false;
   oldText: string;
-  expiredPeriod: boolean = false;
+  expiredPeriod = false;
   executionPeriod: number;
   currentTime: number;
   boardId: number;
   fileToUpload: File = null;
   files: IFile;
+
   constructor(
     private cardService: CardsService,
     private userService: UserService,
-    private openCardService: OpenCardServiceService,
+    private openCardService: OpenCardService,
     private fileService: FileService,
     private router: ActivatedRoute,
     public matDialog: MatDialog
@@ -50,8 +53,7 @@ export class CardPageComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrentCard();
     this.getName();
-    const routeParams = this.router.snapshot.paramMap;
-    this.boardId = Number(routeParams.get('id'));
+    this.boardId = this.router.snapshot.params.id;
   }
 
   getCurrentCard() {
@@ -104,7 +106,7 @@ export class CardPageComponent implements OnInit {
   }
 
   closeCardWindow() {
-    this.openCardService.getCard(null);
+    this.openCardService.close();
   }
 
   saveChanges() {
@@ -149,7 +151,4 @@ export class CardPageComponent implements OnInit {
       }
     );
   }
-
-  @Input() cardId: number;
-  @Input() columnTitle: string;
 }

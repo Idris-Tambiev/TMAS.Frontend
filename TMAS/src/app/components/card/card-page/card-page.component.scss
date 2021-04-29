@@ -1,24 +1,19 @@
-@mixin flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-}
+@import "src/app/styles/global-styles.scss";
+
 @mixin font {
   font-family: "Raleway", sans-serif;
   font-style: normal;
 }
+
 .card-page {
-  @include flexColumn();
+  @include flex-d(flex, column);
   @include font();
   width: 700px;
-  height: 939px;
   background-color: white;
   opacity: 1;
   border-radius: 50px;
   overflow: auto;
+  box-shadow: 0px 17px 23px rgb(51 70 129 / 50%);
 }
 .card-page__date-block {
   width: 128px;
@@ -32,13 +27,13 @@
   margin-right: 16px;
 }
 .card-page__header {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   height: 80px;
   background-color: #dfeeff;
 }
 .card-page__title-container {
-  @include flexColumn();
+  @include flex-d(flex, column);
   @include font();
   margin-left: 30px;
   color: #334681;
@@ -46,7 +41,7 @@
   font-size: 15pt;
 }
 .card-page__date-info {
-  @include flexColumn();
+  @include flex-d(flex, column);
   @include font();
   margin-top: auto;
   align-items: center;
@@ -57,7 +52,7 @@
 }
 .card-page__current-date {
   user-select: none;
-  @include flexRow();
+  @include flex-d(flex, row);
   @include font();
   align-items: center;
   margin-left: 20px;
@@ -75,18 +70,18 @@
   margin-top: 10px;
 }
 .card-page__file {
-  @include flexColumn();
+  @include flex-d(flex, column);
   justify-content: center;
 }
 .card-page__new-date-time {
-  @include flexRow();
+  @include flex-d(flex, row);
 }
 .card-page__new-time {
-  @include flexColumn();
+  @include flex-d(flex, column);
   align-items: center;
 }
 .card-page__new-date {
-  @include flexColumn();
+  @include flex-d(flex, column);
   align-items: center;
 }
 
@@ -100,7 +95,7 @@
 }
 .card-page__input {
   width: 654px;
-  min-height: 160px;
+  min-height: 100px;
   max-height: 500px;
   margin-left: 20px;
   height: auto;
@@ -112,7 +107,7 @@
   overflow-wrap: break-word;
 }
 .card-page__content {
-  @include flexColumn();
+  @include flex-d(flex, column);
   @include font();
   font-size: 11pt;
   margin-top: 30px;
@@ -135,12 +130,12 @@
   color: white;
 }
 .save-buttons__edit {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   height: 68px;
 }
 .save-buttons {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   justify-content: center;
   height: 68px;
@@ -164,7 +159,7 @@
   margin-top: 30px;
 }
 .files-container {
-  @include flexRow();
+  @include flex-d(flex, row);
   overflow: hidden;
   flex-wrap: wrap;
   justify-content: center;

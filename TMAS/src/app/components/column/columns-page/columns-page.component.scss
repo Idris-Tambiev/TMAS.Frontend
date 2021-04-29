@@ -1,17 +1,7 @@
-@mixin flexRow() {
-  display: flex;
-  flex-direction: row;
-}
-@mixin flexColumn() {
-  display: flex;
-  flex-direction: column;
-}
-@mixin font {
-  font-family: "Raleway";
-  font-style: normal;
-}
+@import "src/app/styles/global-styles.scss";
+
 .container {
-  @include flexColumn();
+  @include flex-d(flex, column);
 }
 .button-history {
   width: 128px;
@@ -24,10 +14,7 @@
 .span-button {
   top: 0;
   z-index: 1;
-  @include font();
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 140.1%;
+  @include font(500, 14px, 140.1%);
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: #377dff;
@@ -40,7 +27,7 @@
   margin-right: 7.75px;
 }
 .columns-wrapper {
-  @include flexRow();
+  @include flex-d(flex, row);
   width: 96%;
   margin-left: 40px;
   margin-top: 16px;
@@ -59,10 +46,9 @@
 }
 
 .new-column-div {
-  @include flexRow();
+  @include flex-d(flex, row);
   @include font();
-  justify-content: center;
-  align-items: center;
+  @include centering();
   width: 100%;
   height: 100%;
   background-color: rgba(55, 125, 255, 0.1);
@@ -90,7 +76,7 @@
   margin-right: 0px;
 }
 .new-column-buttons {
-  @include flexRow();
+  @include flex-d(flex, row);
   width: 100%;
   color: #377dff;
 }
@@ -131,9 +117,7 @@
   width: 100%;
   height: 100%;
   background-color: rgb(24, 39, 75, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include centering();
   z-index: 3;
   box-shadow: 0px 6px 8px -6px rgba(24, 39, 75, 0.12),
     0px 8px 16px -6px rgba(24, 39, 75, 0.08);

@@ -1,28 +1,16 @@
-@mixin flexColumn {
-  display: flex;
-  flex-direction: column;
-}
-@mixin flexRow {
-  display: flex;
-  flex-direction: row;
-}
-@mixin font {
-  font-family: "Raleway";
-  font-style: normal;
-  letter-spacing: 0.07em;
-  color: #334681;
-}
+@import "src/app/styles/global-styles.scss";
+
 .container {
-  @include flexColumn();
+  @include flex-d(flex, column);
 }
 .header {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   width: 100%;
   margin-top: 22px;
 }
 .logo-container {
-  @include flexRow();
+  @include flex-d(flex, row);
   margin-left: 56px;
   align-items: center;
   user-select: none;
@@ -31,25 +19,19 @@
   cursor: pointer;
 }
 .logo {
-  @include font();
+  @include font(500, 44px, 52px);
+  letter-spacing: 0.07em;
   width: 136px;
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 52px;
 }
 .name-project {
-  @include flexColumn();
-  @include font();
+  @include flex-d(flex, column);
+  @include font(600, 9px, 129.1%);
   width: 56px;
   margin-left: 16px;
-  font-weight: 600;
-  font-size: 9px;
-  line-height: 129.1%;
   text-transform: uppercase;
 }
 .search-block {
-  @include flexRow();
-  @include font();
+  @include flex-d(flex, row);
   align-items: center;
   background: #fef2c4;
   border-radius: 50px;
@@ -58,10 +40,7 @@
   height: 32px;
 }
 .search-input-div {
-  @include font();
-  font-weight: 600;
-  font-size: 9px;
-  line-height: 140.1%;
+  @include font(600, 9px, 140.1%);
   border-bottom: 0px;
   text-transform: uppercase;
   width: 70%;
@@ -78,7 +57,7 @@
   font-size: 32px;
 }
 .user-container {
-  @include flexRow();
+  @include flex-d(flex, row);
   align-items: center;
   margin-left: auto;
   margin-right: 56px;
@@ -86,28 +65,23 @@
   user-select: none;
 }
 .user-full-name {
-  @include flexColumn();
-  @include font();
+  @include flex-d(flex, column);
+  @include font(bold, 14px, 140.1%);
   width: 100px;
   margin-left: 12px;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 140.1%;
   text-transform: uppercase;
 }
 .logout-button {
-  @include font();
+  @include font(600, 9px, 140.1%);
+  letter-spacing: 0.07em;
   width: 88px;
   height: 32px;
   margin-left: 12px;
   background: #fef2c4;
   border-radius: 50px;
-  font-weight: 600;
-  font-size: 9px;
-  line-height: 140.1%;
 }
 .log-buttons {
-  @include flexRow();
+  @include flex-d(flex, row);
   margin-right: 56px;
   margin-left: auto;
 }

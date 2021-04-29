@@ -6,5 +6,5 @@ export interface IHistory {
   sourceAction: number;
   destinationAction: number;
   boardId: number;
-  authorId?: string;
+  authorId: string;
 }

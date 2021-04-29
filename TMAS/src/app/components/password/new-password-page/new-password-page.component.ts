@@ -14,10 +14,10 @@ import { ValidatorService } from 'src/app/services/validator.service';
   styleUrls: ['./new-password-page.component.scss'],
 })
 export class NewPasswordPageComponent implements OnInit {
-  incorrect: boolean = false;
+  incorrect = false;
   userId: string;
   token: string;
-  isSuccess: boolean = false;
+  isSuccess = false;
   email: string;
   message: string;
 
@@ -79,18 +79,16 @@ export class NewPasswordPageComponent implements OnInit {
   }
 
   login() {
-    this.userService
-      .userAuthorization(this.email, this.myForm.value.password)
-      .subscribe(
-        (response) => {
-          localStorage.clear();
-          localStorage.setItem('userToken', JSON.stringify(response));
-          this.userAuth.redirect(true);
-        },
-        (error) => {
-          console.log(error);
-          this.userAuth.redirect(true);
-        }
-      );
+    this.userAuth.login(this.email, this.myForm.value.password).subscribe(
+      (response) => {
+        localStorage.clear();
+        localStorage.setItem('userToken', JSON.stringify(response));
+        this.userAuth.redirect(true);
+      },
+      (error) => {
+        console.log(error);
+        this.userAuth.redirect(true);
+      }
+    );
   }
 }

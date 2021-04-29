@@ -1,3 +1,5 @@
+@import "src/app/styles/global-styles.scss";
+
 .history-container {
   position: absolute;
   width: 546px;
@@ -11,8 +13,7 @@
 }
 
 .history-page-content {
-  display: flex;
-  flex-direction: column;
+  @include flex-d(flex, column);
   width: 440px;
   height: 85.5%;
   background-color: white;
@@ -29,15 +30,10 @@
   width: 100%;
   height: 60px;
   background-color: #dfeeff;
-  font-family: "Raleway";
   font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 129.1%;
-  display: flex;
-  flex-direction: row;
+  @include font(bold, 18px, 129.1%);
+  @include flex-d(flex, row);
   align-items: center;
-  color: #334681;
 }
 .history-span {
   margin-left: 24px;
@@ -52,6 +48,11 @@
   height: 90%;
   width: 97%;
   overflow-y: auto;
+}
+.next-history-button {
+  width: 80px;
+  margin: 0 auto;
+  height: 40px;
 }
 ::-webkit-scrollbar {
   width: 8px;

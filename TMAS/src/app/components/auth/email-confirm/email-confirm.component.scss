@@ -1,15 +1,7 @@
-@mixin font {
-  font-family: "Raleway", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  color: #334681;
-}
-@mixin flexColumn {
-  display: flex;
-  flex-direction: column;
-}
+@import "src/app/styles/global-styles.scss";
+
 .confirm-email__container {
-  @include flexColumn();
+  @include flex-d(flex, column);
   width: 592px;
   height: 432px;
   margin: 0 auto;
@@ -35,5 +27,5 @@ span {
   margin-top: 100px;
 }
 .confirm-email__button-block {
-  @include flexColumn();
+  @include flex-d(flex, column);
 }

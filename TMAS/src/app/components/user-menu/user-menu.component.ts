@@ -15,7 +15,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class UserMenuComponent implements OnInit {
   fileToUpload: File = null;
   userSelected = false;
-  selectedUserEmail: string;
+  selectedUserEmail: string = '';
 
   deleteUserSelected = false;
   deleteUserEmail: string;
@@ -27,21 +27,16 @@ export class UserMenuComponent implements OnInit {
   boardCreator = false;
   userAdded = false;
   userDeleted = false;
-  deletedUserName: string;
+  deletedUserName: string = '';
   assignedUsers: IUser[] = [];
   deletedUser: IBoardAccess;
   subsciption;
-  myForm = new FormGroup({
-    assignName: new FormControl(''),
-    deleteName: new FormControl(''),
-  });
 
   constructor(
     private boardsService: BoardsService,
     private userHttpService: UserService,
     private accesService: BoardAccessService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

@@ -5,7 +5,7 @@
             <input  type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
         </button>
     </div>
-    <form [formGroup]="myForm">
+
     <div class="user-menu__search" >
         <span>Assign user</span>
         <input type="text"
@@ -15,7 +15,7 @@
             class="user-input form-control"
             [matAutocomplete]="auto"
             (input)="getUserName($event.target.value)"
-            formControlName="assignName"
+           
             [value]="selectedUserEmail"
         >
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option.value)">
@@ -33,10 +33,9 @@
             placeholder="Enter user email"
             aria-label="Number"
             matInput
-            class="user-input form-control"
+            class="user-input"
             [matAutocomplete]="auto"
             (input)="getAssignedUserName($event.target.value)"
-            formControlName="deleteName"
             [value]="deletedUserName"
         >
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectDeleteUser($event.option.value)">
@@ -47,5 +46,4 @@
         <span *ngIf="userDeleted" style="color: red;">User unassigned from this board</span>
         <button mat-raised-button class="assign-user" (click)="deleteUser()">Unassign User</button>
     </div>
-</form>
 </div>

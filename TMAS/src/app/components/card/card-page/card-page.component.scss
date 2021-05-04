@@ -142,13 +142,10 @@
   width: 93%;
 }
 .card-page__exec-period {
-  display: flex;
-  align-items: center;
+  @include centering();
   background-color: yellowgreen;
   width: 217px;
   height: 29px;
-  justify-content: center;
-
   border-radius: 20px;
 }
 .red {

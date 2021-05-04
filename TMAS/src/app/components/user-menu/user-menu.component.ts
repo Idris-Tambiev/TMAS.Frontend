@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IBoardAccess } from 'src/app/interfaces/board-access.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
 import { BoardsService } from 'src/app/services/boards.service';
 import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-user-menu',
   templateUrl: './user-menu.component.html',
@@ -31,7 +32,8 @@ export class UserMenuComponent implements OnInit {
     private boardsService: BoardsService,
     private userHttpService: UserService,
     private accesService: BoardAccessService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,24 +47,21 @@ export class UserMenuComponent implements OnInit {
     }
   }
 
-  getUserName(event: any) {
-    if (event.target.value !== '') {
-      this.accesService
-        .getAllUsers(this.currentBoardId, event.target.value)
-        .subscribe(
-          (response) => {
-            this.users = response;
-            console.log(this.users);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+  getUserName(value: any) {
+    if (value !== '') {
+      this.accesService.getAllUsers(this.currentBoardId, value).subscribe(
+        (response) => {
+          this.users = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
   }
 
-  selectUser(event) {
-    this.selectedUserEmail = event.value;
+  selectUser(email) {
+    this.selectedUserEmail = email;
     this.userSelected = true;
   }
 
@@ -93,9 +92,7 @@ export class UserMenuComponent implements OnInit {
         boardId: this.currentBoardId,
       };
       this.accesService.create(this.boardAccess).subscribe(
-        (response) => {
-          this.ngOnInit();
-        },
+        (response) => {},
         (error) => {
           console.log(error);
         }
@@ -110,8 +107,8 @@ export class UserMenuComponent implements OnInit {
     }
   }
 
-  selectDeleteUser(event) {
-    this.deletedUserName = event.value;
+  selectDeleteUser(value) {
+    this.deletedUserName = value;
   }
 
   getAssignedUsers() {
@@ -141,7 +138,7 @@ export class UserMenuComponent implements OnInit {
 
     this.accesService.deleteAccess(this.deletedUser).subscribe(
       (response) => {
-        this.ngOnInit();
+        this.router.navigate([this.router.url]);
       },
       (error) => {
         console.log(error);

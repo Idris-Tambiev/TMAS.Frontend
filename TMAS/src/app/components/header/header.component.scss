@@ -46,8 +46,11 @@
   width: 70%;
   background: #fef2c4;
   border: none;
+  padding-left: 7px;
 }
-
+.search-input-div:focus {
+  border: 1px solid black;
+}
 .search-icon {
   margin-left: 13px;
   font-size: 15px;

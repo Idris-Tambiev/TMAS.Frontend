@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { from } from 'rxjs';
 import { CardsService } from 'src/app/services/cards.service';
-import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { OpenCardService } from 'src/app/services/open-card.service';
 import { ActivatedRoute } from '@angular/router';
@@ -31,7 +28,6 @@ export class CardsComponent implements OnInit {
   }
 
   deleteThisCard() {
-    const deletedCardName = this.card.title;
     this.httpService.deleteCard(this.card.id).subscribe(
       (response) => {
         this.updateCardsArray();

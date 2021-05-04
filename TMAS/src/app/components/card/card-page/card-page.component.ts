@@ -8,7 +8,6 @@ import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-card-page',
@@ -46,8 +45,7 @@ export class CardPageComponent implements OnInit {
     private userService: UserService,
     private openCardService: OpenCardService,
     private fileService: FileService,
-    private router: ActivatedRoute,
-    public matDialog: MatDialog
+    private router: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

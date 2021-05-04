@@ -3,11 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-column.component';
-import { from } from 'rxjs';
 import { OpenCardService } from 'src/app/services/open-card.service';
 import { ICard } from 'src/app/interfaces/card.interface';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { CardPageComponent } from '../../card/card-page/card-page.component';
 
 @Component({
   selector: 'app-columns-page',
@@ -29,8 +26,7 @@ export class ColumnsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private httpService: ColumnsService,
-    private openCardService: OpenCardService,
-    public matDialog: MatDialog
+    private openCardService: OpenCardService
   ) {}
 
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
@@ -82,12 +78,4 @@ export class ColumnsPageComponent implements OnInit {
       this.viewCard = false;
     }
   }
-
-  // openModalCard() {
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   const modalDialog = this.matDialog.open(CardPageComponent, dialogConfig);
-  //   modalDialog.componentInstance.cardId = this.card.id;
-  //   modalDialog.componentInstance.columnTitle = this.columnTitle;
-  // }
 }

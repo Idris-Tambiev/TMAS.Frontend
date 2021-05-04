@@ -1,14 +1,13 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import {
   SocialAuthService,
   GoogleLoginProvider,
   SocialUser,
 } from 'angularx-social-login';
 import { UserAuthService } from 'src/app/services/user-auth.service';
-import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
+
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
@@ -23,8 +22,7 @@ export class AuthorizationComponent implements OnInit {
   constructor(
     public router: Router,
     private userAuth: UserAuthService,
-    private socialAuthService: SocialAuthService,
-    private httpService: UserService
+    private socialAuthService: SocialAuthService
   ) {}
 
   ngOnInit(): void {}

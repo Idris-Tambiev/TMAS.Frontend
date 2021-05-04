@@ -5,7 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { from } from 'rxjs';
+
 @Component({
   selector: 'app-history-items',
   templateUrl: './history-items.component.html',

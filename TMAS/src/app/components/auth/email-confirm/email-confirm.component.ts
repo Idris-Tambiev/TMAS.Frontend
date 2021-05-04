@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 import { IEmailConfirm } from 'src/app/interfaces/email-confirm.interface';
 import { EmailService } from 'src/app/services/email.service';
 @Component({

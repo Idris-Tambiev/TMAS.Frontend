@@ -9,11 +9,5 @@ export class BoardsComponent implements OnInit {
   @Input() board: IBoard;
   constructor() {}
 
-  ngOnInit(): void {
-    //this.get();
-  }
-
-  get() {
-    var retrievedObject = JSON.parse(localStorage.getItem('userToken'));
-  }
+  ngOnInit(): void {}
 }

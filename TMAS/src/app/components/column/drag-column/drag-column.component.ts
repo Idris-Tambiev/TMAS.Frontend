@@ -2,7 +2,6 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-drag-column',
@@ -13,10 +12,7 @@ export class DragColumnComponent implements OnInit {
   @Input() boardId: number;
   columns: IColumn[] = [];
 
-  constructor(
-    private columnsHttpService: ColumnsService,
-    private router: ActivatedRoute
-  ) {}
+  constructor(private columnsHttpService: ColumnsService) {}
 
   ngOnInit(): void {
     this.getAll();

@@ -1,14 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-} from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +11,7 @@ import { UserService } from './user.service';
 export class UserAuthService {
   configUrl: string = environment.Url;
   socialUser: SocialUser;
-  constructor(
-    private socialAuthService: SocialAuthService,
-    private httpService: UserService,
-    public router: Router,
-    private http: HttpClient
-  ) {}
+  constructor(public router: Router, private http: HttpClient) {}
 
   sendUserToken(accessToken: string) {
     this.loginWithGoogle(accessToken, 'google').subscribe(

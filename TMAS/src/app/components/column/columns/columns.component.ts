@@ -5,7 +5,6 @@ import {
   OnInit,
   Output,
   ViewChild,
-  OnDestroy,
 } from '@angular/core';
 
 import { CardsService } from 'src/app/services/cards.service';
@@ -13,7 +12,6 @@ import { ColumnsService } from 'src/app/services/columns.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { DragCardComponent } from 'src/app/components/card/cards-drag/drag-card.component';
 import { IColumn } from 'src/app/interfaces/column.interface';
-import { from } from 'rxjs';
 import { BehaviorSubjectService } from 'src/app/services/behaviors.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({

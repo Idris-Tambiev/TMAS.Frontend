@@ -1,11 +1,8 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IUser } from 'src/app/interfaces/user.interface';
 import { EmailService } from 'src/app/services/email.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { ValidatorService } from 'src/app/services/validator.service';
 
 @Component({

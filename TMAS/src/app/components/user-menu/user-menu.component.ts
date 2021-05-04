@@ -5,7 +5,6 @@ import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
 import { BoardsService } from 'src/app/services/boards.service';
 import { UserService } from 'src/app/services/user.service';
-import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-menu',

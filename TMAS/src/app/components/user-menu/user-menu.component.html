@@ -5,7 +5,7 @@
             <input  type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
         </button>
     </div>
-    
+
     <div class="user-menu__search" >
         <span>Assign user</span>
         <input type="text"
@@ -16,7 +16,6 @@
             [matAutocomplete]="auto"
             (input)="getUserName($event.target.value)"
         >
-        
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option.value)">
             <mat-option *ngFor="let user of users" [value]="user.email">
                   {{user.email}}
@@ -42,6 +41,5 @@
         </mat-autocomplete>
         <button mat-raised-button class="assign-user" (click)="deleteUser()">Unassign User</button>
     </div>
-
     
 </div>

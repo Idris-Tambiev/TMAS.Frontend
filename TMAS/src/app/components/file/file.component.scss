@@ -1,4 +1,5 @@
 @import "src/app/styles/global-styles.scss";
+
 .image-div {
   width: 100px;
   height: 100px;
@@ -6,25 +7,16 @@
   cursor: pointer;
 }
 .txt-file {
-  margin-top: 10px;
-  width: 70px;
-  height: 70px;
+  @include fileStyle();
   background-image: url("/assets/img/Txt_logo.png");
-  background-size: cover;
 }
 .pdf-file {
-  margin-top: 10px;
-  width: 70px;
-  height: 70px;
+  @include fileStyle();
   background-image: url("/assets/img/Pdf_logo.png");
-  background-size: cover;
 }
 .word-file {
-  margin-top: 10px;
-  width: 50px;
-  height: 50px;
+  @include fileStyle();
   background-image: url("/assets/img/Word_logo.png");
-  background-size: cover;
 }
 .file-container {
   @include flex-d(flex, row);

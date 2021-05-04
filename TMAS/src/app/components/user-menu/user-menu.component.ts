@@ -92,7 +92,9 @@ export class UserMenuComponent implements OnInit {
         boardId: this.currentBoardId,
       };
       this.accesService.create(this.boardAccess).subscribe(
-        (response) => {},
+        (response) => {
+          this.ngOnInit();
+        },
         (error) => {
           console.log(error);
         }

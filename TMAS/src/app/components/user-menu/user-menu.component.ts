@@ -5,6 +5,7 @@ import { IUser } from 'src/app/interfaces/user.interface';
 import { BoardAccessService } from 'src/app/services/board-access.service';
 import { BoardsService } from 'src/app/services/boards.service';
 import { UserService } from 'src/app/services/user.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-menu',
@@ -24,9 +25,16 @@ export class UserMenuComponent implements OnInit {
   currentBoardId: number;
   assign = false;
   boardCreator = false;
+  userAdded = false;
+  userDeleted = false;
   deletedUserName: string;
   assignedUsers: IUser[] = [];
   deletedUser: IBoardAccess;
+  subsciption;
+  myForm = new FormGroup({
+    assignName: new FormControl(''),
+    deleteName: new FormControl(''),
+  });
 
   constructor(
     private boardsService: BoardsService,
@@ -93,7 +101,9 @@ export class UserMenuComponent implements OnInit {
       };
       this.accesService.create(this.boardAccess).subscribe(
         (response) => {
-          this.ngOnInit();
+          this.userAdded = true;
+          this.selectedUserEmail = '';
+          this.users = [];
         },
         (error) => {
           console.log(error);
@@ -102,9 +112,9 @@ export class UserMenuComponent implements OnInit {
     }
   }
 
-  getAssignedUserName(event) {
-    if (event.target.value !== '') {
-      this.deletedUserName = event.target.value;
+  getAssignedUserName(value) {
+    if (value !== '') {
+      this.deletedUserName = value;
       this.getAssignedUsers();
     }
   }
@@ -140,7 +150,9 @@ export class UserMenuComponent implements OnInit {
 
     this.accesService.deleteAccess(this.deletedUser).subscribe(
       (response) => {
-        this.router.navigate([this.router.url]);
+        this.userDeleted = true;
+        this.deletedUserName = '';
+        this.assignedUsers = [];
       },
       (error) => {
         console.log(error);

@@ -5,22 +5,25 @@
             <input  type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
         </button>
     </div>
-
+    <form [formGroup]="myForm">
     <div class="user-menu__search" >
         <span>Assign user</span>
         <input type="text"
             placeholder="Enter user email"
             aria-label="Number"
             matInput
-            class="user-input"
+            class="user-input form-control"
             [matAutocomplete]="auto"
             (input)="getUserName($event.target.value)"
+            formControlName="assignName"
+            [value]="selectedUserEmail"
         >
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option.value)">
             <mat-option *ngFor="let user of users" [value]="user.email">
                   {{user.email}}
             </mat-option>
         </mat-autocomplete>
+        <span *ngIf="userAdded" style="color: green;">User assigned on this board</span>
         <button mat-raised-button class="assign-user" (click)="assignUser()">Assign User</button>
     </div>
 
@@ -30,16 +33,19 @@
             placeholder="Enter user email"
             aria-label="Number"
             matInput
-            class="user-input"
+            class="user-input form-control"
             [matAutocomplete]="auto"
-            (input)="getAssignedUserName($event)"
+            (input)="getAssignedUserName($event.target.value)"
+            formControlName="deleteName"
+            [value]="deletedUserName"
         >
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectDeleteUser($event.option.value)">
             <mat-option *ngFor="let user of assignedUsers" [value]="user.email">
                   {{user.email}}
             </mat-option>
         </mat-autocomplete>
+        <span *ngIf="userDeleted" style="color: red;">User unassigned from this board</span>
         <button mat-raised-button class="assign-user" (click)="deleteUser()">Unassign User</button>
     </div>
-    
+</form>
 </div>

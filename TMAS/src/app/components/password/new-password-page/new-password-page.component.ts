@@ -25,7 +25,6 @@ export class NewPasswordPageComponent implements OnInit {
   constructor(
     private emailService: EmailService,
     private route: ActivatedRoute,
-    private userService: UserService,
     private userAuth: UserAuthService,
     private validatorService: ValidatorService
   ) {
@@ -39,23 +38,15 @@ export class NewPasswordPageComponent implements OnInit {
       ]),
       confirmPassword: new FormControl('', Validators.required),
     });
-
-    this.myForm.valueChanges.subscribe((x) => {
-      console.log(this.myForm);
-    });
   }
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.queryParams['userid'];
     this.token = this.route.snapshot.queryParams['token'];
     this.email = this.route.snapshot.queryParams['email'];
-    console.log(this.token);
   }
 
   resetPassword(form) {
-    console.log(form.password);
-
-    console.log(form.confirmPassword);
     if (form.password === form.confirmPassword) {
       this.incorrect = false;
       this.emailService

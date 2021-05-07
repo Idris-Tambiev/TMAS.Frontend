@@ -18,7 +18,6 @@ export class ColumnsPageComponent implements OnInit {
   columns: IColumn[] = [];
   viewHistory = false;
   history: History;
-  viewCard = false;
   columnTitle: string;
   currentColumn: IColumn;
   card: ICard;
@@ -33,6 +32,7 @@ export class ColumnsPageComponent implements OnInit {
     this.getBoardId();
     this.getAllColumns();
   }
+
   getBoardId() {
     this.boardId = this.route.snapshot.params.id;
   }
@@ -65,15 +65,4 @@ export class ColumnsPageComponent implements OnInit {
       );
     }
   }
-
-  // ngDoCheck() {
-  //   this.card = this.openCardService.card;
-  //   if (this.card) {
-  //     this.viewCard = true;
-  //     this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
-  //     this.columnTitle = this.currentColumn.title;
-  //   } else {
-  //     this.viewCard = false;
-  //   }
-  // }
 }

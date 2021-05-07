@@ -15,7 +15,6 @@
             class="user-input form-control"
             [matAutocomplete]="auto"
             (input)="getUserName($event.target.value)"
-           
             [value]="selectedUserEmail"
         >
         <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option.value)">

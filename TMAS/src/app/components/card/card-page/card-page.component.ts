@@ -1,13 +1,13 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ICard } from 'src/app/interfaces/card.interface';
 import { CardsService } from 'src/app/services/cards.service';
-import { OpenCardService } from 'src/app/services/open-card.service';
 import { UserService } from 'src/app/services/user.service';
 import { FileService } from 'src/app/services/file.service';
 import { IFile } from 'src/app/interfaces/file.interface';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { ActivatedRoute } from '@angular/router';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-card-page',
@@ -15,7 +15,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./card-page.component.scss'],
 })
 export class CardPageComponent implements OnInit {
-  @Input() cardId: number;
   @Input() columnTitle: string;
 
   card: ICard = {
@@ -43,9 +42,12 @@ export class CardPageComponent implements OnInit {
   constructor(
     private cardService: CardsService,
     private userService: UserService,
-    private openCardService: OpenCardService,
     private fileService: FileService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      id: number;
+    }
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class CardPageComponent implements OnInit {
   }
 
   getCurrentCard() {
-    this.cardService.getOneCard(this.cardId).subscribe(
+    this.cardService.getOneCard(this.data.id).subscribe(
       (response) => {
         this.card = response;
         this.oldText = this.card.text;
@@ -101,10 +103,6 @@ export class CardPageComponent implements OnInit {
     if (this.card.executionPeriod.toString() === '0001-01-01T00:00:00') {
       this.expiredPeriod = false;
     }
-  }
-
-  closeCardWindow() {
-    this.openCardService.close();
   }
 
   saveChanges() {

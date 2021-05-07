@@ -6,7 +6,7 @@
             <span class="card-page__column-title">Column {{columnTitle}}</span>
             <span class="card-page__user-name">{{user.name}} {{user.lastName}}</span>
         </div>
-        <mat-icon class="card-page__close-icon" (click)="closeCardWindow()">highlight_off</mat-icon>
+        <mat-icon class="card-page__close-icon"  mat-dialog-close>highlight_off</mat-icon>
     </div>
     
       <div class="card-page__current-date">
@@ -50,4 +50,5 @@
         <br>
         <span>Last Update: {{card.updatedDate | date:'medium'}}</span>
     </div>
-    </div>
+</div>
+

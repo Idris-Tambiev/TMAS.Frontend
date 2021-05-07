@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ColumnsService } from 'src/app/services/columns.service';
 import { IColumn } from 'src/app/interfaces/column.interface';
 import { DragColumnComponent } from 'src/app/components/column/drag-column/drag-column.component';
-import { OpenCardService } from 'src/app/services/open-card.service';
 import { ICard } from 'src/app/interfaces/card.interface';
 
 @Component({
@@ -25,8 +24,7 @@ export class ColumnsPageComponent implements OnInit {
   card: ICard;
   constructor(
     private route: ActivatedRoute,
-    private httpService: ColumnsService,
-    private openCardService: OpenCardService
+    private httpService: ColumnsService
   ) {}
 
   @ViewChild(DragColumnComponent) child: DragColumnComponent;
@@ -68,14 +66,14 @@ export class ColumnsPageComponent implements OnInit {
     }
   }
 
-  ngDoCheck() {
-    this.card = this.openCardService.card;
-    if (this.card) {
-      this.viewCard = true;
-      this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
-      this.columnTitle = this.currentColumn.title;
-    } else {
-      this.viewCard = false;
-    }
-  }
+  // ngDoCheck() {
+  //   this.card = this.openCardService.card;
+  //   if (this.card) {
+  //     this.viewCard = true;
+  //     this.currentColumn = this.columns.find((x) => x.id == this.card.columnId);
+  //     this.columnTitle = this.currentColumn.title;
+  //   } else {
+  //     this.viewCard = false;
+  //   }
+  // }
 }

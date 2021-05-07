@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardsService } from 'src/app/services/cards.service';
 import { ICard } from 'src/app/interfaces/card.interface';
-import { OpenCardService } from 'src/app/services/open-card.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CardPageComponent } from '../card-page/card-page.component';
+
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -19,8 +21,9 @@ export class CardsComponent implements OnInit {
   boardId: number;
   constructor(
     private httpService: CardsService,
-    private openCardService: OpenCardService,
-    private router: ActivatedRoute
+    // private openCardService: OpenCardService,
+    private router: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +66,11 @@ export class CardsComponent implements OnInit {
   }
 
   openCardField() {
-    this.openCardService.setCard(this.card);
+    this.dialog.open(CardPageComponent, {
+      panelClass: 'myapp-no-padding-dialog',
+      data: {
+        id: this.card.id,
+      },
+    });
   }
 }

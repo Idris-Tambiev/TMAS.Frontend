@@ -1,0 +1,40 @@
+@import "src/app/styles/global-styles.scss";
+
+.history-item-container {
+  @include flex-d(flex, row);
+  align-items: center;
+  width: 380px;
+  height: 57px;
+  margin-top: 16px;
+  margin-left: 24px;
+}
+.history-item-content {
+  @include flex-d(flex, column);
+  justify-content: left;
+  margin-left: 16px;
+}
+.span-name {
+  @include font(bold, 14px, 140.1%);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.span-action {
+  @include font(normal, 14px);
+}
+.span-date {
+  @include font(normal, 10px);
+}
+.action-div {
+  width: 332px;
+  word-wrap: break-word;
+}
+.history-objects {
+  @include font(500, 14px);
+  color: #377dff !important;
+}
+.user-logo-no-default {
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  border-radius: 50%;
+}

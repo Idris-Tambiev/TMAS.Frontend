@@ -1,0 +1,177 @@
+@import "src/app/styles/global-styles.scss";
+
+@mixin font {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+}
+.card-page {
+  @include flex-d(flex, column);
+  @include font();
+  width: 700px;
+  background-color: white;
+  opacity: 1;
+  border-radius: 40px;
+  overflow: auto;
+}
+.card-page__date-block {
+  width: 128px;
+  background: #fef2c4;
+  height: 52px;
+}
+.card-page__close-icon {
+  cursor: pointer;
+  user-select: none;
+  margin-left: auto;
+  margin-right: 16px;
+}
+.card-page__header {
+  @include flex-d(flex, row);
+  align-items: center;
+  height: 80px;
+  background-color: #dfeeff;
+}
+.card-page__title-container {
+  @include flex-d(flex, column);
+  @include font();
+  margin-left: 30px;
+  color: #334681;
+  font-weight: bold;
+  font-size: 15pt;
+}
+.card-page__date-info {
+  @include flex-d(flex, column);
+  @include font();
+  margin-top: auto;
+  align-items: center;
+  font-size: 11pt;
+  background-color: #dfeeff;
+  height: 80px;
+  color: #334681;
+}
+.card-page__current-date {
+  user-select: none;
+  @include flex-d(flex, row);
+  @include font();
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-size: 11pt;
+}
+.card-page__time {
+  font-size: 11pt;
+  width: 186px;
+  padding-left: 8px;
+  border: 1px solid #b0cfff;
+  color: #334681;
+}
+.date-info__span {
+  margin-top: 10px;
+}
+.card-page__file {
+  @include flex-d(flex, column);
+  justify-content: center;
+}
+.card-page__new-date-time {
+  @include flex-d(flex, row);
+}
+.card-page__new-time {
+  @include flex-d(flex, column);
+  align-items: center;
+}
+.card-page__new-date {
+  @include flex-d(flex, column);
+  align-items: center;
+}
+
+.card-page__user-name {
+  @include font();
+  font-size: 12pt;
+}
+.card-page__column-title {
+  font-size: 12pt;
+  color: #377dff;
+}
+.card-page__input {
+  width: 654px;
+  min-height: 100px;
+  max-height: 500px;
+  margin-left: 20px;
+  height: auto;
+  margin: 0 auto;
+  padding-bottom: 24px;
+  padding-left: 10px;
+  resize: none;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.card-page__content {
+  @include flex-d(flex, column);
+  @include font();
+  font-size: 11pt;
+  margin-top: 30px;
+}
+.card-page__description {
+  margin-left: 16px;
+  @include font();
+  font-size: 11pt;
+}
+.card-page__description-text {
+  margin-left: 16px;
+  @include font();
+  font-size: 12pt;
+}
+.card-page__save-button {
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #377dff;
+  color: white;
+}
+.save-buttons__edit {
+  @include flex-d(flex, row);
+  align-items: center;
+  height: 68px;
+}
+.save-buttons {
+  @include flex-d(flex, row);
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+  width: 93%;
+}
+.card-page__exec-period {
+  @include centering();
+  background-color: yellowgreen;
+  width: 217px;
+  height: 29px;
+  border-radius: 20px;
+}
+.red {
+  background-color: red;
+}
+.file-input {
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.files-container {
+  @include flex-d(flex, row);
+  overflow: hidden;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 380px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+}
+::-webkit-scrollbar-track {
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(55, 125, 255, 0.5);
+}

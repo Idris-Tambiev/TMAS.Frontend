@@ -1,0 +1,25 @@
+@mixin flex-d($flex: flex, $dir) {
+  display: flex;
+  flex-direction: $dir;
+}
+@mixin font($font-weight: 600, $font-size: 14px, $line-height: 140.1%) {
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: $font-weight;
+  color: #334681;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+@mixin centering() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin fileStyle() {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}

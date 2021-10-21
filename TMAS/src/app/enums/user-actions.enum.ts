@@ -1,0 +1,18 @@
+export enum UserActions {
+  'Created card' = 0,
+  'Deleted card' = 1,
+  'Updated card' = 2,
+  'Moved card' = 3,
+  'Moved card ' = 4,
+  'Created column' = 5,
+  'Deleted column' = 6,
+  'Updated column' = 7,
+  'Moved column' = 8,
+  'Checked card' = 9,
+  'Unchecked card' = 10,
+  'Added description of the card' = 11,
+  'Edited description of the card' = 12,
+  'Changed execution period of the card' = 13,
+  'Assigned user' = 14,
+  'Unassigned user' = 15,
+}

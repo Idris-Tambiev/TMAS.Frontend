@@ -1,0 +1,48 @@
+<div class="user-menu" *ngIf="assign">
+    <div class="user-menu__avatar">
+        <span>Choose Avatar</span>
+        <button mat-raised-button class="photo-add-input">
+            <input  type="file" name="" id="" placeholder="Choose image" (change)="fileUpload($event)">
+        </button>
+    </div>
+
+    <div class="user-menu__search" >
+        <span>Assign user</span>
+        <input type="text"
+            placeholder="Enter user email"
+            aria-label="Number"
+            matInput
+            class="user-input form-control"
+            [matAutocomplete]="auto"
+            (input)="getUserName($event.target.value)"
+            [value]="selectedUserEmail"
+        >
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectUser($event.option.value)">
+            <mat-option *ngFor="let user of users" [value]="user.email">
+                  {{user.email}}
+            </mat-option>
+        </mat-autocomplete>
+        <span *ngIf="userAdded" style="color: green;">User assigned on this board</span>
+        <button mat-raised-button class="assign-user" (click)="assignUser()">Assign User</button>
+    </div>
+
+    <div class="user-menu__search" *ngIf="boardCreator">
+        <span>Unassign user</span>
+        <input type="text"
+            placeholder="Enter user email"
+            aria-label="Number"
+            matInput
+            class="user-input"
+            [matAutocomplete]="auto"
+            (input)="getAssignedUserName($event.target.value)"
+            [value]="deletedUserName"
+        >
+        <mat-autocomplete #auto="matAutocomplete"  (optionSelected)="selectDeleteUser($event.option.value)">
+            <mat-option *ngFor="let user of assignedUsers" [value]="user.email">
+                  {{user.email}}
+            </mat-option>
+        </mat-autocomplete>
+        <span *ngIf="userDeleted" style="color: red;">User unassigned from this board</span>
+        <button mat-raised-button class="assign-user" (click)="deleteUser()">Unassign User</button>
+    </div>
+</div>

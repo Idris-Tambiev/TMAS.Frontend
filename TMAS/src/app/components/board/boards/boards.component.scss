@@ -1,0 +1,15 @@
+@import "src/app/styles/global-styles.scss";
+.board-item {
+  @include centering();
+  width: 288px;
+  height: 140px;
+  cursor: pointer;
+  background: #dfeeff;
+  border: 1px solid rgba(223, 238, 255, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0px 6px 8px -6px rgba(24, 39, 75, 0.12),
+    0px 8px 16px -6px rgba(24, 39, 75, 0.08);
+  border-radius: 6px;
+  font-size: 20pt;
+  margin-left: 11px;
+}

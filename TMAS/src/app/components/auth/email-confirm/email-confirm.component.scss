@@ -1,0 +1,31 @@
+@import "src/app/styles/global-styles.scss";
+
+.confirm-email__container {
+  @include flex-d(flex, column);
+  width: 592px;
+  height: 432px;
+  margin: 0 auto;
+  margin-top: 250px;
+  background-color: white;
+  box-shadow: 0px 4px 44px rgb(51 70 129 / 30%);
+  border-radius: 6px;
+  text-align: center;
+}
+.confirm-email__button {
+  width: 120px;
+  margin: 0 auto;
+  margin-top: 57px;
+}
+span {
+  @include font();
+  font-size: 20pt;
+}
+.confirm-email__message {
+  margin-top: 100px;
+}
+.confirm-email__span {
+  margin-top: 100px;
+}
+.confirm-email__button-block {
+  @include flex-d(flex, column);
+}

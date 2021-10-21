@@ -1,0 +1,51 @@
+<div class="header">
+    <div class="logo-container" *ngIf="!authPages" [routerLink]="['/boards']">
+        <div class="logo">TMAS</div>
+        <div class="name-project">
+            <span>SIMPLE</span>
+            <span>TASK</span>
+            <span>MANAGER</span>
+        </div>
+    </div>
+
+    <div class="logo-container" *ngIf="authPages">
+        <div class="logo">TMAS</div>
+        <div class="name-project">
+            <span>SIMPLE</span>
+            <span>TASK</span>
+            <span>MANAGER</span>
+        </div>
+    </div>
+   
+    <div class="search-block">
+        <mat-icon class="search-icon" matSuffix>search</mat-icon>
+            <input class="search-input-div" matInput placeholder="SEARCH" (input)="getSearchText($event)">
+    </div>
+
+    <div class="user-container" *ngIf="!authPages" (click)="addPhoto=!addPhoto">
+        <div class="user-photo">
+            <img class="no-default-logo" src="{{getLogo()}}" alt="" >
+        </div>
+        <div class="user-full-name">
+            <span>{{user.name}}</span>
+            <span>{{user.lastName}}</span>
+        </div>
+        <button mat-raised-button class="logout-button" (click)="logOut()" [routerLink]="['']">LOG OUT</button>
+    </div>
+
+    <app-user-menu *ngIf="addPhoto" class="app-user-menu"></app-user-menu>
+
+    <div *ngIf="authPages" class="log-buttons">
+        <button mat-raised-button 
+            [class.buttonStyle]="logStatus" 
+            class="logout-button" 
+            (click)="logStatus=false" 
+            [routerLink]="['/registration']">SIGN UP</button>
+
+        <button mat-raised-button 
+            [class.buttonStyle]="!logStatus" 
+            class="logout-button" 
+            (click)="logStatus=true" 
+            [routerLink]="['']">LOG IN</button>
+    </div>
+</div>

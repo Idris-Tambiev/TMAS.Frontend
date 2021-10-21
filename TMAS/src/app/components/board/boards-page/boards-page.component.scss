@@ -1,0 +1,96 @@
+@import "src/app/styles/global-styles.scss";
+
+.boards-container {
+  @include flex-d(flex, column);
+  margin-top: 79px;
+  margin-left: 40px;
+  overflow-x: auto;
+  height: 220px;
+}
+.my-boards {
+  margin-top: 20px;
+  @include flex-d(flex, row);
+  width: 100%;
+}
+.new-board-div {
+  @include centering();
+  width: 288px;
+  margin-left: 16px;
+  height: 140px;
+  cursor: pointer;
+  background: rgba(223, 238, 255, 0.4);
+  border: 1px solid rgba(223, 238, 255, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0px 6px 8px -6px rgba(24, 39, 75, 0.12),
+    0px 8px 16px -6px rgba(24, 39, 75, 0.08);
+  border-radius: 6px;
+  font-size: 20pt;
+  color: #334681;
+}
+
+.new-board {
+  width: 80%;
+  @include flex-d(flex, column);
+  margin-top: 30px;
+}
+.new-board-buttons {
+  display: flex;
+}
+.cancel {
+  margin-left: auto;
+  margin-right: 0;
+}
+.text-board {
+  @include centering();
+  background: rgba(223, 238, 255, 0.4);
+  width: 288px;
+  height: 100%;
+  z-index: 10;
+}
+.board-create-input {
+  width: 100%;
+  height: 25px;
+}
+.add-board-span {
+  font-size: 17pt;
+}
+.assigned-boards-container {
+  @include flex-d(flex, column);
+  margin-top: 80px;
+  margin-left: 40px;
+  width: 100%;
+  overflow-x: auto;
+}
+.assigned-boards {
+  @include flex-d(flex, row);
+  margin-top: 20px;
+}
+.boards-title {
+  font-size: 20pt;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #d0e2fe;
+  border-radius: 6px;
+  transform: rotate(-90deg);
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(55, 125, 255, 0.5);
+}
+@media (max-width: 820px) {
+  .boards-container {
+    margin-left: 0;
+  }
+  .boards-title {
+    margin-left: 11px;
+  }
+}

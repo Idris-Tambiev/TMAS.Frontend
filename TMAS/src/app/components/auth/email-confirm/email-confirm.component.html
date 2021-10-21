@@ -1,0 +1,9 @@
+<div class="confirm-email__container">
+        <span class="confirm-email__message">{{confirmResponse.message}}</span>
+        <div class="confirm-email__button-block" *ngIf="confirmResponse.isSuccess">
+            <span class="confirm-email__span">Click on button to go your boards</span>
+            <button class="confirm-email__button" mat-raised-button color="primary" [routerLink]="['/boards']">
+                Go to Boards
+            </button>
+        </div>
+</div>

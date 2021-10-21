@@ -1,0 +1,53 @@
+@import "src/app/styles/global-styles.scss";
+
+.example-list {
+  width: 500px;
+  max-width: 100%;
+  min-height: 60px;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 670px;
+  overflow-y: auto;
+}
+
+.example-box {
+  @include flex-d(flex, row);
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+::-webkit-scrollbar {
+  width: 8px;
+  position: relative;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  margin-right: 10px;
+  border-radius: 5px;
+  height: 10px;
+  background-color: rgb(55, 125, 255, 0.2);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  height: 100px;
+  background-color: rgb(55, 125, 255, 0.5);
+}

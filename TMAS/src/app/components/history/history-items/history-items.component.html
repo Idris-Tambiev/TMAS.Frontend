@@ -1,0 +1,20 @@
+<div class="history-item-container">
+    <img class="user-logo-no-default" src="{{getLogo()}}" alt="">
+    <div class="history-item-content">
+        <span class="span-name">{{user.name}} {{user.lastName}}</span>
+        <div class="action-div" *ngIf="!movedOtherColumn">
+            <span class="span-action">{{action}}&ensp;</span>   
+            <span class="history-objects">{{history.actionObject}}</span>
+        </div>
+
+        <div class="action-div" *ngIf="movedOtherColumn">
+            <span class="span-action">{{action}} </span>   
+            <span class="history-objects">{{history.actionObject}} </span>
+            from
+            <span class="history-objects">{{source.title}}</span>
+            to
+            <span class="history-objects">{{dest.title}}</span>
+        </div>
+        <span class="span-date">{{history.createdDate | date:'medium'}}</span>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="card-page">
+    
+    <div class="card-page__header" >
+        <div class="card-page__title-container">
+            <span class="card-page__title">{{card.title}}</span>
+            <span class="card-page__column-title">Column {{columnTitle}}</span>
+            <span class="card-page__user-name">{{user.name}} {{user.lastName}}</span>
+        </div>
+        <mat-icon class="card-page__close-icon"  mat-dialog-close>highlight_off</mat-icon>
+    </div>
+    
+      <div class="card-page__current-date">
+          <span>Execution period:</span>
+         <span class="card-page__exec-period" [ngClass]="{red:expiredPeriod}"> {{card.executionPeriod | date:'medium'}}</span>   
+    </div>
+
+    <div class="card-page__content" *ngIf="inputText">
+        <span class="card-page__description">Description:</span>
+        <textarea type="text" name="" id="" class="card-page__input" [(ngModel)]="card.text">{{card.text}}</textarea>
+        <div class="save-buttons edited">
+            <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
+            <button class="card-page__save-button" mat-raised-button (click)="inputText=false">Close</button>
+            <div class="card-page__new-date-time">
+                <div class="card-page__new-time">
+                     <span>Choose execution time:</span>
+                    <input type="datetime-local" name="" id="" class="card-page__time" [(ngModel)]="dateTime">
+            </div>
+       </div>
+    </div>
+    </div>
+
+    <div class="card-page__content" *ngIf="!inputText">
+        <span class="card-page__description">Description:</span>
+        <span class="card-page__description-text">{{card.text}}</span>
+        <div class="save-buttons__edit">
+            <button class="card-page__save-button" mat-raised-button (click)="saveChanges()">Save</button>
+            <button class="card-page__save-button" mat-raised-button (click)="inputText=true">Edit</button>
+        </div>
+    </div>
+    <div class="card-page__file">
+        <input type="file" (change)="fileUpload($event)" class="file-input">
+    </div>
+
+    <div class="files-container">
+        <app-file *ngFor="let file of files" [file]="file"></app-file>
+    </div>
+
+    <div class="card-page__date-info">
+        <span class="date-info__span">Created Date: {{card.createdDate | date:'medium'}}</span>
+        <br>
+        <span>Last Update: {{card.updatedDate | date:'medium'}}</span>
+    </div>
+</div>
+

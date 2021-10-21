@@ -1,0 +1,93 @@
+@import "src/app/styles/global-styles.scss";
+
+.authorization-field-container {
+  @include flex-d(flex, column);
+  width: 592px;
+  min-height: 432px;
+  max-height: 480px;
+  margin: 0 auto;
+  margin-top: 109px;
+  background-color: white;
+  box-shadow: 0px 4px 44px rgba(51, 70, 129, 0.3);
+  border-radius: 6px;
+}
+.login-button {
+  @include font(600, 14px, 140.1%);
+  width: 216px;
+  height: 48px;
+  text-align: center;
+  background: #fef2c4;
+  border-radius: 50px;
+}
+.auth-input {
+  @include font();
+  width: 448px;
+  height: 48px;
+
+  border: 1px solid #b0cfff;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.unActiveButton {
+  @include font(600, 14px, 140.1%);
+  width: 216px;
+  height: 48px;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+  border-radius: 50px;
+}
+.text-login {
+  @include font(600, 33px, 140.1%);
+  margin-top: 46px;
+  text-align: center;
+}
+.username-input {
+  @include flex-d(flex, column);
+  @include font(500, 14px, 146.1%);
+  margin-top: 33px;
+  margin-left: 72px;
+}
+.buttons {
+  margin-top: 24px;
+  margin-left: 72px;
+}
+.forgot-button {
+  margin-left: 19px;
+}
+.google {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 260px;
+  height: 45px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.google-logo {
+  background-image: url("/assets/img/Google_logo.png");
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+}
+.google-button-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.google-span {
+  margin-left: 15px;
+}
+.incorrectedData {
+  @include font();
+  margin: 0 auto;
+  color: red;
+  margin-top: 10px;
+}
+.incorrected-email {
+  @include font();
+  color: red;
+  margin: 0 auto;
+  margin-top: 10px;
+}

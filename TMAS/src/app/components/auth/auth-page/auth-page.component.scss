@@ -1,0 +1,8 @@
+@import "src/app/styles/global-styles.scss";
+
+.main-page-container {
+  @include flex-d(flex, column);
+  width: 100%;
+  height: 100%;
+  background-color: #b0cfff;
+}

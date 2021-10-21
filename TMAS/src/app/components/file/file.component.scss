@@ -1,0 +1,31 @@
+@import "src/app/styles/global-styles.scss";
+
+.image-div {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  cursor: pointer;
+}
+.txt-file {
+  @include fileStyle();
+  background-image: url("/assets/img/Txt_logo.png");
+}
+.pdf-file {
+  @include fileStyle();
+  background-image: url("/assets/img/Pdf_logo.png");
+}
+.word-file {
+  @include fileStyle();
+  background-image: url("/assets/img/Word_logo.png");
+}
+.file-container {
+  @include flex-d(flex, row);
+  align-items: center;
+  margin-left: 30px;
+  margin-top: 20px;
+  width: auto;
+  cursor: pointer;
+}
+.file-img {
+  padding: 0;
+}

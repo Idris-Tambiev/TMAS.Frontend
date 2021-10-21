@@ -1,0 +1,77 @@
+@import "src/app/styles/global-styles.scss";
+.column-container {
+  width: 288px;
+  background: #dfeeff;
+  border: 1px solid rgba(223, 238, 255, 0.3);
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-left: 16px;
+  height: auto;
+}
+.column-header {
+  @include flex-d(flex, row);
+  align-items: center;
+  margin-top: 15px;
+}
+.column-title {
+  @include font(bold, 14px, 18px);
+  margin-left: 15px;
+}
+.column-delete-icon {
+  color: rgba(55, 125, 255);
+  margin-left: auto;
+}
+.todo-add-button {
+  @include centering();
+  width: auto;
+  margin-top: 15px;
+  @include font(500, 14px, 140.1%);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #377dff;
+  cursor: pointer;
+}
+.todo-add-button:hover {
+  color: #334681;
+}
+.todo-add-button:active {
+  color: #377dff;
+}
+.add-span {
+  margin-left: 9.5px;
+}
+.columns-footer {
+  width: 288px;
+  height: 24px;
+}
+.new-card {
+  width: 256px;
+  margin-left: 16px;
+}
+.create-input {
+  width: 256px;
+  min-height: 40px;
+  background-color: white;
+  margin-top: 12px;
+  padding-bottom: 24px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.cancel {
+  margin-left: auto;
+  margin-right: 1px;
+  cursor: pointer;
+}
+.new-card-buttons {
+  @include flex-d(flex, row);
+  width: 288px;
+  margin-left: -16px;
+  color: #377dff;
+}
+.invisible {
+  display: none;
+}
+.title-edit-input {
+  margin-left: 15px;
+  border-bottom: 1px solid black;
+}
